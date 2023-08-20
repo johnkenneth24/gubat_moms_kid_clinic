@@ -1,4 +1,4 @@
-@extends('layouts/commonMaster' )
+@extends('layouts/auth-app/commonMaster' )
 
 @php
 /* Display elements */

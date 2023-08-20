@@ -1,9 +1,15 @@
+@extends('layouts/auth-app/contentNavbarLayout')
 
+@section('title', 'Dashboard')
 
-{{-- @extends('layouts/auth-app/commonMaster' )
+@section('pageStyle')
+
+@endsection
 
 @section('layoutContent')
-<!-- Content -->
 
-<!--/ Content -->
-@endsection --}}
+@endsection
+
+@section('pageScript')
+
+@endsection

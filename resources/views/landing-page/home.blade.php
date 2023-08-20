@@ -1,4 +1,4 @@
-@extends('layouts/blankLayout')
+@extends('layouts/app/blankLayout')
 
 @section('title', 'Gubat Mom\'s & Kids Clinic')
 
@@ -66,7 +66,7 @@
                   <a class="nav-link" href="#about">About</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="#blog">Sign Up</a>
+                  <a class="nav-link" href="{{ route('signup') }}">Sign Up</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link" href="{{ route('login') }}">Log In</a>
