@@ -1,4 +1,4 @@
-@extends('layouts/blankLayout')
+@extends('layouts/app/blankLayout')
 
 @section('title', 'Gubat Mom\'s & Kids Clinic')
 
@@ -175,7 +175,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="about-text">
-                            <p style="text-align: justify; text-indent: 50px;">Welcome to Gubat Mom's and Kid's Clinic! We
+                            <p style="text-align: justify;">Welcome to Gubat Mom's and Kid's Clinic! We
                                 are a family
                                 owned and
                                 operated clinic that provides comprehensive care for children and their families. We offer a

@@ -18,10 +18,10 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
   <!-- Include Styles -->
-  @include('layouts/sections/styles')
+  @include('layouts/app-auth/sections/styles')
 
   <!-- Include Scripts for customizer, helper, analytics, config -->
-  @include('layouts/sections/scriptsIncludes')
+  @include('layouts/app-auth/sections/scriptsIncludes')
 </head>
 
 <body>
@@ -32,10 +32,8 @@
 
 
   <!-- Include Scripts -->
-  @include('layouts/sections/scripts')
+  @include('layouts/app-auth/sections/scripts')
 
-  <!-- Include Scripts for customizer, helper, analytics, config -->
-  @yield('page-script')
 </body>
 
 </html>

@@ -18,24 +18,22 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
   <!-- Include Styles -->
-  @include('layouts/sections/styles')
+  @include('layouts/app/sections/styles')
 
   <!-- Include Scripts for customizer, helper, analytics, config -->
-  @include('layouts/sections/scriptsIncludes')
+  @include('layouts/app/sections/scriptsIncludes')
 </head>
 
 <body>
 
   <!-- Layout Content -->
-  @yield('layoutContent')
+  @yield('content')
   <!--/ Layout Content -->
 
 
   <!-- Include Scripts -->
-  @include('layouts/sections/scripts')
+  @include('layouts/app/sections/scripts')
 
-  <!-- Include Scripts for customizer, helper, analytics, config -->
-  @yield('page-script')
 </body>
 
 </html>
