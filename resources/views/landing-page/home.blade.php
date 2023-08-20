@@ -20,14 +20,13 @@
         ul li a {
             color: #373737 !important;
             font-size: 1.1rem;
-            font-weight: 400;
+            font-weight: bold;
             margin-left: 10px;
-            transition: font-weight 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+            transition: color 1.5s cubic-bezier(0.215, 0.61, 0.355, 1);
         }
 
         ul li a:hover {
             color: #b60404 !important;
-            font-weight: bold;
         }
 
         #home {
@@ -93,7 +92,8 @@
                         <div class="banner-text">
                             <h3 style="font-size: 3rem; color:#0451b6; font-weight: 700;">Welcome to Gubat Mom's & Kid's
                                 Clinic!</h3>
-                            <p style="color: #000000; font-size: 15px; ">Lorem ipsum, dolor sit amet consectetur adipisicing
+                            <p style="color: #000000; font-size: 15px; text-align: justify;">Lorem ipsum,
+                                dolor sit amet consectetur adipisicing
                                 elit. Eius ut mollitia fugiat omnis, voluptatibus, doloribus provident soluta et similique
                                 voluptate, autem aliquid esse voluptas dolorem repellat sit temporibus. Sapiente,
                                 architecto.</p>
@@ -118,7 +118,7 @@
                     <div class="col-md-4">
                         <div class="card h-100">
                             <div class="card-body">
-                                <h5 class="card-title" style="color: #373737">CLINIC SCHEDULE</h5>
+                                <h5 class="card-title text-center" style="color: #373737">CLINIC SCHEDULE</h5>
                                 <div class="text-center">
                                     <img src="{{ asset('assets/img/sched-img.svg') }}" alt="" height="130">
                                 </div>
@@ -134,7 +134,8 @@
                     <div class="col-md-4">
                         <div class="card h-100">
                             <div class="card-body">
-                                <h5 class="card-title text-uppercase" style="color: #373737">Vaccination & Baby Check-up
+                                <h5 class="card-title text-uppercase text-center" style="color: #373737">Vaccination & Baby
+                                    Check-up
                                 </h5>
                                 {{-- <h6 class="card-subtitle text-muted">Check up</h6> --}}
                                 <div class="text-center">
@@ -148,7 +149,7 @@
                     <div class="col-md-4">
                         <div class="card h-100">
                             <div class="card-body">
-                                <h5 class="card-title text-uppercase" style="color: #373737">Consultation</h5>
+                                <h5 class="card-title text-uppercase text-center" style="color: #373737">Consultation</h5>
                                 {{-- <h6 class="card-subtitle text-muted">Check up</h6> --}}
                                 <div class="text-center">
                                     <img src="{{ asset('assets/img/cons-img.svg') }}" alt="" height="130">
@@ -174,10 +175,13 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="about-text">
-                            <p class="">Welcome to Gubat Mom's and Kid's Clinic! We are a family owned and operated
-                                clinic that provides comprehensive care for children and their families. We offer a range of
-                                services, including vaccinations, well-baby check-ups, and consultations. Our knowledgeable
-                                and experienced staff strive to provide the highest quality of care in a comfortable and
+                            <p style="text-align: justify; text-indent: 50px;">Welcome to Gubat Mom's and Kid's Clinic! We
+                                are a family
+                                owned and
+                                operated clinic that provides comprehensive care for children and their families. We offer a
+                                range of services, including vaccinations, well-baby check-ups, and consultations. Our
+                                knowledgeable and experienced staff strive to provide the highest quality of care in a
+                                comfortable and
                                 welcoming environment. Our goal is to ensure your children receive the best possible care to
                                 keep them healthy and happy. We look forward to seeing you at Gubat Mom's and Kid's Clinic.
                             </p>
