@@ -1,4 +1,4 @@
-@extends('layouts/blankLayout')
+@extends('layouts/app/blankLayout')
 
 @section('title', 'Login')
 
@@ -69,7 +69,7 @@
 
           <p class="text-center">
             <span>New on our platform?</span>
-            <a href="{{url('signup')}}">
+            <a href="{{route('dashboard')}}">
               <span>Create an account</span>
             </a>
           </p>

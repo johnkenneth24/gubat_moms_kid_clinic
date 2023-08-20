@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-  <title>@yield('title')</title>
+  <title>@yield('title') | Sneat - HTML Laravel Free Admin Template </title>
   <meta name="description" content="{{ config('variables.templateDescription') ? config('variables.templateDescription') : '' }}" />
   <meta name="keywords" content="{{ config('variables.templateKeyword') ? config('variables.templateKeyword') : '' }}">
   <!-- laravel CRUD token -->
@@ -18,10 +18,10 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
   <!-- Include Styles -->
-  @include('layouts/sections/styles')
+  @include('layouts/app-auth/sections/styles')
 
   <!-- Include Scripts for customizer, helper, analytics, config -->
-  @include('layouts/sections/scriptsIncludes')
+  @include('layouts/app-auth/sections/scriptsIncludes')
 </head>
 
 <body>
@@ -32,8 +32,7 @@
 
 
   <!-- Include Scripts -->
-  @include('layouts/sections/scripts')
-
+  @include('layouts/app-auth/sections/scripts')
 
 </body>
 

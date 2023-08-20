@@ -1,4 +1,4 @@
-@extends('layouts/auth-app/commonMaster' )
+@extends('layouts/app-auth/commonMaster' )
 
 @php
 /* Display elements */
@@ -24,7 +24,7 @@ $container = ($container ?? 'container-xxl');
   <div class="layout-container">
 
     @if ($isMenu)
-    @include('layouts/sections/menu/verticalMenu')
+    @include('layouts/app-auth/sections/menu/verticalMenu')
     @endif
 
 
@@ -32,10 +32,9 @@ $container = ($container ?? 'container-xxl');
     <div class="layout-page">
       <!-- BEGIN: Navbar-->
       @if ($isNavbar)
-      @include('layouts/sections/navbar/navbar')
+      @include('layouts/app-auth/sections/navbar/navbar')
       @endif
       <!-- END: Navbar-->
-
 
       <!-- Content wrapper -->
       <div class="content-wrapper">
@@ -58,11 +57,6 @@ $container = ($container ?? 'container-xxl');
           </div>
           <!-- / Content -->
 
-          <!-- Footer -->
-          @if ($isFooter)
-          @include('layouts/sections/footer/footer')
-          @endif
-          <!-- / Footer -->
           <div class="content-backdrop fade"></div>
         </div>
         <!--/ Content wrapper -->
