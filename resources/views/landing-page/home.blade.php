@@ -92,11 +92,7 @@
                         <div class="banner-text">
                             <h3 style="font-size: 3rem; color:#0451b6; font-weight: 700;">Welcome to Gubat Mom's & Kid's
                                 Clinic!</h3>
-                            <p style="color: #000000; font-size: 15px; text-align: justify;">Lorem ipsum,
-                                dolor sit amet consectetur adipisicing
-                                elit. Eius ut mollitia fugiat omnis, voluptatibus, doloribus provident soluta et similique
-                                voluptate, autem aliquid esse voluptas dolorem repellat sit temporibus. Sapiente,
-                                architecto.</p>
+                            <p style="color: #000000; font-size: 15px; text-align: justify;">Welcome to Gubat Mom's and Kid's Clinic, a trusted healthcare facility dedicated to providing exceptional care for both mothers and children.  With a warm and welcoming environment, we strive to create a comforting experience for every family that walks through our doors. Trust Gubat Mom's and Kid's Clinic for comprehensive and compassionate healthcare for you and your little ones.</p>
                         </div>
                     </div>
                     <div class="col-md-6 d-flex align-items-center justify-content-center ">
@@ -185,10 +181,9 @@
                                 welcoming environment. Our goal is to ensure your children receive the best possible care to
                                 keep them healthy and happy. We look forward to seeing you at Gubat Mom's and Kid's Clinic.
                             </p>
-                            <p style="color: #0451b6"><i class="bi bi-telephone-fill"></i> 09123456789</p>
                             <p style="color: #0451b6"><i class="bi bi-envelope-at-fill"></i>
-                                gubat_momkidsclinic@mail.com</p>
-                            <p style="color: #0451b6"><i class="bi bi-pin-map-fill"></i> Manook St. Gubat Sorsogon</p>
+                              gubatmomsandkidsclinic@gmail.om</p>
+                            <p style="color: #0451b6"><i class="bi bi-pin-map-fill"></i> Manook St., Manook, Gubat, Sorsogon</p>
                         </div>
                         <div class="about-map mb-5" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
                             <iframe
