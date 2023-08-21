@@ -43,7 +43,7 @@
         <div>{{-- isset($menu->name)?__($menu->name):'' --}}Medical History</div>
       </a>
     </li>
-      
+
     <li class="menu-item {{ !request()->routeIs('app-request.index') ? : 'active' }}">
       <a href="{{ route('app-request.index') }}" class="{{-- isset($menu->submenu)?'menu-linkmenu-toggle':'menu-link' --}} menu-link">
         <i class="menu-icon tf-icons bx bx-notepad "></i>
@@ -68,7 +68,7 @@
     <li class="menu-item {{ !request()->routeIs('user-list.index') ? : 'active' }}">
       <a href="{{ route('user-list.index') }}" class="{{-- isset($menu->submenu)?'menu-linkmenu-toggle':'menu-link' --}} menu-link">
         <i class="menu-icon tf-icons bx bx-group "></i>
-        <div>{{-- isset($menu->name)?__($menu->name):'' --}}User's List</div>
+        <div>{{-- isset($menu->name)?__($menu->name):'' --}}Users List</div>
       </a>
     </li>
 
