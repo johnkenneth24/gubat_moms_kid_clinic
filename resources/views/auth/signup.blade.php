@@ -1,4 +1,4 @@
-@extends('layouts/blankLayout')
+@extends('layouts/app/blankLayout')
 
 @section('title', 'Register Basic - Pages')
 

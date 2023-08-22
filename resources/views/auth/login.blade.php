@@ -37,11 +37,17 @@
           <h4 class="mb-2">Welcome to {{config('variables.templateName')}}!</h4>
           <p class="mb-4">Please sign-in to your account</p>
 
-          <form id="formAuthentication" class="mb-3" action="{{url('/')}}" method="GET">
+          <form id="formAuthentication" class="mb-3" action="{{ route('auth.verify') }}" method="post">
+            @csrf
             <div class="mb-3">
               <label for="email" class="form-label">Email or Username</label>
               <input type="text" class="form-control" id="email" name="email-username" placeholder="Enter your email" autofocus>
             </div>
+            @error('email')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+          @enderror
             <div class="mb-3 form-password-toggle">
               <div class="d-flex justify-content-between">
                 <label class="form-label" for="password">Password</label>
@@ -63,7 +69,7 @@
               </div> --}}
             </div>
             <div class="mb-3">
-              <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+              <button type="submit" class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
             </div>
           </form>
 
