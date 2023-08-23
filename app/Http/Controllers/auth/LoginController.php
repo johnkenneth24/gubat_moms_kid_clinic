@@ -33,16 +33,6 @@ class LoginController extends Controller
             return back()->withErrors(['email' => 'This credential does not match our records.']);
         }
 
-        // dd($credentials);
-
-        // if (Auth::attempt($credentials)) {
-        //     session()->regenerate();
-        //     return redirect()->route('dashboard')->with(['success' => 'You are logged in.']);
-        // } else {
-
-        //     return back()->withErrors(['email' => 'This credential does not match our records.']);
-        // }
-
     }
 
     public function logout(Request $request)
