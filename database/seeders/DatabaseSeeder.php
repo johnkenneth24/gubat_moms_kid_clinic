@@ -28,5 +28,19 @@ class DatabaseSeeder extends Seeder
                 'role' => 'admin',
             ]);
         }
+
+        if (!User::where('email', 'client_test@gmail.com')->first()) {
+          $user = User::create([
+              'firstname' => 'Juan',
+              'lastname' => 'Dela Cruz',
+              'gender' => 'Male',
+              'birthdate' => '1999-01-01',
+              'contact_number' => '09123456789',
+              'address' => 'Brgy Manook. Gubat, Sorsogon',
+              'email' => 'client_test@gmail.com',
+              'password' => Hash::make('juan12345'),
+              'role' => 'client',
+          ]);
+      }
     }
 }
