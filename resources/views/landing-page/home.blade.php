@@ -188,7 +188,7 @@
                         <div class="about-map mb-5" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
                             <iframe
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7777.672029723866!2d124.11865916583128!3d12.91825909572856!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a0ebf501da93b7%3A0xf7ac94d2b82eb16a!2sManook%20St.%20Brgy%20Manook%2C%20Gubat%20Sorsogon!5e0!3m2!1sen!2sph!4v1692373146978!5m2!1sen!2sph&hl=en&output=embed&z=18"
-                                width="531" height="300" style="border:0;" allowfullscreen=""
+                                width="600" height="300" style="border:0;" allowfullscreen=""
                                 loading="lazy"></iframe>
                         </div>
                     </div>
@@ -205,8 +205,8 @@
 @endsection
 
 @section('page-script')
-    <script src="{{ asset('assets/js/particles.js-master/particles.js') }}"></script>
-    <script src="{{ asset('assets/js/particles.js') }}"></script>
+    <script src="{{ asset('/js/particles.js-master/particles.js') }}"></script>
+    <script src="{{ asset('/js/particles.js') }}"></script>
     <script>
         window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navigation');

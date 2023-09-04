@@ -21,7 +21,7 @@
         <div>{{-- isset($menu->name)?__($menu->name):'' --}}Dashboard</div>
       </a>
     </li>
-
+    @if (auth()->user()->role=='client')
     <li class="menu-item {{ !request()->routeIs('appointment.create') ? : 'active' }}">
       <a href="{{ route('appointment.create') }}" class="{{-- isset($menu->submenu)?'menu-linkmenu-toggle':'menu-link' --}} menu-link">
         <i class="menu-icon tf-icons bx bx-book-bookmark {{-- $menu->icon --}}"></i>
@@ -43,7 +43,7 @@
         <div>{{-- isset($menu->name)?__($menu->name):'' --}}Medical History</div>
       </a>
     </li>
-
+    @else
     <li class="menu-item {{ !request()->routeIs('app-request.index') ? : 'active' }}">
       <a href="{{ route('app-request.index') }}" class="{{-- isset($menu->submenu)?'menu-linkmenu-toggle':'menu-link' --}} menu-link">
         <i class="menu-icon tf-icons bx bx-notepad "></i>
@@ -71,7 +71,7 @@
         <div>{{-- isset($menu->name)?__($menu->name):'' --}}Users List</div>
       </a>
     </li>
-
+    @endif
 
   </ul>
 
