@@ -15,18 +15,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        if (!User::where('email', 'gubatmomsandkidsclinic@gmail.com')->first()) {
+        if (!User::where('email', 'pediatrician@gmail.com')->first()) {
             $user = User::create([
-                'firstname' => 'Admin',
-                'lastname' => 'Admin',
+                'firstname' => 'Geraldine Gay',
+                'lastname' => 'Frilles',
                 'gender' => 'Female',
                 'birthdate' => '1999-01-01',
                 'contact_number' => '09123456789',
                 'address' => 'Brgy Manook. Gubat, Sorsogon',
-                'email' => 'gubatmomsandkidsclinic@gmail.com',
-                'password' => Hash::make('admin12345'),
+                'email' => 'pediatrician@gmail.com',
+                'password' => Hash::make('pediatrician12345'),
             ]);
-            $user->assignRole('admin');
+            $user->assignRole('pediatrician');
         }
 
         if (!User::where('email', 'staff@gmail.com')->first()) {
@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
                 'email' => 'staff@gmail.com',
                 'password' => Hash::make('staff12345'),
             ]);
-            $user->assignrole('staff');
+            $user->assignRole('staff');
         }
     }
 }

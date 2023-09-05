@@ -24,16 +24,16 @@ class RoleProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (!Role::where('name', 'admin')->exists()) {
-            Role::create(['name' => 'admin']);
-        }
-
         if (!Role::where('name', 'staff')->exists()) {
             Role::create(['name' => 'staff']);
         }
 
-        if (!Role::where('name', 'user')->exists()) {
-            Role::create(['name' => 'user']);
+        if (!Role::where('name', 'pediatrician')->exists()) {
+            Role::create(['name' => 'pediatrician']);
+        }
+
+        if (!Role::where('name', 'patient')->exists()) {
+            Role::create(['name' => 'patient']);
         }
     }
 }
