@@ -5,6 +5,7 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\AppointmentStatController;
 use App\Http\Controllers\AppRequestController;
 use App\Http\Controllers\auth\LoginController;
+use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LandingpageController;
 use App\Http\Controllers\MedHistoryController;
@@ -32,6 +33,7 @@ Route::middleware('guest')->group(function () {
     Route::post('/verify', [LoginController::class, 'verifyUser'])->name('auth.verify');
     //signup
     Route::get('/signup', [LoginController::class, 'signup'])->name('signup');
+    Route::post('/register', [RegisterController::class, 'register'])->name('register');
 });
 
 Route::middleware('auth')->group(function () {
