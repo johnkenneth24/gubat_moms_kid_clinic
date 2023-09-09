@@ -22,6 +22,7 @@
             </a>
         </li>
         {{-- @role('user') --}}
+        @role('patient')
         <li class="menu-item {{ !request()->routeIs('appointment.create') ?: 'active' }}">
             <a href="{{ route('appointment.create') }}" class="{{-- isset($menu->submenu)?'menu-linkmenu-toggle':'menu-link' --}} menu-link">
                 <i class="menu-icon tf-icons bx bx-book-bookmark {{-- $menu->icon --}}"></i>
@@ -38,20 +39,23 @@
         </li>
 
         <li class="menu-item {{ !request()->routeIs('med-history.index') ?: 'active' }}">
-            <a href="{{ route('med-history.index') }}" class="{{-- isset($menu->submenu)?'menu-linkmenu-toggle':'menu-link' --}} menu-link">
-                <i class="menu-icon tf-icons bx bx-book-content "></i>
-                <div>{{-- isset($menu->name)?__($menu->name):'' --}}Medical History</div>
-            </a>
+          <a href="{{ route('med-history.index') }}" class="{{-- isset($menu->submenu)?'menu-linkmenu-toggle':'menu-link' --}} menu-link">
+              <i class="menu-icon tf-icons bx bx-book-content "></i>
+              <div>{{-- isset($menu->name)?__($menu->name):'' --}}Medical History</div>
+          </a>
         </li>
-        {{-- @endrole
-        @role('admin') --}}
+        @endrole
+
+        @role('staff')
         <li class="menu-item {{ !request()->routeIs('app-request.index') ?: 'active' }}">
             <a href="{{ route('app-request.index') }}" class="{{-- isset($menu->submenu)?'menu-linkmenu-toggle':'menu-link' --}} menu-link">
                 <i class="menu-icon tf-icons bx bx-notepad "></i>
                 <div>{{-- isset($menu->name)?__($menu->name):'' --}}Appointment Request</div>
             </a>
         </li>
+        @endrole
 
+        @unlessrole('patient')
         <li class="menu-item {{ !request()->routeIs('app-checkup.index') ?: 'active' }}">
             <a href="{{ route('app-checkup.index') }}" class="{{-- isset($menu->submenu)?'menu-linkmenu-toggle':'menu-link' --}} menu-link">
                 <i class="menu-icon tf-icons bx bx-calendar "></i>
@@ -62,9 +66,12 @@
         <li class="menu-item {{ !request()->routeIs('patient-record.index') ?: 'active' }}">
             <a href="{{ route('patient-record.index') }}" class="{{-- isset($menu->submenu)?'menu-linkmenu-toggle':'menu-link' --}} menu-link">
                 <i class="menu-icon tf-icons bx bx-id-card "></i>
-                <div>{{-- isset($menu->name)?__($menu->name):'' --}}Patient Record</div>
+                <div>{{-- isset($menu->name)?__($menu->name):'' --}}Patient Record History</div>
             </a>
         </li>
+        @endunlessrole
+
+
 
         @role('staff')
             <li class="menu-item {{ !request()->routeIs('user-list.index') ?: 'active' }}">
