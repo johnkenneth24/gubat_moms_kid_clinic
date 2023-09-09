@@ -1,7 +1,7 @@
 @php
     $containerNav = $containerNav ?? 'container-fluid';
     $navbarDetached = $navbarDetached ?? '';
-    
+
 @endphp
 
 <!-- Navbar -->
