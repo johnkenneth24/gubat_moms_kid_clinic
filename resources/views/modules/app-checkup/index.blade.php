@@ -59,7 +59,7 @@
                 <td>
                   @role('staff')
                   <a class="btn btn-success btn-sm text-white">View</a>
-                  <a class="btn btn-primary btn-sm text-white">Update</a>
+                  <a href="{{ route('walkin-appointment.edit', $walkin->id)  }}" class="btn btn-primary btn-sm text-white">Update</a>
                   @endrole
                   @role('pediatrician')
                   <a class="btn btn-info btn-sm text-white">Consult</a>

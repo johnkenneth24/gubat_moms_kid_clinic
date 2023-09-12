@@ -40,4 +40,14 @@ class WalkInAppController extends Controller
       return redirect()->route('app-checkup.index')->with('success', $validated['firstname'] . ' ' . $validated['lastname'] . 'already added for appointment!');
     }
 
+    public function edit(WalkInAppointment $walkin)
+    {
+      $gender = ['Male', 'Female'];
+
+      $checkup = ['Vaccination', 'Baby Check-up'];
+      $consult = ['Consultation'];
+
+      return view('modules.app-checkup.walkin-app.edit',  compact('checkup', 'consult', 'gender', 'walkin'));
+    }
+
 }

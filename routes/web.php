@@ -52,6 +52,8 @@ Route::middleware('auth')->group(function () {
     Route::controller(WalkInAppController::class)->prefix('walkin-appointment')->group(function () {
       Route::get('/create', 'create')->name('walkin-appointment.create');
       Route::post('/store', 'store')->name('walkin-appointment.store');
+      Route::get('/update/{walkin}', 'edit')->name('walkin-appointment.edit');
+
   });
 
     //appointment status
