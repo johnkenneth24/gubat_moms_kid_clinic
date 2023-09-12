@@ -10,6 +10,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LandingpageController;
 use App\Http\Controllers\MedHistoryController;
 use App\Http\Controllers\PatientRecordController;
+use App\Http\Controllers\WalkInAppController;
 use App\Http\Controllers\UserListController;
 use Illuminate\Support\Facades\Route;
 
@@ -47,6 +48,12 @@ Route::middleware('auth')->group(function () {
         Route::get('/create', 'create')->name('appointment.create');
         Route::post('/store', 'store')->name('appointment.store');
     });
+
+    Route::controller(WalkInAppController::class)->prefix('walkin-appointment')->group(function () {
+      Route::get('/create', 'create')->name('walkin-appointment.create');
+      Route::post('/store', 'store')->name('walkin-appointment.store');
+  });
+
     //appointment status
     Route::get('/appointment-status', [AppointmentStatController::class, 'index'])->name('app-stat.index');
     //medical history
