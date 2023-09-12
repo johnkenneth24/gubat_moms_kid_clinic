@@ -24,7 +24,9 @@ return new class extends Migration
             $table->double('weight');
             $table->double('height');
             $table->integer('age');
+            $table->string('type_consult');
             $table->date('date_consultation');
+            $table->string('time_consultation');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -1,17 +1,12 @@
 @extends('layouts/app-auth/contentNavbarLayout')
 
-@section('title', 'Appointment Request')
+@section('title', 'Book Appointment')
 
 @section('vendor-style')
-<link rel="stylesheet" href="{{asset('assets/vendor/libs/apex-charts/apex-charts.css')}}">
-@endsection
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css">
+    <style>
 
-@section('vendor-script')
-<script src="{{asset('assets/vendor/libs/apex-charts/apexcharts.js')}}"></script>
-@endsection
-
-@section('page-script')
-<script src="{{asset('assets/js/dashboards-analytics.js')}}"></script>
+    </style>
 @endsection
 
 @section('content')
@@ -52,3 +47,14 @@
   </div>
 </div>
 @endsection
+
+@section('vendor-script')
+
+@endsection
+
+@section('page-script')
+
+@endsection
+
+
+

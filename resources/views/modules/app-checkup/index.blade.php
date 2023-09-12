@@ -15,37 +15,68 @@
 @endsection
 
 @section('content')
+@if (session('success'))
+<div class="alert alert-primary d-flex alert-dismissible" role="alert">
+  <span class="badge badge-center rounded-pill bg-primary border-label-primary p-3 me-2"><i class='bx bx-user-check'></i></span>
+  <div class="d-flex flex-column ps-1">
+    <h6 class="alert-heading d-flex align-items-center fw-bold mb-1">{{ session('success') }}</h6>
+    <span>Wait for the pediatrician for consultation.</span>
+  </div>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+  </button>
+</div>
+@endif
 <div class="row">
   <div class="col-lg-12">
     <div class="card p-2">
-      <h5 class="card-header text-uppercase">Appointment Checkup</h5>
-      <div class="table-responsive text-nowrap">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th>Patient Name</th>
-              <th>Category</th>
-              <th>Date Appointment</th>
-              <th>Time Appointment</th>
-              <th>Status</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody class="table-border-bottom-0">
-            <tr>
-              <td style="font-size: 0.90rem;">Juan Dela Cruz</td>
-              <td style="font-size: 0.90rem;">Consultation</td>
-              <td style="font-size: 0.90rem;">August 1, 2023</td>
-              <td style="font-size: 0.90rem;">01:00 PM</td>
-              <td><span class="badge bg-label-primary">Consult</span></td>
-              <td>
-                {{-- //modal to view user information --}}
-                <button class="btn btn-primary btn-sm">View User Info</button>
-                <button class="btn btn-info btn-sm">Consult</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="card-header d-flex align-items-center justify-content-between ">
+        <div class="card-title p-0 mb-0 d-flex align-item-center">
+          <h5 class="card-header p-0 text-uppercase">Appointment Checkup</h5>
+        </div>
+        <div class="card-tool">
+          <a href="{{ route('walkin-appointment.create') }}" class="btn btn-primary" style="color: #ffff;">ADD WALK-IN APPOINTMENT</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive text-nowrap">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Patient Name</th>
+                <th>Category</th>
+                <th>Date Appointment</th>
+                <th>Time Appointment</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+              @forelse ($walkinapp as $walkin)
+              <tr>
+                <td style="font-size: 0.90rem;">{{ $walkin->full_name }}</td>
+                <td style="font-size: 0.90rem;">{{ $walkin->type_consult }}</td>
+                <td style="font-size: 0.90rem;">{{ $walkin->date_consultation->format('F d, Y') }}</td>
+                <td style="font-size: 0.90rem;">{{ date('h:i A', strtotime($walkin->time_consultation)) }}</td>
+                <td>
+                  @role('staff')
+                  <a class="btn btn-success btn-sm text-white">View</a>
+                  <a class="btn btn-primary btn-sm text-white">Update</a>
+                  @endrole
+                  @role('pediatrician')
+                  <a class="btn btn-info btn-sm text-white">Consult</a>
+                  @endrole
+                </td>
+              </tr>
+              @empty
+              <tr>
+                <td colspan="5" class="text-center">
+                  No Record of Appointment Today!
+                </td>
+              </tr>
+              @endforelse
+
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
