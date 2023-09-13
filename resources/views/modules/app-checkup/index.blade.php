@@ -75,9 +75,11 @@
                 </td>
               </tr>
               @endforelse
-
             </tbody>
           </table>
+          <div class="d-flex justify-content-center">
+            {{ $walkinapp->links() }}
+          </div>
         </div>
       </div>
     </div>

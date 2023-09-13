@@ -16,17 +16,19 @@
 
 @section('content')
     <div class="row">
+      @unlessrole('patient')
         <div class="col-md-4 mb-4">
             <div class="card h-100">
                 <div class="card-body">
                     <h5 class="card-title">Appointment Status</h5>
                     <div class="">
-                        <p>You have <strong>0</strong> appointment today.</p>
+                        <p>You have <strong>{{ $walkinapp }}</strong> appointment today.</p>
                     </div>
-                    <a href="{{ route('app-stat.index') }}" class="btn btn-primary">View</a>
+                    <a href="{{ route('app-checkup.index') }}" class="btn btn-primary">View</a>
                 </div>
             </div>
         </div>
+      @endunlessrole
         <div class="col-md-8 h-100 mb-4">
             <div class="card">
                 <div class="d-flex align-items-end row">

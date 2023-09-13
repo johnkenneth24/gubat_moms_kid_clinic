@@ -15,6 +15,15 @@
 @endsection
 
 @section('content')
+@if (session('success'))
+<div class="alert alert-primary d-flex align-items-center alert-dismissible" role="alert">
+  <span class="badge badge-center rounded-pill bg-primary border-label-primary p-3 me-2"><i class='bx bx-user-check'></i></span>
+  <div class="d-flex align-items-center ps-1">
+    <h6 class="alert-heading d-flex align-items-center fw-bold mb-1">{{ session('success') }}</h6>
+  </div>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
 <div class="row">
   <div class="col-lg-12">
     <div class="card p-2">
@@ -32,21 +41,27 @@
             </tr>
           </thead>
           <tbody class="table-border-bottom-0">
-            @foreach ( as )
-
-            @endforeach
+            @forelse ($patient_record as $patient_rec)
             <tr>
-              <td style="font-size: 0.90rem;">Juan Dela Cruz</td>
-              <td style="font-size: 0.90rem;">Consultation</td>
-              <td style="font-size: 0.90rem;">August 1, 2023</td>
-              <td style="font-size: 0.90rem;">01:00 PM</td>
-              <td><span class="badge bg-label-primary">Completed</span></td>
+              <td style="font-size: 0.90rem;">{{ $patient_rec->full_name }}</td>
+              <td style="font-size: 0.90rem;">{{ $patient_rec->type_consult }}</td>
+              <td style="font-size: 0.90rem;">{{ $patient_rec->date_consultation->format('F d, Y') }}</td>
+              <td style="font-size: 0.90rem;">{{ date('h:i A', strtotime($patient_rec->time_consultation)) }}</td>
+              <td><span class="badge bg-label-success">{{ $patient_rec->status }}</span></td>
               <td>
-                <button class="btn btn-primary btn-sm">View Consultation</button>
+                <a href="{{ route('patient-record.view_consult', $patient_rec->id) }}" class="btn btn-primary btn-sm">View Consultation</a>
               </td>
             </tr>
+            @empty
+            <tr>
+              <td colspan="6">No Patient Record!</td>
+            </tr>
+            @endforelse
           </tbody>
         </table>
+        <div class="d-flex justify-content-center">
+          {{ $patient_record->links() }}
+        </div>
       </div>
     </div>
   </div>
