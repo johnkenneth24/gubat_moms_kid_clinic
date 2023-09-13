@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('type_consult');
             $table->date('date_consultation');
             $table->string('time_consultation');
+            $table->string('status')->default('pending');
             $table->softDeletes();
             $table->timestamps();
         });
