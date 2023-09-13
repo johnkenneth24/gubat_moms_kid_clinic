@@ -6,6 +6,8 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,6 +17,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+
+        if (!Role::where('name', 'staff')->exists()) {
+            Role::create(['name' => 'staff']);
+        }
+
+        if (!Role::where('name', 'pediatrician')->exists()) {
+            Role::create(['name' => 'pediatrician']);
+        }
+
+        if (!Role::where('name', 'patient')->exists()) {
+            Role::create(['name' => 'patient']);
+        }
+
         if (!User::where('email', 'pediatrician@gmail.com')->first()) {
             $user = User::create([
                 'firstname' => 'Geraldine Gay',
