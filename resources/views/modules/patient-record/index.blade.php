@@ -32,6 +32,9 @@
             </tr>
           </thead>
           <tbody class="table-border-bottom-0">
+            @foreach ( as )
+
+            @endforeach
             <tr>
               <td style="font-size: 0.90rem;">Juan Dela Cruz</td>
               <td style="font-size: 0.90rem;">Consultation</td>

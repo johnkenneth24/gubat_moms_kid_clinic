@@ -16,8 +16,9 @@
 @endsection
 
 @section('content')
-<form action="{{ route('walkin-appointment.store') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('walkin-appointment.update', [$walkin]) }}" method="post" enctype="multipart/form-data">
 @csrf
+@method('PUT')
 <div class="row">
     <div class="col-lg-12">
         <div class="card p-2">
@@ -91,9 +92,9 @@
                         <div class="form-group">
                             <label for="" class="form-label">Gender</label>
                             <select id="" class="form-select @error('gender') is-invalid @enderror" name="gender">
-                                <option disabled selected>--Please Select--</option>
+                                <option value="">--Please Select--</option>
                                 @foreach ($gender as $genders)
-                                <option value="{{ $walkin->gender }}" @selected($walkin->gender == $genders)>{{ $genders }}</option>
+                                <option value="{{ $genders }}" @selected($walkin->gender == $genders)>{{ $genders }}</option>
                                 @endforeach
                             </select>
                             @error('gender')
@@ -120,7 +121,7 @@
                         <div class="form-group">
                             <label for="" class="form-label">Type of Consultation</label>
                             <select id="" class="form-select @error('type_consult') is-invalid @enderror" name="type_consult">
-                                <option disabled selected>--Please Select--</option>
+                                <option value="">--Please Select--</option>
                                 @if (date('Wed') == 'Wed')
                                   @foreach ($consult as $consults)
                                     <option value="{{ $consults }}" @selected($walkin->type_consult == $consults)>{{ $consults }}</option>

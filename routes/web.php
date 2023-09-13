@@ -52,7 +52,11 @@ Route::middleware('auth')->group(function () {
     Route::controller(WalkInAppController::class)->prefix('walkin-appointment')->group(function () {
       Route::get('/create', 'create')->name('walkin-appointment.create');
       Route::post('/store', 'store')->name('walkin-appointment.store');
-      Route::get('/update/{walkin}', 'edit')->name('walkin-appointment.edit');
+      Route::get('/edit/{walkin}', 'edit')->name('walkin-appointment.edit');
+      Route::put('/update/{walkin}', 'update')->name('walkin-appointment.update');
+      Route::get('/show-info/{walkin}', 'view')->name('walkin-appointment.view');
+      Route::get('/consult-info/{walkin}', 'consult')->name('walkin-appointment.consult');
+      Route::post('/store-consult/{walkin}', 'consultStore')->name('walkin-consult.store');
 
   });
 

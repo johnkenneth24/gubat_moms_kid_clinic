@@ -10,18 +10,20 @@ class AppCheckupController extends Controller
 {
     public function index()
     {
-      $now = now();
+      $now = now(); // Get the current date and time
 
       $walkinapp = WalkInAppointment::where(function($query) use ($now) {
-          $query->where('date_consultation', '>', $now->toDateString())->where('status', 'pedning')
+          $query->where('date_consultation', '>', $now->toDateString()) // Check for future dates
                 ->orWhere(function($query) use ($now) {
                     $query->where('date_consultation', $now->toDateString())
-                          ->where('time_consultation', '>', $now->toTimeString());
+                          ->where('time_consultation', '>', $now->toTimeString()); // Check for future times on the current date
                 });
       })
-      ->orderBy('date_consultation', 'asc')
-      ->orderBy('time_consultation', 'asc')
+      ->where('status', 'pending') // Filter by the "pending" status
+      ->orderBy('date_consultation', 'asc') // Order by ascending date (upcoming first)
+      ->orderBy('time_consultation', 'asc') // Order by ascending time (upcoming first)
       ->paginate(10);
+
 
 
         return view('modules.app-checkup.index', compact('walkinapp'));

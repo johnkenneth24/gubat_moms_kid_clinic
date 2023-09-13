@@ -34,7 +34,9 @@
           <h5 class="card-header p-0 text-uppercase">Appointment Checkup</h5>
         </div>
         <div class="card-tool">
+          @role('staff')
           <a href="{{ route('walkin-appointment.create') }}" class="btn btn-primary" style="color: #ffff;">ADD WALK-IN APPOINTMENT</a>
+          @endrole
         </div>
       </div>
       <div class="card-body">
@@ -58,11 +60,11 @@
                 <td style="font-size: 0.90rem;">{{ date('h:i A', strtotime($walkin->time_consultation)) }}</td>
                 <td>
                   @role('staff')
-                  <a class="btn btn-success btn-sm text-white">View</a>
+                  <a href="{{ route('walkin-appointment.view', $walkin->id)  }}" class="btn btn-success btn-sm text-white">View</a>
                   <a href="{{ route('walkin-appointment.edit', $walkin->id)  }}" class="btn btn-primary btn-sm text-white">Update</a>
                   @endrole
                   @role('pediatrician')
-                  <a class="btn btn-info btn-sm text-white">Consult</a>
+                  <a href="{{ route('walkin-appointment.consult', $walkin->id) }}" class="btn btn-info btn-sm text-white">Consult</a>
                   @endrole
                 </td>
               </tr>

@@ -11,9 +11,16 @@ class WalkInConsultation extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-
+        'walk_in_appointment_id',
+        'medication_intake',
+        'medical_history',
+        'vaccine_received',
+        'diagnosis'
     ];
 
-    
+    public function walkInAppointment()
+    {
+      return $this->belongsTo(WalkInAppointment::class);
+    }
 
 }
