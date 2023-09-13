@@ -21,7 +21,8 @@ class WalkInAppointment extends Model
       'age',
       'type_consult',
       'date_consultation',
-      'time_consultation'
+      'time_consultation',
+      'status'
     ];
 
     protected $casts = [
@@ -31,7 +32,7 @@ class WalkInAppointment extends Model
 
     public function walkInConsult()
     {
-      return $this->hasMany(WalkInConsultation::class);
+      return $this->hasOne(WalkInConsultation::class);
     }
 
     public function getFullNameAttribute()

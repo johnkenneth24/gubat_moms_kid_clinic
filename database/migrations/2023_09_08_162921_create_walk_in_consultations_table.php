@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('walk_in_consultations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('walk_in_appointments')->cascadeOnDelete();
+            $table->foreignId('walk_in_appointment_id')->references('id')->on('walk_in_appointments')->cascadeOnDelete();
             $table->string('medication_intake');
             $table->string('medical_history');
             $table->string('vaccine_received');
