@@ -31,16 +31,19 @@
             </tr>
           </thead>
           <tbody class="table-border-bottom-0">
+            @forelse ($users as $user)
             <tr>
-              <td style="font-size: 0.90rem;">Juan Dela Cruz</td>
-              <td style="font-size: 0.90rem;">Brgy. 1, Gubat, Sorsogon</td>
-              <td style="font-size: 0.90rem;">juancruz@email.cop</td>
-              <td style="font-size: 0.90rem;">09123456789</td>
+              <td style="font-size: 0.90rem;">{{ $user->lastname .'. '.$user->firstname. ' '. $user->middlename. ',' }}</td>
+              <td style="font-size: 0.90rem;">{{ $user->address }}</td>
+              <td style="font-size: 0.90rem;">{{ $user->email }}</td>
+              <td style="font-size: 0.90rem;">{{ $user->contact_number }}</td>
               <td>
-                <button class="btn btn-primary btn-sm">View</button>
-                <button class="btn btn-danger btn-sm">Deactivate</button>
+                <a href="{{ route('user-list.view' , $user->id) }}" class="text-white btn btn-primary btn-sm">View</a>
               </td>
             </tr>
+            @empty
+
+            @endforelse
           </tbody>
         </table>
       </div>

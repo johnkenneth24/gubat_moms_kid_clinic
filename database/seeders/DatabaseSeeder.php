@@ -38,13 +38,13 @@ class DatabaseSeeder extends Seeder
                 'birthdate' => '1999-01-01',
                 'contact_number' => '09123456789',
                 'address' => 'Brgy Manook. Gubat, Sorsogon',
-                'email' => 'pediatrician@gmail.com',
+                'email' => 'pediatrician@email.com',
                 'password' => Hash::make('pediatrician12345'),
             ]);
             $user->assignRole('pediatrician');
         }
 
-        if (!User::where('email', 'staff@gmail.com')->first()) {
+        if (!User::where('email', 'staff@email.com')->first()) {
             $user = User::create([
                 'firstname' => 'Staff',
                 'lastname' => 'Dela Cruz',
