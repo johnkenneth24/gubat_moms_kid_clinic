@@ -86,7 +86,7 @@
                     <div class="dropdown-divider"></div>
                 </li>
                 <li>
-                    <a class="dropdown-item" href="javascript:void(0);">
+                    <a href="{{ route('user-management.view', auth()->user()->id ) }}" class="dropdown-item" href="javascript:void(0);">
                         <i class="bx bx-user me-2"></i>
                         <span class="align-middle">My Profile</span>
                     </a>

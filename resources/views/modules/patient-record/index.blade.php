@@ -54,7 +54,7 @@
             </tr>
             @empty
             <tr>
-              <td colspan="6">No Patient Record!</td>
+              <td colspan="6" class="text-center">No Patient Record!</td>
             </tr>
             @endforelse
           </tbody>

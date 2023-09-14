@@ -13,6 +13,7 @@ use App\Http\Controllers\PatientRecordController;
 use App\Http\Controllers\WalkInAppController;
 use App\Http\Controllers\UserListController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserManagementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +65,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/view-consultation/{patient_rec}', 'viewConsult')->name('patient-record.view_consult');
   });
 
+  Route::controller(UserListController::class)->prefix('user-list')->group(function(){
+    Route::get('/index', 'index')->name('user-list.index');
+    Route::get('/view-user-info/{user}', 'view')->name('user-list.view');
+  });
+
+  Route::controller(UserManagementController::class)->prefix('user-management')->group(function(){
+    Route::get('/view/{user}', 'view')->name('user-management.view');
+  });
+
   //appointment status
   Route::get('/appointment-status', [AppointmentStatController::class, 'index'])->name('app-stat.index');
   //medical history
@@ -72,6 +82,4 @@ Route::middleware('auth')->group(function () {
   Route::get('/appointment-request', [AppRequestController::class, 'index'])->name('app-request.index');
   //appointment checkup
   Route::get('/appointment-checkup', [AppCheckupController::class, 'index'])->name('app-checkup.index');
-  //user list
-  Route::get('/user-list', [UserListController::class, 'index'])->name('user-list.index');
 });
