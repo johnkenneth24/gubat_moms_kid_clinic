@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             Role::create(['name' => 'patient']);
         }
 
-        if (!User::where('email', 'pediatrician@gmail.com')->first()) {
+        if (!User::where('email', 'pediatrician@email.com')->first()) {
             $user = User::create([
                 'firstname' => 'Geraldine Gay',
                 'lastname' => 'Frilles',
@@ -52,7 +52,7 @@ class DatabaseSeeder extends Seeder
                 'birthdate' => '1999-01-01',
                 'contact_number' => '09123456789',
                 'address' => 'Brgy Manook. Gubat, Sorsogon',
-                'email' => 'staff@gmail.com',
+                'email' => 'staff@email.com',
                 'password' => Hash::make('staff12345'),
             ]);
             $user->assignRole('staff');
