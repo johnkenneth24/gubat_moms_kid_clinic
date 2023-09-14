@@ -142,7 +142,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label class="form-label">Date of Consultation</label>
-                            <input type="date" id="" class="form-control @error('date_consultation') is-invalid @enderror" placeholder="" value="{{ date('Y-m-d') }}" name="date_consultation">
+                            <input type="date" id="" class="form-control @error('date_consultation') is-invalid @enderror" placeholder="" value="{{ $walkin->date_consultation->format('Y-m-d') }}" name="date_consultation">
                             @error('date_consultation')
                                     <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                         {{ $message }}
@@ -153,7 +153,7 @@
                     <div class="col-md-4">
                       <div class="form-group">
                           <label class="form-label">Time of Consultation</label>
-                          <input type="time" id="" class="form-control @error('time_consultation') is-invalid @enderror" placeholder="" value="{{ date('H:i') }}" name="time_consultation">
+                          <input type="time" id="" class="form-control @error('time_consultation') is-invalid @enderror" placeholder="" value="{{ $walkin->time_consultation }}" name="time_consultation">
                           @error('time_consultation')
                                     <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                         {{ $message }}
