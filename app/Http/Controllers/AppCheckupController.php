@@ -15,8 +15,7 @@ class AppCheckupController extends Controller
       $walkinapp = WalkInAppointment::where(function($query) use ($now) {
           $query->where('date_consultation', '>', $now->toDateString()) // Check for future dates
                 ->orWhere(function($query) use ($now) {
-                    $query->where('date_consultation', $now->toDateString())
-                          ->where('time_consultation', '>', $now->toTimeString()); // Check for future times on the current date
+                    $query->where('date_consultation', $now->toDateString()); // Check for future times on the current date
                 });
       })
       ->where('status', 'pending') // Filter by the "pending" status
