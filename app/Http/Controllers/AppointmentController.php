@@ -9,7 +9,7 @@ class AppointmentController extends Controller
 {
     public function getAppointments()
     {
-        $appointments = BookAppointment::all();
+        $appointments = BookAppointment::get();
 
         $jsonAppointments = json_encode($appointments);
 

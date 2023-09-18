@@ -144,9 +144,68 @@
                         },
                         success: function(response) {
                             console.log('AJAX request successful');
-                            console.log(response);
+                            const appointments = JSON.parse(response);
+                            const appointmentIds = appointments.map(appointment => {
+                                const inputDate = new Date(appointment
+                                    .date_appointment);
+                                inputDate.setDate(inputDate.getDate() + 1);
+                                const formattedDate = inputDate.toISOString().slice(
+                                    0, 10);
+                                return {
+                                    id: appointment.id,
+                                    date_appointment: formattedDate,
+                                    time_appointment: appointment.time_appointment
+                                };
+                            });
+
+                            const morningAppointments = appointmentIds.filter(
+                                appointment => {
+                                    return appointment.time_appointment == '09:00:00' ||
+                                        appointment.time_appointment == '10:00:00' ||
+                                        appointment.time_appointment == '11:00:00'
+                                });
+
+                            const afternoonAppointments = appointmentIds.filter(
+                                appointment => {
+                                    return appointment.time_appointment == '13:00:00' ||
+                                        appointment.time_appointment == '14:00:00' ||
+                                        appointment.time_appointment == '15:00:00'
+                                });
+
+                            const morningRadioButtons = document.querySelectorAll(
+                                'input[value="09:00:00"], input[value="10:00:00"], input[value="11:00:00"]'
+                            );
+
+                            const afternoonRadioButtons = document.querySelectorAll(
+                                'input[value="13:00:00"], input[value="14:00:00"], input[value="15:00:00"]'
+                            );
+
+                            morningRadioButtons.forEach(radio => {
+                                if (morningAppointments.some(appointment =>
+                                        appointment
+                                        .date_appointment == selectedDateInput
+                                        .value &&
+                                        appointment.time_appointment == radio.value
+                                    )) {
+                                    radio.disabled = true;
+                                } else {
+                                    radio.disabled = false;
+                                }
+                            });
+
+                            afternoonRadioButtons.forEach(radio => {
+                                if (afternoonAppointments.some(appointment =>
+                                        appointment
+                                        .date_appointment == selectedDateInput
+                                        .value &&
+                                        appointment.time_appointment == radio.value
+                                    )) {
+                                    radio.disabled = true;
+                                } else {
+                                    radio.disabled = false;
+                                }
+                            });
                         },
-                        // if error, show on console
                         error: function(xhr, status, error) {
                             console.log(error);
                         }
