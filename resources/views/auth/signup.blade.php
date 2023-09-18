@@ -63,8 +63,8 @@
                             <div class="form-group col-md-3">
                                 <label class="form-label">Last Name</label>
                                 <input type="text" class="form-control @error('lastname') is-invalid @enderror"
-                                    value="{{ old('lastname') }}" id="lastname" name="lastname" placeholder="Cruz">
-                                required
+                                    value="{{ old('lastname') }}" id="lastname" name="lastname" placeholder="Cruz"
+                                    required>
                                 @error('lastname')
                                     <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                         {{ $message }}
