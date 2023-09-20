@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\BookAppointment;
 
 class AppointmentStatController extends Controller
 {
     public function index()
     {
-        return view('modules.appointment-status.index');
+        $appointments = BookAppointment::where('user_id', auth()->user()->id)->get();
+
+        return view('modules.appointment-status.index', compact('appointments'));
     }
 }
