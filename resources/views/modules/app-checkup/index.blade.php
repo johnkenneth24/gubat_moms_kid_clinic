@@ -29,7 +29,7 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="card p-2">
-      <div class="card-header d-flex align-items-center justify-content-between ">
+      <div class="card-header d-flex align-items-center justify-content-between">
         <div class="card-title p-0 mb-0 d-flex align-item-center">
           <h5 class="card-header p-0 text-uppercase">Appointment Checkup</h5>
         </div>
