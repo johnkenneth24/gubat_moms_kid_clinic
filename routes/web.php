@@ -75,12 +75,20 @@ Route::middleware('auth')->group(function () {
         Route::get('/view/{user}', 'view')->name('user-management.view');
     });
 
+    Route::controller(AppRequestController::class)->prefix('appointment_request')->group(function () {
+      Route::get('/index', 'index')->name('app-request.index');
+      Route::get('/view/{book_app}', 'view')->name('app-request.view');
+      Route::put('/approved/{book_app}', 'approve')->name('app-request.approved');
+
+    });
+
+
     //appointment status
     Route::get('/appointment-status', [AppointmentStatController::class, 'index'])->name('app-stat.index');
     //medical history
     Route::get('/medical-history', [MedHistoryController::class, 'index'])->name('med-history.index');
     //appointment request
-    Route::get('/appointment-request', [AppRequestController::class, 'index'])->name('app-request.index');
+    // Route::get('/appointment-request', [AppRequestController::class, 'index'])->name('app-request.index');
     //appointment checkup
     Route::get('/appointment-checkup', [AppCheckupController::class, 'index'])->name('app-checkup.index');
 });

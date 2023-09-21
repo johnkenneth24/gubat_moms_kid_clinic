@@ -10,15 +10,9 @@ class WalkInAppointment extends Model
     use HasFactory;
 
     protected $fillable = [
-      'firstname',
-      'middlename',
-      'lastname',
-      'gender',
-      'birthdate',
-      'address',
+      'walk_in_patient_id',
       'height',
       'weight',
-      'age',
       'type_consult',
       'date_consultation',
       'time_consultation',
@@ -26,19 +20,18 @@ class WalkInAppointment extends Model
     ];
 
     protected $casts = [
-      'birthdate' => 'date',
       'date_consultation' => 'date'
     ];
 
+    public function walkInPatient()
+    {
+      return $this->belongsTo(WalkInPatient::class, 'id');
+    }
+
     public function walkInConsult()
     {
-      return $this->hasOne(WalkInConsultation::class);
+      return $this->hasOne(WalkInConsultation::class, 'walk_in_appointment_id');
     }
 
-    public function getFullNameAttribute()
-    {
-      $middleInitial = empty($this->middlename) ? '' : strtoupper(substr($this->middlename, 0, 1));
-
-      return "{$this->firstname} {$middleInitial}. {$this->lastname}";
-    }
+    
 }

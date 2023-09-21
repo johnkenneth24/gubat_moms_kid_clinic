@@ -13,6 +13,13 @@
 
 <link rel="stylesheet" href="{{ asset(mix('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css')) }}" />
 
+<style>
+  .form-control:disabled, .form-control[readonly]{
+    background-color: #ffffff;
+    opacity: 1;
+  }
+</style>
+
 <!-- Vendor Styles -->
 @yield('vendor-style')
 <!-- Page Styles -->

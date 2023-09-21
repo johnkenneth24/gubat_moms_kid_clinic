@@ -12,11 +12,15 @@ class WalkInConsultation extends Model
 
     protected $fillable = [
         'walk_in_appointment_id',
+        'height',
+        'weight',
         'medication_intake',
         'medical_history',
         'vaccine_received',
         'diagnosis'
     ];
+
+    
 
     public function walkInAppointment()
     {

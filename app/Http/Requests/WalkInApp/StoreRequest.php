@@ -27,6 +27,8 @@ class StoreRequest extends FormRequest
             'firstname' => 'required',
             'middlename' => 'required',
             'lastname' => 'required',
+            'mother_name' => 'required',
+            'father_name' => 'required',
             'gender' => 'required',
             'birthdate' => 'required',
             'address' => 'required',

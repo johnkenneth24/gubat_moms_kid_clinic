@@ -15,19 +15,11 @@ return new class extends Migration
     {
         Schema::create('walk_in_appointments', function (Blueprint $table) {
             $table->id();
-            $table->string('firstname');
-            $table->string('middlename');
-            $table->string('lastname');
-            $table->string('gender');
-            $table->date('birthdate');
-            $table->string('address');
-            $table->double('weight');
-            $table->double('height');
-            $table->integer('age');
+            $table->foreignId('walk_in_patient_id')->references('id')->on('walk_in_patients')->cascadeOnDelete();
             $table->string('type_consult');
             $table->date('date_consultation');
             $table->string('time_consultation');
-            $table->string('status')->default('pending');
+            $table->string('status')->default('Approved');
             $table->softDeletes();
             $table->timestamps();
         });
