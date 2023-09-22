@@ -276,13 +276,15 @@
             // Check if the selected value is "New Patient"
             if (patientTypeSelect.value === 'New Patient') {
                 // Hide the patient_info element and patientName
+                patientInfo.style.visibility = 'show';
                 patientInfo.style.display = 'flex';
                 patientName.style.display = 'none';
             } else {
                 // Show the patient_info element and patientName for "Existing Patient"
-                patientInfo.style.visibility = 'hidden';
+                // patientInfo.style.visibility = 'hidden';
                 patientInfo.style.display = 'none';
                 patientName.style.display = 'block';
+
             }
         }
 

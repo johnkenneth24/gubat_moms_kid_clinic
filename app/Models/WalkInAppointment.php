@@ -25,7 +25,7 @@ class WalkInAppointment extends Model
 
     public function walkInPatient()
     {
-      return $this->belongsTo(WalkInPatient::class, 'id');
+      return $this->belongsTo(WalkInPatient::class);
     }
 
     public function walkInConsult()
@@ -33,5 +33,5 @@ class WalkInAppointment extends Model
       return $this->hasOne(WalkInConsultation::class, 'walk_in_appointment_id');
     }
 
-    
+
 }

@@ -75,6 +75,7 @@
                             <div class="d-flex mt-2">
                                 <a href="" class="btn btn-sm btn-success">VIEW</a>
                                 <a href="" class="btn btn-sm btn-primary mx-1">UPDATE</a>
+                                <a href="" class="btn btn-sm btn-info">MEDICAL HISTORY</a>
                                 <a href="" class="btn btn-sm btn-info">CONSULT</a>
                             </div>
                         </div>
@@ -105,7 +106,7 @@
                           <div class="">
                               <p>NAME: <span>{{ $walkin->walkInPatient->full_name }}</span></p>
                               <div class="d-flex">
-                                  <p>CATEGORY: <span>{{ $walkin->category }}</span></p>
+                                  <p>CATEGORY: <span>{{ $walkin->type_consult }}</span></p>
                                   <p class="ms-2">STATUS: <span class="text-uppercase">{{ $walkin->status }}</span></p>
                               </div>
                           </div>
@@ -116,7 +117,11 @@
                           <div class="d-flex mt-2">
                               <a href="{{ route('walkin-appointment.view' , $walkin->id) }}" class="btn btn-sm btn-success">VIEW</a>
                               <a href="{{ route('walkin-appointment.edit', $walkin->id) }}" class="btn btn-sm btn-primary mx-1">UPDATE</a>
+                              <a href="" class="btn btn-sm btn-danger">DELETE</a>
+                              @role('pediatrician')
+                              <a href="" class="btn btn-s m btn-primary me-1">MEDICAL HISTORY</a>
                               <a href="{{ route('walkin-appointment.consult', $walkin->id) }}" class="btn btn-sm btn-info">CONSULT</a>
+                              @endrole
                           </div>
                       </div>
                   @empty

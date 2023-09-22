@@ -18,13 +18,12 @@ class AppCheckupController extends Controller
       ->orderBy('time_appointment', 'asc')
       ->get();
 
-    $walkinapp = WalkInAppointment::where('status', 'Approved')
-      ->with('walkInPatient')
+    $walkinapp = WalkInAppointment::with('walkInPatient')->where('status', 'Approved')
       ->orderBy('date_consultation', 'asc')
       ->orderBy('time_consultation', 'asc')
       ->get();
 
-    dd($walkinapp);
+    // dd($walkinapp);
 
     return view('modules.app-checkup.index', compact('book_appointment', 'walkinapp'));
   }

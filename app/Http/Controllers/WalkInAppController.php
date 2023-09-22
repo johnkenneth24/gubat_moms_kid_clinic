@@ -61,18 +61,23 @@ class WalkInAppController extends Controller
         'address' => $validated['address'],
       ]);
 
-      $walkInApp = $walkIn->walkInAppointment()->create([
+
+
+      $walkInApp = WalkInAppointment::create([
+        'walk_in_patient_id' => $walkIn->id,
         'type_consult' => $validated['type_consult'],
         'date_consultation' => $validated['date_consultation'],
         'time_consultation' => $validated['time_consultation'],
       ]);
 
-      $walkInApp->walkInConsult()->create([
+      WalkInConsultation::create([
+        'walk_in_appointment_id' => $walkInApp->id,
         'height' => $validated['height'],
         'weight' => $validated['weight'],
       ]);
 
-      return redirect()->route('app-checkup.index')->with('success', $validated['firstname'] . ' ' . $validated['lastname'] . 'already added for appointment!');
+
+      return redirect()->route('app-checkup.index')->with('success', $validated['firstname'] . ' ' . $validated['lastname'] . ' already added for appointment!');
     } else {
 
       $patientID = $request->input('patientName');
@@ -101,7 +106,7 @@ class WalkInAppController extends Controller
         'weight' => $validated['weight'],
       ]);
 
-      return redirect()->route('app-checkup.index')->with('success', $fullname . 'already added for appointment!');
+      return redirect()->route('app-checkup.index')->with('success', $fullname . ' already added for appointment!');
 
 
     }

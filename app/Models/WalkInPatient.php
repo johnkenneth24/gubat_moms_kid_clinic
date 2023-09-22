@@ -28,7 +28,7 @@ class WalkInPatient extends Model
 
     public function walkInAppointment()
     {
-      return $this->hasMany(WalkInAppointment::class, 'walk_in_patient_id');
+      return $this->belongsToMany(WalkInAppointment::class);
     }
 
     public function getFullNameAttribute()

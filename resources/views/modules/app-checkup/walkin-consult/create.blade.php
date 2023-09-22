@@ -299,7 +299,7 @@
 @section('page-script')
     <script>
         $(document).ready(function() {
-            $("#birthdate").on("change", function() {
+            $("#birthdate").on("input", function() {
                 const birthdate = new Date($(this).val());
                 const currentDate = new Date();
                 const age = currentDate.getFullYear() - birthdate.getFullYear();
