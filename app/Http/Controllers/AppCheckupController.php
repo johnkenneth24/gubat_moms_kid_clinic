@@ -13,7 +13,6 @@ class AppCheckupController extends Controller
   public function index()
   {
     $book_appointment = BookAppointment::where('status', 'Approved')
-      // ->with('user')
       ->orderBy('date_appointment', 'asc')
       ->orderBy('time_appointment', 'asc')
       ->get();

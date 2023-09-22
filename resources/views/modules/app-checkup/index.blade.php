@@ -21,6 +21,12 @@
         .card-patient span {
             color: #1b43d5;
         }
+
+        .card-app .card-body{
+            height: 420px;
+            overflow: scroll;
+        }
+        
     </style>
 @endsection
 
@@ -47,7 +53,7 @@
     @endif
     <div class="row">
         <div class="col-lg-6">
-            <div class="card p-2">
+            <div class="card p-2 card-app">
                 <div class="card-header d-flex align-items-center justify-content-between">
                     <div class="card-title p-0 mb-0 d-flex align-item-center">
                         <h5 class="card-header p-0 text-uppercase">Appointment Checkup</h5>
@@ -89,7 +95,7 @@
             </div>
         </div>
         <div class="col-lg-6">
-          <div class="card p-2">
+          <div class="card p-2 card-app">
               <div class="card-header pt-2 d-flex align-items-center justify-content-between">
                   <div class="card-title p-0 mb-0 d-flex align-item-center">
                       <h5 class="card-header p-0 text-uppercase">WALKIN Appointment</h5>

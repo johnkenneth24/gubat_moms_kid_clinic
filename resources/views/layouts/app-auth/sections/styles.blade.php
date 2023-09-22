@@ -17,7 +17,8 @@
   .form-control:disabled, .form-control[readonly]{
     background-color: #ffffff;
     opacity: 1;
-  }
+  } 
+  
 </style>
 
 <!-- Vendor Styles -->
