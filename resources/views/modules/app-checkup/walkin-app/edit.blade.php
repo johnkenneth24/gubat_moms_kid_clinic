@@ -34,7 +34,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label class="form-label">First Name</label>
-                            <input type="text" class="form-control @error('firstname') is-invalid @enderror" placeholder="" name="firstname" value="{{ $walkin->firstname }}">
+                            <input type="text" class="form-control @error('firstname') is-invalid @enderror" placeholder="" name="firstname" value="{{ $walkin->walkInPatient->firstname }}">
                             @error('firstname')
                                     <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                         {{ $message }}
@@ -45,7 +45,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label class="form-label">Middle Name</label>
-                            <input type="text" class="form-control @error('middlename') is-invalid @enderror" value="{{ $walkin->middlename }}" placeholder="" name="middlename">
+                            <input type="text" class="form-control @error('middlename') is-invalid @enderror" value="{{ $walkin->walkInPatient->middlename }}" placeholder="" name="middlename">
                             @error('middlename')
                                     <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                         {{ $message }}
@@ -56,7 +56,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label class="form-label">Last Name</label>
-                            <input type="text" class="form-control @error('lastname') is-invalid @enderror" value="{{ $walkin->lastname }}" placeholder="" name="lastname">
+                            <input type="text" class="form-control @error('lastname') is-invalid @enderror" value="{{ $walkin->walkInPatient->lastname }}" placeholder="" name="lastname">
                             @error('lastname')
                                     <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                         {{ $message }}
@@ -69,7 +69,7 @@
                     <div class="col-md-2">
                         <div class="form-group">
                             <label class="form-label">Birthdate</label>
-                            <input type="date" id="birthdate" class="form-control @error('birthdate') is-invalid @enderror" value="{{ $walkin->birthdate->format('Y-m-d') }}" placeholder="" name="birthdate">
+                            <input type="date" id="birthdate" class="form-control @error('birthdate') is-invalid @enderror" value="{{ $walkin->walkInPatient->birthdate->format('Y-m-d') }}" placeholder="" name="birthdate">
                             @error('birthdate')
                                     <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                         {{ $message }}
@@ -80,7 +80,7 @@
                     <div class="col-md-2">
                         <div class="form-group">
                             <label class="form-label">Age</label>
-                            <input type="number" id="age" class="form-control text-end @error('age') is-invalid @enderror" value="{{ $walkin->age }}" placeholder="0" name="age">
+                            <input type="number" id="age" class="form-control text-end @error('age') is-invalid @enderror" value="{{ $walkin->walkInPatient->age }}" placeholder="0" name="age">
                             @error('age')
                                     <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                         {{ $message }}
@@ -94,7 +94,7 @@
                             <select id="" class="form-select @error('gender') is-invalid @enderror" name="gender">
                                 <option value="">--Please Select--</option>
                                 @foreach ($gender as $genders)
-                                <option value="{{ $genders }}" @selected($walkin->gender == $genders)>{{ $genders }}</option>
+                                <option value="{{ $genders }}" @selected($walkin->walkInPatient->gender == $genders)>{{ $genders }}</option>
                                 @endforeach
                             </select>
                             @error('gender')
@@ -107,7 +107,7 @@
                     <div class="col-md-5">
                         <div class="form-group">
                             <label class="form-label">Address</label>
-                            <input type="text" id="" class="form-control @error('address') is-invalid @enderror" value="{{ $walkin->address }}" placeholder="" name="address">
+                            <input type="text" id="" class="form-control @error('address') is-invalid @enderror" value="{{ $walkin->walkInPatient->address }}" placeholder="" name="address">
                             @error('address')
                                     <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                         {{ $message }}
@@ -165,7 +165,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="form-label">Weight</label>
-                            <input type="number" id="" class="form-control text-end @error('weight') is-invalid @enderror" value="{{ $walkin->weight }}" placeholder="" name="weight">
+                            <input type="number" id="" class="form-control text-end @error('weight') is-invalid @enderror" value="{{ $walkin->walkInConsult->weight }}" placeholder="" name="weight">
                             @error('weight')
                                     <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                         {{ $message }}
@@ -176,7 +176,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="form-label">Height</label>
-                            <input type="number" id="" class="form-control text-end @error('height') is-invalid @enderror" value="{{ $walkin->height }}" placeholder="" name="height">
+                            <input type="number" id="" class="form-control text-end @error('height') is-invalid @enderror" value="{{ $walkin->walkInConsult->height }}" placeholder="" name="height">
                             @error('height')
                                     <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                         {{ $message }}

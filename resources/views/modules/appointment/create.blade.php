@@ -16,25 +16,6 @@
     <form action="{{ route('appointment.store') }}" method="POST">
         @csrf
         <div class="row">
-            <!-- Basic Layout -->
-            <div class="col-md-12">
-                <div class="card mb-4">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0">Book an Appointment</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <label class="form-label" for="">Select Category</label>
-                            <select name="category" class="form-control" required>
-                                <option value="">--Please Select--</option>
-                                <option value="consultation" @selected(old('category') == 'consultation')>Consultation</option>
-                                <option value="vaccination" @selected(old('category') == 'vaccination')>Vaccination & Baby Check-up
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="col-md-7">
                 <div class="card mb-4">
                     <div class="card-header d-flex justify-content-between align-items-center">
@@ -51,9 +32,21 @@
             <div class="col-md-5">
                 <div class="card mb-4">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0">Select Time</h5>
+                        <h5 class="mb-0">BOOK APPOINTMENT</h5>
                     </div>
                     <div class="card-body">
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label class="form-label" for="">Select Category</label>
+                                <select name="category" class="form-control" required>
+                                    <option value="">--Please Select--</option>
+                                    <option value="Consultation" @selected(old('category') == 'Consultation')>Consultation</option>
+                                    <option value="Baby Check-up" @selected(old('category') == 'Baby Check-up')>Baby Check-up</option>
+                                    <option value="Vaccination" @selected(old('category') == 'vaccination')>Vaccination</option>
+
+                                </select>
+                            </div>
+                        </div>
                         <div class="col-md-12">
                             <div class="mb-2">
                                 <label class="form-label">Morning Appointment</label>
@@ -205,6 +198,11 @@
                                     radio.disabled = false;
                                 }
                             });
+
+
+                            
+
+
                         },
                         error: function(xhr, status, error) {
                             console.log(error);
@@ -217,6 +215,8 @@
                     yesterday.setDate(yesterday.getDate() - 1);
                     var day = info.start.getDay();
                     return day != 0 && info.start > yesterday;
+
+
                 },
                 selectMirror: false,
                 unselectAuto: false,

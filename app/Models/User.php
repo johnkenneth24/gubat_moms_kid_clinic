@@ -37,9 +37,17 @@ class User extends Authenticatable
     ];
 
 
+    public function boookAppointment()
+    {
+      return $this->hasMany(BookAppointment::class, 'user_id');
+    }
+
+
     public function getFullNameAttribute()
     {
 
-      return "{$this->lastname} {$this->firstname} {$$this->middlename},";
+      $middleInitial = empty($this->middlename) ? '' : strtoupper(substr($this->middlename, 0, 1));
+
+      return "{$this->firstname} {$middleInitial}. {$this->lastname} {$this->suffix}";
     }
 }

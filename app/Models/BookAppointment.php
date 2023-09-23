@@ -14,9 +14,15 @@ class BookAppointment extends Model
         'category',
         'date_appointment',
         'time_appointment',
+        'status'
     ];
 
     protected $casts = [
         'date_appointment' => 'date',
     ];
+
+    public function user()
+    {
+      return $this->belongsTo(User::class);
+    }
 }
