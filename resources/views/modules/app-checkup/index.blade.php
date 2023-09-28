@@ -26,7 +26,7 @@
             height: 420px;
             overflow: scroll;
         }
-        
+
     </style>
 @endsection
 
@@ -120,15 +120,42 @@
                               <p>DATE: <span>{{ $walkin->date_consultation->format('F d, Y') }}</span></p>
                               <p class="ms-2">TIME: <span>{{ date('h:i A', strtotime($walkin->time_consultation)) }}</span></p>
                           </div>
-                          <div class="d-flex mt-2">
-                              <a href="{{ route('walkin-appointment.view' , $walkin->id) }}" class="btn btn-sm btn-success">VIEW</a>
+                          <div class=" mt-2">
+                            @role('staff')
+                            <a href="{{ route('walkin-appointment.view' , $walkin->id) }}" class="btn btn-sm btn-success">VIEW</a>
                               <a href="{{ route('walkin-appointment.edit', $walkin->id) }}" class="btn btn-sm btn-primary mx-1">UPDATE</a>
-                              <a href="" class="btn btn-sm btn-danger">DELETE</a>
+                              <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#walkInDelete{{$walkin->id}}">
+                                DELETE
+                              </button>
+                              @endrole
                               @role('pediatrician')
-                              <a href="" class="btn btn-s m btn-primary me-1">MEDICAL HISTORY</a>
+                              <a href="{{ route('app-checkup.view-med', $walkin->id) }}" class="btn btn-sm btn-primary me-1">MEDICAL HISTORY</a>
                               <a href="{{ route('walkin-appointment.consult', $walkin->id) }}" class="btn btn-sm btn-info">CONSULT</a>
                               @endrole
                           </div>
+                      </div>
+
+                      <div class="modal fade" id="walkInDelete{{$walkin->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              {{-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> --}}
+                              {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                </button> --}}
+                            </div>
+                            <div class="modal-body">
+                              <h5 class="text-center mb-0" style="line-height: unset;">Are you sure you want to delete <br> <span class="text-primary">{{ $walkin->walkInPatient->full_name }}</span> appointment?</h5>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center">
+                              <form action="{{ route('walkin.delete', [$walkin] ) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                              </form>
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                   @empty
                       <div class="card-patient d-flex align-items-center justify-content-center"

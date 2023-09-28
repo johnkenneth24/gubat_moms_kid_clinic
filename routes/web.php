@@ -59,12 +59,19 @@ Route::middleware('auth')->group(function () {
         Route::get('/show-info/{walkin}', 'view')->name('walkin-appointment.view');
         Route::get('/consult-info/{walkin}', 'consult')->name('walkin-appointment.consult');
         Route::post('/store-consult/{walkin}', 'consultStore')->name('walkin-consult.store');
+        Route::delete('/delete-appointment/{walkin}', 'deleteWalkIn')->name('walkin.delete');
     });
 
     Route::controller(PatientRecordController::class)->prefix('patient-record')->group(function () {
         Route::get('/index', 'index')->name('patient-record.index');
         Route::get('/view-consultation/{patient_rec}', 'viewConsult')->name('patient-record.view_consult');
+        
     });
+
+    Route::controller(AppCheckupController::class)->prefix('appointment-checkup')->group(function () {
+      Route::get('/index', 'index')->name('app-checkup.view');
+      Route::get('view-medical-history/{walkin}', 'viewMedHistory')->name('app-checkup.view-med');
+  });
 
     Route::controller(UserListController::class)->prefix('user-list')->group(function () {
         Route::get('/index', 'index')->name('user-list.index');

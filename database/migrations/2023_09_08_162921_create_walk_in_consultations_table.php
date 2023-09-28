@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('walk_in_appointment_id')->references('id')->on('walk_in_appointments')->cascadeOnDelete();
             $table->double('weight');
             $table->double('height');
+            $table->double('blood_pressure');
             $table->string('medication_intake')->nullable();
             $table->string('medical_history')->nullable();
             $table->string('vaccine_received')->nullable();

@@ -27,16 +27,29 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="card p-2">
-      <h5 class="card-header text-uppercase">Patient Record</h5>
+      <div class="card-header d-flex align-items-center justify-content-between">
+        <div class="card-title mb-0 ">
+          <h5 class="mb-0 text-uppercase">Patient Record</h5>
+        </div>
+        <div class="card-tool">
+          <form action="{{ route('patient-record.index') }}" method="get" class="d-flex">
+            @csrf
+            <div class="form-group">
+                <input class="form-control form-control-sm d-sm-none d-md-block me-2" type="search"
+                    placeholder="Search..." name="search" style="width: 300px;">
+            </div>
+          <button type="submit" class="btn btn-sm btn-primary">SEARCH</button>
+        </form>
+        </div>
+      </div>
       <div class="table-responsive text-nowrap">
         <table class="table table-hover">
           <thead>
             <tr>
               <th>Patient Name</th>
-              <th>Category</th>
-              <th>Date Consulted</th>
-              <th>Time Consulted</th>
-              <th>Status</th>
+              <th>Address</th>
+              <th>Birthdate</th>
+              <th>Gender</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -44,12 +57,11 @@
             @forelse ($patient_record as $patient_rec)
             <tr>
               <td style="font-size: 0.90rem;">{{ $patient_rec->full_name }}</td>
-              <td style="font-size: 0.90rem;">{{ $patient_rec->type_consult }}</td>
-              <td style="font-size: 0.90rem;">{{ $patient_rec->date_consultation->format('F d, Y') }}</td>
-              <td style="font-size: 0.90rem;">{{ date('h:i A', strtotime($patient_rec->time_consultation)) }}</td>
-              <td><span class="badge bg-label-success">{{ $patient_rec->status }}</span></td>
+              <td style="font-size: 0.90rem;">{{ $patient_rec->address }}</td>
+              <td style="font-size: 0.90rem;">{{ $patient_rec->birthdate->format('F d, Y') }}</td>
+              <td style="font-size: 0.90rem;">{{ $patient_rec->gender }}</td>
               <td>
-                <a href="{{ route('patient-record.view_consult', $patient_rec->id) }}" class="btn btn-primary btn-sm">View Consultation</a>
+                <a href="{{ route('patient-record.view_consult', $patient_rec->id) }}" class="btn btn-primary btn-sm">View Medical History</a>
               </td>
             </tr>
             @empty
@@ -59,9 +71,9 @@
             @endforelse
           </tbody>
         </table>
-        <div class="d-flex justify-content-center">
+        {{-- <div class="d-flex justify-content-center">
           {{ $patient_record->links() }}
-        </div>
+        </div> --}}
       </div>
     </div>
   </div>
