@@ -31,6 +31,7 @@ class UpdateRequest extends FormRequest
           'birthdate' => 'required',
           'address' => 'required',
           'weight' => 'required',
+          'blood_pressure' => 'required',
           'height' => 'required',
           'age' => 'required',
           'type_consult' => 'required',

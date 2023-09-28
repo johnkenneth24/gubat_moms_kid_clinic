@@ -37,6 +37,7 @@ class WalkInAppController extends Controller
         'middlename' => 'required',
         'lastname' => 'required',
         'mother_name' => 'required',
+        'blood_pressure' => 'required',
         'father_name' => 'required',
         'gender' => 'required',
         'birthdate' => 'required',
@@ -74,6 +75,7 @@ class WalkInAppController extends Controller
         'walk_in_appointment_id' => $walkInApp->id,
         'height' => $validated['height'],
         'weight' => $validated['weight'],
+        'blood_pressure' =>$validated['blood_pressure'],
       ]);
 
 
@@ -89,6 +91,7 @@ class WalkInAppController extends Controller
       $validated = $request->validate([
         'weight' => 'required',
         'height' => 'required',
+        'blood_pressure' => 'required',
         'type_consult' => 'required',
         'date_consultation' => 'required',
         'time_consultation' => 'required',
@@ -104,6 +107,7 @@ class WalkInAppController extends Controller
       $walkInApp->walkInConsult()->create([
         'height' => $validated['height'],
         'weight' => $validated['weight'],
+        'blood_pressure' => $validated['blood_pressure'],
       ]);
 
       return redirect()->route('app-checkup.index')->with('success', $fullname . ' already added for appointment!');
@@ -127,19 +131,26 @@ class WalkInAppController extends Controller
     $validated = $request->validated();
 
     $walkin->update([
+      'status' => $walkin->status,
+      'type_consult' => $validated['type_consult'],
+      'date_consultation' => $validated['date_consultation'],
+      'time_consultation' => $validated['time_consultation'],
+    ]);
+
+    $walkin->walkInPatient()->update([
       'firstname' => $validated['firstname'],
       'middlename' => $validated['middlename'],
       'lastname' => $validated['lastname'],
       'gender' => $validated['gender'],
       'birthdate' => $validated['birthdate'],
       'address' => $validated['address'],
+      'age' => $validated['age'],
+    ]);
+
+    $walkin->walkInConsult->update([
       'height' => $validated['height'],
       'weight' => $validated['weight'],
-      'age' => $validated['age'],
-      'status' => $walkin->status,
-      'type_consult' => $validated['type_consult'],
-      'date_consultation' => $validated['date_consultation'],
-      'time_consultation' => $validated['time_consultation'],
+      'blood_pressure' => $validated['blood_pressure'],
     ]);
 
     return redirect()->route('app-checkup.index')->with('success', $validated['firstname'] . ' ' . $validated['lastname'] . ' has been updated successfully!');
@@ -170,8 +181,7 @@ class WalkInAppController extends Controller
   {
     $validated = $request->validated();
 
-    WalkInConsultation::create([
-      'walk_in_appointment_id' => $walkin->id,
+    $walkin->walkInConsult->update([
       'medication_intake' => $validated['medication_intake'],
       'medical_history' => $validated['medical_history'],
       'vaccine_received' => $validated['vaccine_received'],
@@ -184,4 +194,14 @@ class WalkInAppController extends Controller
 
     return redirect()->route('patient-record.index')->with('success', $walkin->full_name . ' Check Up Done!');
   }
+
+  public function deleteWalkIn(WalkInAppointment $walkin)
+  {
+
+    $walkin->delete();
+
+    return redirect()->route('app-checkup.index')->with('success','Appointment deleted successfully!');
+  }
+
+
 }

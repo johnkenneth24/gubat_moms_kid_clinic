@@ -228,9 +228,9 @@
                             </div>
                         </div>
                         <div class="row mt-2">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
-                                    <label class="form-label">Weight</label>
+                                    <label class="form-label">Weight(kg)</label>
                                     <input type="number" id=""
                                         class="form-control text-end @error('weight') is-invalid @enderror"
                                         value="{{ old('weight') }}" placeholder="" name="weight">
@@ -241,9 +241,9 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
-                                    <label class="form-label">Height</label>
+                                    <label class="form-label">Height(cm)</label>
                                     <input type="number" id=""
                                         class="form-control text-end @error('height') is-invalid @enderror"
                                         value="{{ old('height') }}" placeholder="" name="height">
@@ -254,6 +254,19 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                  <label class="form-label">Blood Pressure</label>
+                                  <input type="number" id=""
+                                      class="form-control text-end @error('blood_pressure') is-invalid @enderror"
+                                      value="{{ old('blood_pressure') }}" placeholder="" name="blood_pressure">
+                                  @error('blood_pressure')
+                                      <div class="invalid-feedback mt-0" style="display: inline-block !important;">
+                                          {{ $message }}
+                                      </div>
+                                  @enderror
+                              </div>
+                          </div>
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-end">

@@ -14,13 +14,14 @@ class WalkInConsultation extends Model
         'walk_in_appointment_id',
         'height',
         'weight',
+        'blood_pressure',
         'medication_intake',
         'medical_history',
         'vaccine_received',
         'diagnosis'
     ];
 
-    
+
 
     public function walkInAppointment()
     {
