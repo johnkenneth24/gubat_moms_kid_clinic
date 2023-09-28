@@ -29,7 +29,7 @@
                             <div class="form-group">
                                 <label for="" class="form-label">date appointment</label>
                                 <input type="text" name="" id="" class="form-control"
-                                    value="{{ $book_app->date_appointment->format('F d, Y') }}" readonly>
+                                    value="{{ $book_app->date_appointment->format('Y-m-d') }}" readonly>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -62,7 +62,7 @@
                             <div class="form-group">
                                 <label for="" class="form-label">full name</label>
                                 <input type="text" name="" id="" class="form-control"
-                                    value="{{ $book_app->user->full_name }}" readonly>
+                                    value="{{ $book_app->user->full_name --}}" readonly>
                             </div>
                         </div>
                         <div class="col-md-3">
