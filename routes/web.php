@@ -71,9 +71,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/no-show/{book_app}', 'noShow')->name('app-checkup.noshow');
     Route::put('/store-consult-bok_app/{book_app}', 'consultBookStore')->name('app-checkup.store-consult');
     Route::get('/consult-bok_app/{book_app}', 'consult')->name('app-checkup.consult');
-
-
-
   });
 
   Route::controller(PatientRecordController::class)->prefix('patient-record')->group(function () {
@@ -100,13 +97,22 @@ Route::middleware('auth')->group(function () {
     Route::put('/approved/{book_app}', 'approve')->name('app-request.approved');
   });
 
+  Route::controller(AppointmentStatController::class)->prefix('appointment-status')->group(function (){
+    Route::get('/', 'index')->name('app-stat.index');
+    Route::get('cancel-appointment/{book_app}', 'cancelAppointment')->name('app-stat.cancel');
 
-  //appointment status
-  Route::get('/appointment-status', [AppointmentStatController::class, 'index'])->name('app-stat.index');
-  //medical history
-  Route::get('/medical-history', [MedHistoryController::class, 'index'])->name('med-history.index');
-  //appointment request
-  // Route::get('/appointment-request', [AppRequestController::class, 'index'])->name('app-request.index');
-  //appointment checkup
+  });
+
+  Route::controller(MedHistoryController::class)->prefix('medical-history')->group(function (){
+    Route::get('/', 'index')->name('med-history.index');
+    Route::get('/view/{book_app}', 'view')->name('med-history.view');
+
+
+  });
+
+
+
+
+
   Route::get('/appointment-checkup', [AppCheckupController::class, 'index'])->name('app-checkup.index');
 });

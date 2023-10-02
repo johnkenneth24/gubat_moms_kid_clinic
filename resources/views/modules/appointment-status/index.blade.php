@@ -39,9 +39,31 @@
                                     </td>
                                     <td><span class="badge bg-label-primary">{{ $app->status }}</span></td>
                                     <td>
-                                        <button class="btn btn-danger btn-sm">Cancel Appointment</button>
+                                      @if($app->status != 'Approved' && $app->status != 'Cancelled' && $app->status != 'Cancel Appointment' )
+                                        <button type="button" class="btn btn-danger btn-sm mx-1" data-bs-toggle="modal" data-bs-target="#preconsult{{ $app->id }}">
+                                          Cancel Appointment
+                                        </button>
+                                      @endif
                                     </td>
                                 </tr>
+                                <div class="modal fade" id="preconsult{{ $app->id }}" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                          </button>
+                                      </div>
+                                        <div class="modal-body">
+                                          <h5 class="text-wrap text-center mb-0">
+                                            Are you sure do you want to Cancel this Appointment?
+                                          </h5>
+                                        </div>
+                                        <div class="modal-footer d-flex justify-content-center">
+                                          <a href="{{ route('app-stat.cancel' , $app->id) }}" class="btn btn-danger">SUBMIT</a>
+                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CLOSE</button>
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
                             @empty
                                 <tr>
                                     <td colspan="5" class="text-center">No Appointment</td>

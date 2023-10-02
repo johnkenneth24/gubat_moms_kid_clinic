@@ -63,7 +63,6 @@ class PatientRecordController extends Controller
 
     public function viewConsultBookApp(User $patient_rec)
     {
-
       $gender = ['Male', 'Female'];
 
       $checkup = ['Vaccination', 'Baby Check-up'];
