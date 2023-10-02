@@ -29,4 +29,14 @@ class AppRequestController extends Controller
 
         return redirect()->route('app-request.index')->with('success', 'The Appointment Request is approved!');
     }
+
+    public function cancelBook(BookAppointment $book_app)
+    {
+      $book_app->update([
+        'status'=>'Cancelled'
+      ]);
+
+      return redirect()->route('app-request.index')->with('success', 'The Appointment Request is cancelled!');
+
+    }
 }

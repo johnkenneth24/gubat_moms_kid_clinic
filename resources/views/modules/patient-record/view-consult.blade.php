@@ -239,9 +239,9 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        @foreach ($patient_appointment as $patient_app)
+                        @forelse ($patient_appointment as $patient_app)
                             <div class="accordion" id="accordionExample">
-                                <div class="card accordion-item">
+                                <div class="card accordion-item {{ $loop->first ? 'active' : '' }}">
                                     <h2 class="accordion-header" id="headingTwo{{ $patient_app->id }}">
                                         <button type="button" class="accordion-button collapsed"
                                             data-bs-toggle="collapse" data-bs-target="#accordion{{ $patient_app->id }}"
@@ -251,7 +251,7 @@
                                                 {{ $patient_app->date_consultation->format('F d, Y') }}, TYPE OF CONSULTATION: {{ $patient_app->type_consult }}</h6>
                                         </button>
                                     </h2>
-                                    <div id="accordion{{ $patient_app->id }}" class="accordion-collapse collapse"
+                                    <div id="accordion{{ $patient_app->id }}" class="accordion-collapse collapse {{ $loop->first ? 'show' : '' }}"
                                         aria-labelledby="headingTwo{{ $patient_app->id }}"
                                         data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
@@ -317,7 +317,9 @@
                                         </div>
                                     </div>
                                 </div>
-                        @endforeach
+                                @empty
+                                <p class="text-center text-uppercase fw-bold">NO RECORD OF MEDICAL HISTORY</p>
+                                @endforelse
                     </div>
                 </div>
             </div>

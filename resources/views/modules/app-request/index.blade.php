@@ -51,7 +51,7 @@
                   @method('PUT')
                   <button type="submit" class="btn btn-info btn-sm">Approve</button>
                 </form>
-                <button class="btn btn-danger btn-sm">Cancel</button>
+                <a href="{{ route('app-request.cancel', $book_app->id) }}" class="btn btn-sm btn-danger">CANCEL</a>
               </td>
             </tr>
             @empty

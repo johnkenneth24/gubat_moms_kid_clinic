@@ -5,26 +5,32 @@
 @section('vendor-style')
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css') }}">
     <style>
-        .card-patient {
+        #app_check .card-patient {
             border: solid 1px;
             padding: 8px;
             border-radius: 5px;
             box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         }
 
-        .card-patient p {
+        #app_check .card-header{
+          height: 80px;
+          display: flex;
+          align-items: center;
+        }
+
+        #app_check .card-patient p {
             margin-bottom: 2px;
             font-weight: 500;
             color: #1f1f1f;
         }
 
-        .card-patient span {
+        #app_check .card-patient span {
             color: #1b43d5;
         }
 
-        .card-app .card-body{
+        #app_check .card-app .card-body{
             height: 420px;
-            overflow: scroll;
+            overflow-y: scroll;
         }
 
     </style>
@@ -51,7 +57,7 @@
             </button>
         </div>
     @endif
-    <div class="row">
+    <div class="row" id="app_check">
         <div class="col-lg-6">
             <div class="card p-2 card-app">
                 <div class="card-header d-flex align-items-center justify-content-between">
@@ -79,11 +85,67 @@
                                 <p class="ms-2">TIME: <span>{{ date('h:i A', strtotime($book_app->time)) }}</span></p>
                             </div>
                             <div class="d-flex mt-2">
-                                <a href="" class="btn btn-sm btn-success">VIEW</a>
-                                <a href="" class="btn btn-sm btn-primary mx-1">UPDATE</a>
-                                <a href="" class="btn btn-sm btn-info">MEDICAL HISTORY</a>
-                                <a href="" class="btn btn-sm btn-info">CONSULT</a>
+                              @role('staff')
+                                <a href="{{ route('app-checkup.view', $book_app->id) }}" class="btn btn-sm btn-success">VIEW</a>
+                                @if(!$book_app->bookAppConsult)
+                                <button type="button" class="btn btn-primary btn-sm mx-1" data-bs-toggle="modal" data-bs-target="#preconsult{{ $book_app->id }}">
+                                  PRE CONSULT
+                                </button>
+                                <a href="{{ route('app-checkup.noshow', $book_app->id) }}" class="btn btn-sm btn-danger">DID NOT ATTEND</a>
+                                @endrole
+                                @endif
+                                @role('pediatrician')
+                                <a href="" class="btn btn-sm btn-info mx-1">MEDICAL HISTORY</a>
+                                <a href="" class="btn btn-sm btn-primary">CONSULT</a>
+                                @endrole
                             </div>
+                        </div>
+
+                        <div class="modal fade" id="preconsult{{ $book_app->id }}" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h6 class="modal-title text-uppercase" id="exampleModalLabel">PRE CONSULT | {{ $book_app->user->full_name }}</h6>
+                                  </button>
+                              </div>
+                              <form action="{{ route('app-checkup.pre-consult', [$book_app] ) }}" method="post">
+                                @csrf
+                                <div class="modal-body">
+                                  <div class="form-group">
+                                    <label for="" class="form-label">WEIGHT (KG)</label>
+                                    <input type="number" name="weight" value="{{ old('weight') }}" class="form-control">
+                                    @error('weight')
+                                          <div class="invalid-feedback mt-0" style="display: inline-block !important;">
+                                              {{ $message }}
+                                          </div>
+                                      @enderror
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="" class="form-label">HEIGHT (CM)</label>
+                                    <input type="number" name="height" value="{{ old('height') }}" class="form-control">
+                                    @error('height')
+                                          <div class="invalid-feedback mt-0" style="display: inline-block !important;">
+                                              {{ $message }}
+                                          </div>
+                                      @enderror
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="" class="form-label">BLOOD PRESSURE</label>
+                                    <input type="number" name="blood_pressure" value="{{ old('blood_pressure') }}" class="form-control">
+                                    @error('blood_pressure')
+                                          <div class="invalid-feedback mt-0" style="display: inline-block !important;">
+                                              {{ $message }}
+                                          </div>
+                                      @enderror
+                                  </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CLOSE</button>
+                                  <button type="submit" class="btn btn-primary">SUBMIT</button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
                         </div>
                     @empty
                         <div class="card-patient d-flex align-items-center justify-content-center"
@@ -96,13 +158,13 @@
         </div>
         <div class="col-lg-6">
           <div class="card p-2 card-app">
-              <div class="card-header pt-2 d-flex align-items-center justify-content-between">
+              <div class="card-header d-flex align-items-center justify-content-between">
                   <div class="card-title p-0 mb-0 d-flex align-item-center">
                       <h5 class="card-header p-0 text-uppercase">WALKIN Appointment</h5>
                   </div>
                   <div class="card-tool">
                       @role('staff')
-        <a href="{{ route('walkin-appointment.create') }}" class="btn btn-primary" style="color: #ffff;">ADD WALK-IN</a>
+        <a href="{{ route('walkin-appointment.create') }}" class="btn btn-primary btn-sm" style="color: #ffff;">ADD WALK-IN</a>
         @endrole
                   </div>
               </div>

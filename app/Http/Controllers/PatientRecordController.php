@@ -35,7 +35,7 @@ class PatientRecordController extends Controller
       $checkup = ['Vaccination', 'Baby Check-up'];
       $consult = ['Consultation'];
 
-      $patient_appointment = WalkInAppointment::where('walk_in_patient_id', $patient_rec->id)->get();
+      $patient_appointment = WalkInAppointment::where('walk_in_patient_id', $patient_rec->id)->where('status', 'Checked up')->get();
 
       return view('modules.patient-record.view-consult', compact('patient_appointment','patient_rec', 'checkup', 'consult', 'gender'));
     }
