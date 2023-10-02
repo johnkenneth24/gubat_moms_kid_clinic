@@ -115,7 +115,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-2 mt-2">
+                            <div class="col-md-4 mt-2">
                                 <div class="form-group">
                                     <label class="form-label">Birthdate</label>
                                     <input type="date" id="birthdate"
@@ -129,7 +129,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-2 mt-2">
+                            <div class="col-md-4 mt-2">
                                 <div class="form-group">
                                     <label class="form-label">Age</label>
                                     <input type="text" id="age"
@@ -142,7 +142,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-3 mt-2">
+                            <div class="col-md-4 mt-2">
                                 <div class="form-group">
                                     <label for="" class="form-label">Gender</label>
                                     <select id="" class="form-select @error('gender') is-invalid @enderror"
@@ -160,7 +160,19 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-5 mt-2">
+                            <div class="col-md-4 mt-2">
+                              <div class="form-group">
+                                  <label class="form-label">Contact Number</label>
+                                  <input type="number" class="form-control @error('contact_number') is-invalid @enderror"
+                                      value="{{ old('contact_number') }}" placeholder="" name="contact_number">
+                                  @error('contact_number')
+                                      <div class="invalid-feedback mt-0" style="display: inline-block !important;">
+                                          {{ $message }}
+                                      </div>
+                                  @enderror
+                              </div>
+                          </div>
+                            <div class="col-md-8 mt-2">
                                 <div class="form-group">
                                     <label class="form-label">Address</label>
                                     <input type="text" id=""

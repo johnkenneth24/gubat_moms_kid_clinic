@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('suffix')->nullable();
             $table->string('gender');
             $table->date('birthdate');
+            $table->string('age');
             $table->string('contact_number');
             $table->string('address');
             $table->string('email')->unique();

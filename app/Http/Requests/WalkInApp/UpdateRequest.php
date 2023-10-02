@@ -28,6 +28,7 @@ class UpdateRequest extends FormRequest
           'middlename' => 'required',
           'lastname' => 'required',
           'gender' => 'required',
+          'contact_number' => 'required',
           'birthdate' => 'required',
           'address' => 'required',
           'weight' => 'required',

@@ -7,6 +7,7 @@ use App\Models\WalkInAppointment;
 use App\Models\BookAppointmentConsult;
 use App\Models\BookAppointment;
 use App\Models\User;
+use Carbon\Carbon;
 
 
 class AppCheckupController extends Controller
@@ -80,7 +81,50 @@ class AppCheckupController extends Controller
 
   public function viewBookMedHistory(BookAppointment $book_app)
   {
-    
+    $gender = ['Male', 'Female'];
+
+    $checkup = ['Vaccination', 'Baby Check-up'];
+    $consult = ['Consultation'];
+
+    $patient_book = BookAppointment::where('user_id', $book_app->user_id)->where('status', 'Checked up');
+
+    return view('modules.app-checkup.book-app.view-med-history', compact('book_app', 'gender', 'checkup', 'consult', 'patient_book'));
+  }
+
+  public function consult(BookAppointment $book_app)
+  {
+    $gender = ['Male', 'Female'];
+
+    $checkup = ['Vaccination', 'Baby Check-up'];
+    $consult = ['Consultation'];
+
+    $currentDate = Carbon::now();
+    $age = $currentDate->diffInYears($book_app->user->birthdate->format('Y-m-d'));
+
+    return view('modules.app-checkup.book-app.create', compact( 'age','checkup', 'consult', 'gender', 'book_app'));
+  }
+
+  public function consultBookStore(Request $request, BookAppointment $book_app)
+  {
+    $validated = $request->validate([
+      'medication_intake' => 'nullable',
+      'medical_history' =>'nullable',
+      'vaccine_received' =>'nullable',
+      'diagnosis' =>'nullable',
+    ]);
+
+    $book_app->bookAppConsult->update([
+      'medication_intake' => $validated['medication_intake'],
+      'medical_history' => $validated['medical_history'],
+      'vaccine_received' => $validated['vaccine_received'],
+      'diagnosis' => $validated['diagnosis'],
+    ]);
+
+    $book_app->update([
+      'status' => "Checked Up",
+    ]);
+
+    return redirect()->route('patient-record.index')->with('success', ' Check Up Done!');
   }
 
 }

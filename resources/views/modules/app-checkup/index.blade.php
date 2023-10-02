@@ -5,11 +5,12 @@
 @section('vendor-style')
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css') }}">
     <style>
-        #app_check .card-patient {
+        .card-patient {
             border: solid 1px;
             padding: 8px;
             border-radius: 5px;
             box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            height: 130px;
         }
 
         #app_check .card-header{
@@ -95,8 +96,10 @@
                                 @endrole
                                 @endif
                                 @role('pediatrician')
-                                <a href="" class="btn btn-sm btn-info mx-1">MEDICAL HISTORY</a>
-                                <a href="" class="btn btn-sm btn-primary">CONSULT</a>
+                                <a href="{{ route('app-checkup.book-view-med', $book_app->id) }}" class="btn btn-sm btn-primary mx-1">MEDICAL HISTORY</a>
+                                @if($book_app->bookAppConsult)
+                                <a href="{{ route('app-checkup.consult' , $book_app->id) }}" class="btn btn-sm btn-info">CONSULT</a>
+                                @endif
                                 @endrole
                             </div>
                         </div>
@@ -148,7 +151,7 @@
                           </div>
                         </div>
                     @empty
-                        <div class="card-patient d-flex align-items-center justify-content-center"
+                        <div class=" d-flex align-items-center justify-content-center"
                             style="height: 111.172px;">
                             <p class="">NO APPOINTMENT TO SHOW!</p>
                         </div>
@@ -220,7 +223,7 @@
                         </div>
                       </div>
                   @empty
-                      <div class="card-patient d-flex align-items-center justify-content-center"
+                      <div class=" d-flex align-items-center justify-content-center"
                           style="height: 111.172px;">
                           <p class="">NO APPOINTMENT TO SHOW!</p>
                       </div>

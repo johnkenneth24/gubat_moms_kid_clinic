@@ -26,7 +26,7 @@
 
                             <a href="{{ route('app-checkup.index') }}"class="btn p-0"><i class='bx bx-arrow-back'></i></a>
                             <h5 class="card-header ms-2 p-0 text-uppercase" style="line-height: 1.5;"><span
-                                    class="text-primary">{{ $walkin->walkInPatient->full_name }}</span> Personal Information
+                                    class="text-primary">{{ $book_app->user->full_name }}</span> Personal Information
                             </h5>
                         </div>
                         <div class="card-tool">
@@ -40,7 +40,7 @@
                                     <label class="form-label">First Name</label>
                                     <input readonly type="text"
                                         class="form-control @error('firstname') is-invalid @enderror" placeholder=""
-                                        name="firstname" value="{{ $walkin->walkInPatient->firstname }}">
+                                        name="firstname" value="{{ $book_app->user->firstname }}">
                                     @error('firstname')
                                         <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                             {{ $message }}
@@ -53,7 +53,7 @@
                                     <label class="form-label">Middle Name</label>
                                     <input readonly type="text"
                                         class="form-control @error('middlename') is-invalid @enderror"
-                                        value="{{ $walkin->walkInPatient->middlename }}" placeholder="" name="middlename">
+                                        value="{{ $book_app->user->middlename }}" placeholder="" name="middlename">
                                     @error('middlename')
                                         <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                             {{ $message }}
@@ -66,7 +66,7 @@
                                     <label class="form-label">Last Name</label>
                                     <input readonly type="text"
                                         class="form-control @error('lastname') is-invalid @enderror"
-                                        value="{{ $walkin->walkInPatient->lastname }}" placeholder="" name="lastname">
+                                        value="{{ $book_app->user->lastname }}" placeholder="" name="lastname">
                                     @error('lastname')
                                         <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                             {{ $message }}
@@ -81,7 +81,7 @@
                                     <label class="form-label">Mother Name</label>
                                     <input readonly type="text"
                                         class="form-control @error('lastname') is-invalid @enderror"
-                                        value="{{ $walkin->walkInPatient->mother_name }}" placeholder="" name="lastname">
+                                        value="{{ $book_app->user->mother_name }}" placeholder="" name="lastname">
                                     @error('lastname')
                                         <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                             {{ $message }}
@@ -94,7 +94,7 @@
                                     <label class="form-label">Father Name</label>
                                     <input readonly type="text"
                                         class="form-control @error('lastname') is-invalid @enderror"
-                                        value="{{ $walkin->walkInPatient->father_name }}" placeholder="" name="lastname">
+                                        value="{{ $book_app->user->father_name }}" placeholder="" name="lastname">
                                     @error('lastname')
                                         <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                             {{ $message }}
@@ -104,12 +104,12 @@
                             </div>
                         </div>
                         <div class="row mt-2">
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <div class="form-group">
                                     <label class="form-label">Birthdate</label>
                                     <input readonly type="date" id="birthdate"
                                         class="form-control @error('birthdate') is-invalid @enderror"
-                                        value="{{ $walkin->walkInPatient->birthdate->format('Y-m-d') }}" placeholder=""
+                                        value="{{ $book_app->user->birthdate->format('Y-m-d') }}" placeholder=""
                                         name="birthdate">
                                     @error('birthdate')
                                         <div class="invalid-feedback mt-0" style="display: inline-block !important;">
@@ -118,12 +118,12 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <div class="form-group">
                                     <label class="form-label">Age</label>
                                     <input readonly type="number" id="age"
                                         class="form-control text-end @error('age') is-invalid @enderror"
-                                        value="{{ $walkin->walkInPatient->age }}" placeholder="0" name="age">
+                                        value="{{ $age }}" placeholder="0" name="age">
                                     @error('age')
                                         <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                             {{ $message }}
@@ -131,14 +131,14 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="" class="form-label">Gender</label>
                                     <select disabled id=""
                                         class="form-select @error('gender') is-invalid @enderror" name="gender">
                                         <option disabled selected>--Please Select--</option>
                                         @foreach ($gender as $genders)
-                                            <option value="{{ $genders }}" @selected($genders == $walkin->walkInPatient->gender)>
+                                            <option value="{{ $genders }}" @selected($genders == $book_app->user->gender)>
                                                 {{ $genders }}</option>
                                         @endforeach
                                     </select>
@@ -149,25 +149,12 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-4 mt-2">
-                              <div class="form-group">
-                                  <label class="form-label">Contact Number</label>
-                                  <input type="text" class="form-control @error('contact_number') is-invalid @enderror"
-                                      value="{{ $walkin->walkInPatient->contact_number }}" placeholder=""
-                                      name="contact_number" readonly>
-                                  @error('contact_number')
-                                      <div class="invalid-feedback mt-0" style="display: inline-block !important;">
-                                          {{ $message }}
-                                      </div>
-                                  @enderror
-                              </div>
-                          </div>
-                            <div class="col-md-8 mt-2">
+                            <div class="col-md-5">
                                 <div class="form-group">
                                     <label class="form-label">Address</label>
                                     <input readonly type="text" id=""
                                         class="form-control @error('address') is-invalid @enderror"
-                                        value="{{ $walkin->walkInPatient->address }}" placeholder="" name="address">
+                                        value="{{ $book_app->user->address }}" placeholder="" name="address">
                                     @error('address')
                                         <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                             {{ $message }}
@@ -180,22 +167,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="" class="form-label">Type of Consultation</label>
-                                    <select disabled id=""
-                                        class="form-select @error('type_consult') is-invalid @enderror"
-                                        name="type_consult">
-                                        <option value="">--Please Select--</option>
-                                        @if (date('Wed') == 'Wed')
-                                            @foreach ($consult as $consults)
-                                                <option value="{{ $consults }}" @selected($walkin->type_consult == $consults)>
-                                                    {{ $consults }}</option>
-                                            @endforeach
-                                        @else
-                                            @foreach ($checkup as $checkups)
-                                                <option value="{{ $checkups }}" @selected($walkin->type_consult == $checkups)>
-                                                    {{ $checkups }}</option>
-                                            @endforeach
-                                        @endif
-                                    </select>
+                                    <input type="text" class="form-control" value="{{ $book_app->category }}" readonly>
                                     @error('gender')
                                         <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                             {{ $message }}
@@ -208,7 +180,7 @@
                                     <label class="form-label">Date of Consultation</label>
                                     <input readonly type="date" id=""
                                         class="form-control @error('date_consultation') is-invalid @enderror"
-                                        placeholder="" value="{{ $walkin->date_consultation->format('Y-m-d') }}"
+                                        placeholder="" value="{{ $book_app->date_appointment->format('Y-m-d') }}"
                                         name="date_consultation">
                                     @error('date_consultation')
                                         <div class="invalid-feedback mt-0" style="display: inline-block !important;">
@@ -222,7 +194,7 @@
                                     <label class="form-label">Time of Consultation</label>
                                     <input readonly type="time" id=""
                                         class="form-control @error('time_consultation') is-invalid @enderror"
-                                        placeholder="" value="{{ $walkin->time_consultation }}"
+                                        placeholder="" value="{{ $book_app->time_appointment }}"
                                         name="time_consultation">
                                     @error('time_consultation')
                                         <div class="invalid-feedback mt-0" style="display: inline-block !important;">
@@ -242,15 +214,16 @@
             </div>
         </div>
     </form>
-    <form action="{{ route('walkin-consult.store', [$walkin]) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('app-checkup.store-consult', [$book_app]) }}" method="POST" enctype="multipart/form-data">
         @csrf
+        @method('put')
         <div class="row mt-2">
             <div class="col-lg-12">
                 <div class="card p-2">
                     <div class="card-header d-flex align-items-center justify-content-between pb-3">
                         <div class="card-title p-0 mb-0 d-flex align-item-center">
                             <h5 class="card-header ms-2 p-0 text-uppercase" style="line-height: 1.5;"><span
-                                    class="text-primary">{{ $walkin->walkInPatient->full_name }}</span> CONSULTATION</h5>
+                                    class="text-primary">{{ $book_app->user->full_name }}</span> CONSULTATION</h5>
                         </div>
                         <div class="card-tool">
                         </div>
@@ -262,7 +235,7 @@
                                     <label class="form-label">Weight(kg)</label>
                                     <input readonly type="number" id=""
                                         class="form-control text-end @error('weight') is-invalid @enderror"
-                                        value="{{ $walkin->walkInConsult->weight }}" placeholder="" name="weight">
+                                        value="{{ $book_app->bookAppConsult->weight }}" placeholder="" name="weight">
                                     @error('weight')
                                         <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                             {{ $message }}
@@ -275,7 +248,7 @@
                                     <label class="form-label">Height(cm)</label>
                                     <input readonly type="number" id=""
                                         class="form-control text-end @error('height') is-invalid @enderror"
-                                        value="{{ $walkin->walkInConsult->height }}" placeholder="" name="height">
+                                        value="{{ $book_app->bookAppConsult->height }}" placeholder="" name="height">
                                     @error('height')
                                         <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                             {{ $message }}
@@ -288,7 +261,7 @@
                                     <label class="form-label">Blood Pressure</label>
                                     <input readonly type="number" id=""
                                         class="form-control text-end @error('height') is-invalid @enderror"
-                                        value="{{ $walkin->walkInConsult->blood_pressure }}" placeholder=""
+                                        value="{{ $book_app->bookAppConsult->blood_pressure }}" placeholder=""
                                         name="height">
                                     @error('height')
                                         <div class="invalid-feedback mt-0" style="display: inline-block !important;">

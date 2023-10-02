@@ -65,7 +65,7 @@
                     </div>
                 </div>
                 <div class="row mt-2">
-                    <div class="col-md-2">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label class="form-label">Birthdate</label>
                             <input readonly  type="date" id="birthdate" class="form-control @error('birthdate') is-invalid @enderror" value="{{ $walkin->walkInPatient->birthdate->format('Y-m-d') }}" placeholder="" name="birthdate">
@@ -76,7 +76,7 @@
                             @enderror
                           </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label class="form-label">Age</label>
                             <input readonly  type="number" id="age" class="form-control text-end @error('age') is-invalid @enderror" value="{{ $walkin->walkInPatient->age }}" placeholder="0" name="age">
@@ -87,7 +87,7 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="" class="form-label">Gender</label>
                             <select disabled id="" class="form-select @error('gender') is-invalid @enderror" name="gender">
@@ -103,7 +103,20 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-4 mt-2">
+                      <div class="form-group">
+                          <label class="form-label">Contact Number</label>
+                          <input type="text" class="form-control @error('contact_number') is-invalid @enderror"
+                              value="{{ $walkin->walkInPatient->contact_number }}" placeholder=""
+                              name="contact_number" readonly>
+                          @error('contact_number')
+                              <div class="invalid-feedback mt-0" style="display: inline-block !important;">
+                                  {{ $message }}
+                              </div>
+                          @enderror
+                      </div>
+                  </div>
+                    <div class="col-md-8 mt-2">
                         <div class="form-group">
                             <label class="form-label">Address</label>
                             <input readonly  type="text" id="" class="form-control @error('address') is-invalid @enderror" value="{{ $walkin->walkInPatient->address }}" placeholder="" name="address">

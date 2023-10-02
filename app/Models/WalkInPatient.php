@@ -13,6 +13,7 @@ class WalkInPatient extends Model
     [
       'firstname',
       'middlename',
+      'contact_number',
       'lastname',
       'mother_name',
       'father_name',
