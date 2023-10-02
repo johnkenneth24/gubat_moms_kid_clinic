@@ -66,14 +66,21 @@ Route::middleware('auth')->group(function () {
     Route::get('/index', 'index')->name('app-checkup.index');
     Route::get('/view/{book_app}', 'view')->name('app-checkup.view');
     Route::post('/pre-consult/{book_app}', 'preConsult')->name('app-checkup.pre-consult');
-    Route::get('view-medical-history/{walkin}', 'viewMedHistory')->name('app-checkup.view-med');
+    Route::get('/view-medical-history/{walkin}', 'viewMedHistory')->name('app-checkup.view-med');
+    Route::get('/view-book-medical-history/{book_app}', 'viewBookMedHistory')->name('app-checkup.book-view-med');
     Route::get('/no-show/{book_app}', 'noShow')->name('app-checkup.noshow');
+    Route::put('/store-consult-bok_app/{book_app}', 'consultBookStore')->name('app-checkup.store-consult');
+    Route::get('/consult-bok_app/{book_app}', 'consult')->name('app-checkup.consult');
+
+
 
   });
 
   Route::controller(PatientRecordController::class)->prefix('patient-record')->group(function () {
     Route::get('/index', 'index')->name('patient-record.index');
     Route::get('/view-consultation/{patient_rec}', 'viewConsult')->name('patient-record.view_consult');
+    Route::get('/view-book-app-consultation/{patient_rec}', 'viewConsultBookApp')->name('patient-record.view_book_consult');
+
   });
 
 

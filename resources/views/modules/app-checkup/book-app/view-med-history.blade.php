@@ -25,7 +25,7 @@
                         <div class="card-title p-0 mb-0 d-flex align-item-center"><a href="{{ route('app-checkup.index') }}"
                                 class="btn p-0"><i class='bx bx-arrow-back'></i></a>
                             <h5 class="card-header ms-2 p-0 text-uppercase" style="line-height: 1.5;"><span
-                                    class="text-primary">{{ $walkin->walkInPatient->full_name }}</span> Medical History
+                                    class="text-primary">{{ $book_app->user->full_name }}</span> Medical History
                                 Information</h5>
                         </div>
                         <div class="card-tool">
@@ -39,7 +39,7 @@
                                     <label class="form-label">First Name</label>
                                     <input readonly type="text"
                                         class="form-control @error('firstname') is-invalid @enderror" placeholder=""
-                                        name="firstname" value="{{ $walkin->walkInPatient->firstname }}">
+                                        name="firstname" value="{{ $book_app->user->firstname }}">
                                     @error('firstname')
                                         <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                             {{ $message }}
@@ -52,7 +52,7 @@
                                     <label class="form-label">Middle Name</label>
                                     <input readonly type="text"
                                         class="form-control @error('middlename') is-invalid @enderror"
-                                        value="{{ $walkin->walkInPatient->middlename }}" placeholder="" name="middlename">
+                                        value="{{ $book_app->user->middlename }}" placeholder="" name="middlename">
                                     @error('middlename')
                                         <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                             {{ $message }}
@@ -65,7 +65,7 @@
                                     <label class="form-label">Last Name</label>
                                     <input readonly type="text"
                                         class="form-control @error('lastname') is-invalid @enderror"
-                                        value="{{ $walkin->walkInPatient->lastname }}" placeholder="" name="lastname">
+                                        value="{{ $book_app->user->lastname }}" placeholder="" name="lastname">
                                     @error('lastname')
                                         <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                             {{ $message }}
@@ -75,12 +75,12 @@
                             </div>
                         </div>
                         <div class="row mt-2">
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <div class="form-group">
                                     <label class="form-label">Birthdate</label>
                                     <input readonly type="date" id="birthdate"
                                         class="form-control @error('birthdate') is-invalid @enderror"
-                                        value="{{ $walkin->walkInPatient->birthdate->format('Y-m-d') }}" placeholder=""
+                                        value="{{ $book_app->user->birthdate->format('Y-m-d') }}" placeholder=""
                                         name="birthdate">
                                     @error('birthdate')
                                         <div class="invalid-feedback mt-0" style="display: inline-block !important;">
@@ -89,12 +89,12 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <div class="form-group">
                                     <label class="form-label">Age</label>
                                     <input readonly type="number" id="age"
                                         class="form-control text-end @error('age') is-invalid @enderror"
-                                        value="{{ $walkin->walkInPatient->age }}" placeholder="0" name="age">
+                                        value="{{ $book_app->user->age }}" placeholder="0" name="age">
                                     @error('age')
                                         <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                             {{ $message }}
@@ -102,14 +102,14 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="" class="form-label">Gender</label>
                                     <select disabled id=""
                                         class="form-select @error('gender') is-invalid @enderror" name="gender">
                                         <option disabled selected>--Please Select--</option>
                                         @foreach ($gender as $genders)
-                                            <option value="{{ $genders }}" @selected($genders == $walkin->walkInPatient->gender)>
+                                            <option value="{{ $genders }}" @selected($genders == $book_app->user->gender)>
                                                 {{ $genders }}</option>
                                         @endforeach
                                     </select>
@@ -120,25 +120,12 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-4 mt-2">
-                              <div class="form-group">
-                                  <label class="form-label">Contact Number</label>
-                                  <input type="text" class="form-control @error('contact_number') is-invalid @enderror"
-                                      value="{{ $walkin->walkInPatient->contact_number }}" placeholder=""
-                                      name="contact_number">
-                                  @error('contact_number')
-                                      <div class="invalid-feedback mt-0" style="display: inline-block !important;">
-                                          {{ $message }}
-                                      </div>
-                                  @enderror
-                              </div>
-                          </div>
-                            <div class="col-md-8 mt-2">
+                            <div class="col-md-5">
                                 <div class="form-group">
                                     <label class="form-label">Address</label>
                                     <input readonly type="text" id=""
                                         class="form-control @error('address') is-invalid @enderror"
-                                        value="{{ $walkin->walkInPatient->address }}" placeholder="" name="address">
+                                        value="{{ $book_app->user->address }}" placeholder="" name="address">
                                     @error('address')
                                         <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                             {{ $message }}
@@ -157,12 +144,12 @@
                                         <option value="">--Please Select--</option>
                                         @if (date('Wed') == 'Wed')
                                             @foreach ($consult as $consults)
-                                                <option value="{{ $consults }}" @selected($walkin->type_consult == $consults)>
+                                                <option value="{{ $consults }}" @selected($book_app->type_consult == $consults)>
                                                     {{ $consults }}</option>
                                             @endforeach
                                         @else
                                             @foreach ($checkup as $checkups)
-                                                <option value="{{ $checkups }}" @selected($walkin->type_consult == $checkups)>
+                                                <option value="{{ $checkups }}" @selected($book_app->type_consult == $checkups)>
                                                     {{ $checkups }}</option>
                                             @endforeach
                                         @endif
@@ -179,7 +166,7 @@
                                     <label class="form-label">Date of Consultation</label>
                                     <input readonly type="date" id=""
                                         class="form-control @error('date_consultation') is-invalid @enderror"
-                                        placeholder="" value="{{ $walkin->date_consultation->format('Y-m-d') }}"
+                                        placeholder="" value="{{ $book_app->date_appointment->format('Y-m-d') }}"
                                         name="date_consultation">
                                     @error('date_consultation')
                                         <div class="invalid-feedback mt-0" style="display: inline-block !important;">
@@ -224,7 +211,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        @forelse ($patient_appointment as $patient_app)
+                        @forelse ($patient_book as $patient_app)
                             <div class="accordion" id="accordionExample">
                                 <div class="card accordion-item {{ $loop->first ? 'active' : '' }}">
                                     <h2 class="accordion-header" id="headingTwo{{ $patient_app->id }}">
