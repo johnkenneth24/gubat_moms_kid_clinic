@@ -39,7 +39,7 @@
                                     </td>
                                     <td><span class="badge bg-label-primary">{{ $app->status }}</span></td>
                                     <td>
-                                      @if($app->status != 'Approved' && $app->status != 'Cancelled' && $app->status != 'Cancel Appointment' )
+                                      @if($app->status != 'Did Not Attend' && $app->status != 'Approved' && $app->status != 'Checked Up' && $app->status != 'Cancelled' && $app->status != 'Cancelled Appointment' )
                                         <button type="button" class="btn btn-danger btn-sm mx-1" data-bs-toggle="modal" data-bs-target="#preconsult{{ $app->id }}">
                                           Cancel Appointment
                                         </button>

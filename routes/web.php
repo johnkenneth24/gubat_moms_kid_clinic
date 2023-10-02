@@ -109,10 +109,6 @@ Route::middleware('auth')->group(function () {
 
 
   });
-
-
-
-
-
+  
   Route::get('/appointment-checkup', [AppCheckupController::class, 'index'])->name('app-checkup.index');
 });

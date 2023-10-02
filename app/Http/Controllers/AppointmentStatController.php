@@ -18,7 +18,7 @@ class AppointmentStatController extends Controller
     public function cancelAppointment(BookAppointment $book_app)
     {
       $book_app->update([
-        'status'=>'Cancel Appointment'
+        'status'=>'Cancelled Appointment'
       ]);
 
       return redirect()->route('app-stat.index')->with('success', 'The Appointment Request is cancelled!');

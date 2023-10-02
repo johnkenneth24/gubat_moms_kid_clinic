@@ -58,7 +58,7 @@ class AppCheckupController extends Controller
   public function noShow(BookAppointment $book_app)
     {
       $book_app->update([
-        'status'=>'Did not attend'
+        'status'=>'Did Not Attend'
       ]);
 
       return redirect()->route('app-request.index')->with('success', 'The Appointment Request is cancelled!');
