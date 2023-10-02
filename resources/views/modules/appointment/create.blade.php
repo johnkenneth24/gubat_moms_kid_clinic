@@ -165,7 +165,7 @@
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
-                selectable: true,
+                selectable: true, // allows selecting a date
                 select: function(info) {
                     selectedDateInput.value = info.startStr;
                     console.log('Date input changed');
@@ -470,14 +470,15 @@
                     yesterday.setDate(yesterday.getDate() - 1);
                     var day = info.start.getDay();
                     return day != 0 && info.start > yesterday;
-
-
                 },
                 selectMirror: false,
                 unselectAuto: false,
                 contentHeight: 410,
                 dayCellClassNames: function(arg) {
                     if (arg.isPast) {
+                        return 'unselectable-date';
+                    }
+                    if (arg.date.getDay() == 0) {
                         return 'unselectable-date';
                     }
                 },
