@@ -92,7 +92,7 @@
                         <div class="banner-text">
                             <h3 style="font-size: 3rem; color:#0451b6; font-weight: 700;">Welcome to Gubat Mom's & Kid's
                                 Clinic!</h3>
-                            <p style="color: #000000; font-size: 15px; text-align: justify;">Welcome to Gubat Mom's and Kid's Clinic, a trusted healthcare facility dedicated to providing exceptional care for both mothers and children.  With a warm and welcoming environment, we strive to create a comforting experience for every family that walks through our doors. Trust Gubat Mom's and Kid's Clinic for comprehensive and compassionate healthcare for you and your little ones.</p>
+                            <p style="color: #000000; font-size: 18px; text-align: justify;">Welcome to Gubat Mom's and Kid's Clinic, a trusted healthcare facility dedicated to providing exceptional care for both mothers and children.  With a warm and welcoming environment, we strive to create a comforting experience for every family that walks through our doors. Trust Gubat Mom's and Kid's Clinic for comprehensive and compassionate healthcare for you and your little ones.</p>
                         </div>
                     </div>
                     <div class="col-md-6 d-flex align-items-center justify-content-center ">
