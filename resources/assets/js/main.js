@@ -1,6 +1,9 @@
 /**
  * Main
  */
+import Swal from 'sweetalert2';
+
+// You can now use Swal in your JavaScript code
 
 'use strict';
 

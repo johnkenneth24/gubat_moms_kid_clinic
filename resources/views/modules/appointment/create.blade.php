@@ -114,7 +114,7 @@
 @section('vendor-script')
 
 @endsection
-@section('page-script')
+@push('page-script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" crossorigin="anonymous"
         referrerpolicy="no-referrer"></script>
 
@@ -260,6 +260,8 @@
                     yesterday.setDate(yesterday.getDate() - 1);
                     var day = info.start.getDay();
                     return day != 0 && info.start > yesterday;
+
+
                 },
                 selectMirror: false,
                 unselectAuto: false,
@@ -278,4 +280,4 @@
             calendar.render();
         });
     </script>
-@endsection
+@endpush

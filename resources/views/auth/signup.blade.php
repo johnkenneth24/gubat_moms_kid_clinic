@@ -25,7 +25,7 @@
         <div class="authentication-wrapper authentication-basic ">
             <!-- Register Card -->
             <div class="card col-md-8">
-                <div class="card-body">
+                <div class="card-body pt-2 pb-2">
                     <!-- Logo -->
                     <div class="app-brand justify-content-center">
                         <a href="{{ url('/') }}" class="app-brand-link gap-2">
@@ -34,13 +34,13 @@
                         </a>
                     </div>
                     <!-- /Logo -->
-                    <p class="mb-4 text-center">Fill up the form correctly to sign-up!</p>
+                    <p class="mb-4 text-center">Fill up the form correctly based on patient information to sign-up <span class="text-danger">*</span></p>
 
                     <form id="formAuthentication" class="mb-3" action="{{ route('register') }}" method="POST">
                         @csrf
                         <div class="mb-3 row">
                             <div class="form-group col-md-3">
-                                <label class="form-label">First Name</label>
+                                <label class="form-label">First Name<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control @error('firstname') is-invalid @enderror"
                                     value="{{ old('firstname') }}" id="firstname" name="firstname" placeholder="Juan"
                                     required autofocus>
@@ -51,7 +51,7 @@
                                 @enderror
                             </div>
                             <div class="form-group col-md-3">
-                                <label class="form-label">Middle Name</label>
+                                <label class="form-label">Middle Name<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control @error('middlename') is-invalid @enderror"
                                     value="{{ old('middlename') }}" id="middlename" name="middlename" placeholder="Dela">
                                 @error('middlename')
@@ -61,7 +61,7 @@
                                 @enderror
                             </div>
                             <div class="form-group col-md-3">
-                                <label class="form-label">Last Name</label>
+                                <label class="form-label">Last Name<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control @error('lastname') is-invalid @enderror"
                                     value="{{ old('lastname') }}" id="lastname" name="lastname" placeholder="Cruz"
                                     required>
@@ -82,9 +82,33 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="row mb-3">
+                          <div class="form-group col-md-6">
+                            <label class="form-label">MOTHER'S NAME</label>
+                            <input type="text" class="form-control @error('mother_name') is-invalid @enderror"
+                                required value="{{ old('mother_name') }}" id="mother_name" name="mother_name"
+                                placeholder="Mother's Name">
+                            @error('mother_name')
+                                <div class="invalid-feedback mt-0" style="display: inline-block !important;">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label class="form-label">FATHER'S NAME</label>
+                          <input type="text" class="form-control @error('father_name') is-invalid @enderror"
+                              required value="{{ old('father_name') }}" id="father_name" name="father_name"
+                              placeholder="Father's Name">
+                          @error('father_name')
+                              <div class="invalid-feedback mt-0" style="display: inline-block !important;">
+                                  {{ $message }}
+                              </div>
+                          @enderror
+                      </div>
+                        </div>
                         <div class="mb-3 row">
-                            <div class="form-group col-md-4">
-                                <label class="form-label">Gender</label>
+                            <div class="form-group col-md-3">
+                                <label class="form-label">Gender<span class="text-danger">*</span></label>
                                 <select name="gender" class="form-control @error('gender') is-invalid @enderror" required
                                     id="">
                                     <option value="">Please Select</option>
@@ -97,19 +121,30 @@
                                     </div>
                                 @enderror
                             </div>
-                            <div class="form-group col-md-4">
-                                <label class="form-label">Birthdate</label>
-                                <input type="date" class="form-control @error('b_date') is-invalid @enderror" required
-                                    value="{{ old('b_date') }}" id="b_date" name="b_date"
-                                    placeholder="Enter your b_date">
+                            <div class="form-group col-md-3">
+                                <label class="form-label">Birthdate<span class="text-danger">*</span></label>
+                                <input onchange="calculateAge()" type="date" class="birthdate form-control @error('b_date') is-invalid @enderror" required
+                                    value="{{ old('b_date') }}" id="birthdate" name="b_date"
+                                    placeholder="Enter your b_date" >
                                 @error('b_date')
                                     <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
+                            <div class="form-group col-md-2">
+                              <label class="form-label">Age<span class="text-danger">*</span></label>
+                              <input type="number" class="age form-control @error('age') is-invalid @enderror"
+                                  required value="{{ old('age') }}" id="age" name="age"
+                                  placeholder="">
+                              @error('age')
+                                  <div class="invalid-feedback mt-0" style="display: inline-block !important;">
+                                      {{ $message }}
+                                  </div>
+                              @enderror
+                          </div>
                             <div class="form-group col-md-4">
-                                <label class="form-label">Contact Number</label>
+                                <label class="form-label">Contact Number<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control @error('contact_no') is-invalid @enderror"
                                     required value="{{ old('contact_no') }}" id="contact_no" name="contact_no"
                                     placeholder="+639123456789">
@@ -122,7 +157,7 @@
                         </div>
                         <div class="mb-3 row">
                             <div class="form-group col-md-5">
-                                <label class="form-label">Email Address</label>
+                                <label class="form-label">Email Address<span class="text-danger">*</span></label>
                                 <input type="email" class="form-control @error('email') is-invalid @enderror" required
                                     value="{{ old('email') }}" id="email" name="email"
                                     placeholder="juandelacruz@email.com">
@@ -133,7 +168,7 @@
                                 @enderror
                             </div>
                             <div class="form-group col-md-7">
-                                <label class="form-label">Address</label>
+                                <label class="form-label">Address<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control @error('address') is-invalid @enderror" required
                                     value="{{ old('address') }}" id="address" name="address"
                                     placeholder="Home Address">
@@ -146,7 +181,7 @@
                         </div>
                         <div class="mb-3 row">
                             <div class="form-group col-md-6">
-                                <label class="form-label">Password</label>
+                                <label class="form-label">Password<span class="text-danger">*</span></label>
                                 <input type="password" class="form-control @error('password') is-invalid @enderror"
                                     required value="{{ old('password') }}" id="password" name="password"
                                     placeholder="" autocomplete="new-password">
@@ -195,7 +230,23 @@
         </div>
         <!-- Register Card -->
     @endsection
-    @section('page-script')
+    @push('page-script')
         <script src="{{ asset('assets/js/particles.js-master/particles.js') }}"></script>
         <script src="{{ asset('assets/js/particles.js') }}"></script>
-    @endsection
+
+        <script>
+          function calculateAge() {
+              var bdateValue = document.querySelector('.birthdate').value;
+              var bdate = new Date(bdateValue);
+              var today = new Date();
+              var age = today.getFullYear() - bdate.getFullYear();
+              var monthDiff = today.getMonth() - bdate.getMonth();
+
+              if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < bdate.getDate())) {
+                  age--;
+              }
+
+              document.querySelector('.age').value = age;
+          }
+      </script>
+    @endpush

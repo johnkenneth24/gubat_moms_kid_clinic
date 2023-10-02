@@ -13,22 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('walk_in_patients', function (Blueprint $table) {
             $table->id();
             $table->string('firstname');
-            $table->string('middlename')->nullable();
+            $table->string('middlename');
             $table->string('lastname');
             $table->string('mother_name')->nullable();
             $table->string('father_name')->nullable();
-            $table->string('suffix')->nullable();
             $table->string('gender');
             $table->date('birthdate');
-            $table->string('contact_number');
             $table->string('address');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->rememberToken();
+            $table->integer('age');
             $table->timestamps();
         });
     }
@@ -40,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('walk_in_patients');
     }
 };

@@ -25,7 +25,7 @@
                         <div class="card-title p-0 mb-0 d-flex align-item-center"><a href="{{ route('app-checkup.index') }}"
                                 class="btn p-0"><i class='bx bx-arrow-back'></i></a>
                             <h5 class="card-header ms-2 p-0 text-uppercase" style="line-height: 1.5;"><span
-                                    class="text-primary">{{ $patient_rec->full_name }}</span> Medical History
+                                    class="text-primary">{{ $walkin->walkInPatient->full_name }}</span> Medical History
                                 Information</h5>
                         </div>
                         <div class="card-tool">
@@ -39,7 +39,7 @@
                                     <label class="form-label">First Name</label>
                                     <input readonly type="text"
                                         class="form-control @error('firstname') is-invalid @enderror" placeholder=""
-                                        name="firstname" value="{{ $patient_rec->firstname }}">
+                                        name="firstname" value="{{ $walkin->walkInPatient->firstname }}">
                                     @error('firstname')
                                         <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                             {{ $message }}
@@ -52,7 +52,7 @@
                                     <label class="form-label">Middle Name</label>
                                     <input readonly type="text"
                                         class="form-control @error('middlename') is-invalid @enderror"
-                                        value="{{ $patient_rec->middlename }}" placeholder="" name="middlename">
+                                        value="{{ $walkin->walkInPatient->middlename }}" placeholder="" name="middlename">
                                     @error('middlename')
                                         <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                             {{ $message }}
@@ -65,7 +65,7 @@
                                     <label class="form-label">Last Name</label>
                                     <input readonly type="text"
                                         class="form-control @error('lastname') is-invalid @enderror"
-                                        value="{{ $patient_rec->lastname }}" placeholder="" name="lastname">
+                                        value="{{ $walkin->walkInPatient->lastname }}" placeholder="" name="lastname">
                                     @error('lastname')
                                         <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                             {{ $message }}
@@ -75,40 +75,12 @@
                             </div>
                         </div>
                         <div class="row mt-2">
-                          <div class="col-md-6">
-                              <div class="form-group">
-                                  <label class="form-label">Mother Name</label>
-                                  <input readonly type="text"
-                                      class="form-control @error('lastname') is-invalid @enderror"
-                                      value="{{ $patient_rec->mother_name }}" placeholder="" name="lastname">
-                                  @error('lastname')
-                                      <div class="invalid-feedback mt-0" style="display: inline-block !important;">
-                                          {{ $message }}
-                                      </div>
-                                  @enderror
-                              </div>
-                          </div>
-                          <div class="col-md-6">
-                              <div class="form-group">
-                                  <label class="form-label">Father Name</label>
-                                  <input readonly type="text"
-                                      class="form-control @error('lastname') is-invalid @enderror"
-                                      value="{{ $patient_rec->father_name }}" placeholder="" name="lastname">
-                                  @error('lastname')
-                                      <div class="invalid-feedback mt-0" style="display: inline-block !important;">
-                                          {{ $message }}
-                                      </div>
-                                  @enderror
-                              </div>
-                          </div>
-                      </div>
-                        <div class="row mt-2">
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label class="form-label">Birthdate</label>
                                     <input readonly type="date" id="birthdate"
                                         class="form-control @error('birthdate') is-invalid @enderror"
-                                        value="{{ $patient_rec->birthdate->format('Y-m-d') }}" placeholder=""
+                                        value="{{ $walkin->walkInPatient->birthdate->format('Y-m-d') }}" placeholder=""
                                         name="birthdate">
                                     @error('birthdate')
                                         <div class="invalid-feedback mt-0" style="display: inline-block !important;">
@@ -122,7 +94,7 @@
                                     <label class="form-label">Age</label>
                                     <input readonly type="number" id="age"
                                         class="form-control text-end @error('age') is-invalid @enderror"
-                                        value="{{ $patient_rec->age }}" placeholder="0" name="age">
+                                        value="{{ $walkin->walkInPatient->age }}" placeholder="0" name="age">
                                     @error('age')
                                         <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                             {{ $message }}
@@ -137,7 +109,7 @@
                                         class="form-select @error('gender') is-invalid @enderror" name="gender">
                                         <option disabled selected>--Please Select--</option>
                                         @foreach ($gender as $genders)
-                                            <option value="{{ $genders }}" @selected($genders == $patient_rec->gender)>
+                                            <option value="{{ $genders }}" @selected($genders == $walkin->walkInPatient->gender)>
                                                 {{ $genders }}</option>
                                         @endforeach
                                     </select>
@@ -153,7 +125,7 @@
                                     <label class="form-label">Address</label>
                                     <input readonly type="text" id=""
                                         class="form-control @error('address') is-invalid @enderror"
-                                        value="{{ $patient_rec->address }}" placeholder="" name="address">
+                                        value="{{ $walkin->walkInPatient->address }}" placeholder="" name="address">
                                     @error('address')
                                         <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                             {{ $message }}
@@ -162,7 +134,7 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- <div class="row mt-3">
+                        <div class="row mt-3">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="" class="form-label">Type of Consultation</label>
@@ -217,7 +189,7 @@
                                 </div>
                             </div>
 
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -319,7 +291,7 @@
                                 </div>
                                 @empty
                                 <p class="text-center text-uppercase fw-bold">NO RECORD OF MEDICAL HISTORY</p>
-                                @endforelse
+                        @endforelse
                     </div>
                 </div>
             </div>

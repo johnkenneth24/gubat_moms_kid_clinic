@@ -14,9 +14,20 @@ class BookAppointment extends Model
         'category',
         'date_appointment',
         'time_appointment',
+        'status'
     ];
 
     protected $casts = [
         'date_appointment' => 'date',
     ];
+
+    public function bookAppConsult()
+    {
+      return $this->hasOne(BookAppointmentconsult::class, 'book_appointment_id');
+    }
+
+    public function user()
+    {
+      return $this->belongsTo(User::class);
+    }
 }
