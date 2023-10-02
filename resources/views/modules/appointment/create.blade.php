@@ -9,6 +9,15 @@
             background-color: rgb(211, 211, 211);
             color: #eea0a0;
         }
+
+        .remaining-slots {
+            font-style: italic;
+            font-weight: normal;
+        }
+
+        .form-check-label {
+            font-weight: bold;
+        }
     </style>
 @endsection
 
@@ -59,65 +68,65 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-2 mt-3">
-                                            <label class="form-label text-center">Morning Appointment</label>
+                                            <label class="form-label fw-bold text-center">Morning Appointment</label>
                                         </div>
                                         <div class="form-check">
-                                            <input name="time_appointment" class="form-check-input" type="radio"
+                                            <input name="time_appointment" class="form-check-input" type="radio" disabled
                                                 value="09:00:00" id="defaultRadio1">
                                             <label class="form-check-label" for="defaultRadio1">
-                                                09:00 AM <span class="remaining-slots"></span>
+                                                09:00 AM <span class="remaining-slots italic"></span>
                                             </label>
                                         </div>
                                         <div class="form-check mt-3">
-                                            <input name="time_appointment" class="form-check-input" type="radio"
+                                            <input name="time_appointment" class="form-check-input" type="radio" disabled
                                                 value="10:00:00" id="defaultRadio2">
                                             <label class="form-check-label" for="defaultRadio2">
-                                                10:00 AM <span class="remaining-slots"></span>
+                                                10:00 AM <span class="remaining-slots italic"></span>
                                             </label>
                                         </div>
                                         <div class="form-check mt-3">
-                                            <input name="time_appointment" class="form-check-input" type="radio"
+                                            <input name="time_appointment" class="form-check-input" type="radio" disabled
                                                 value="11:00:00" id="defaultRadio3">
                                             <label class="form-check-label" for="defaultRadio3">
-                                                11:00 AM <span class="remaining-slots"></span>
+                                                11:00 AM <span class="remaining-slots italic"></span>
                                             </label>
                                         </div>
                                         <div class="form-check mt-3">
-                                            <input name="time_appointment" class="form-check-input" type="radio"
+                                            <input name="time_appointment" class="form-check-input" type="radio" disabled
                                                 value="12:00:00" id="defaultRadio4">
                                             <label class="form-check-label" for="defaultRadio4">
-                                                12:00 AM <span class="remaining-slots"></span>
+                                                12:00 AM <span class="remaining-slots italic"></span>
                                             </label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-2 mt-3">
-                                            <label class="form-label text-center">Afternoon Appointment</label>
+                                            <label class="form-label fw-bold text-center">Afternoon Appointment</label>
                                         </div>
                                         <div class="form-check">
-                                            <input name="time_appointment" class="form-check-input" type="radio"
+                                            <input name="time_appointment" class="form-check-input" type="radio" disabled
                                                 value="13:00:00" id="defaultRadio5">
                                             <label class="form-check-label" for="defaultRadio5">
-                                                01:00 PM <span class="remaining-slots"></span>
+                                                01:00 PM <span class="remaining-slots italic"></span>
                                             </label>
                                         </div>
                                         <div class="form-check mt-3">
-                                            <input name="time_appointment" class="form-check-input" type="radio"
+                                            <input name="time_appointment" class="form-check-input" type="radio" disabled
                                                 value="14:00:00" id="defaultRadio6">
                                             <label class="form-check-label" for="defaultRadio6">
-                                                02:00 PM <span class="remaining-slots"></span>
+                                                02:00 PM <span class="remaining-slots italic"></span>
                                             </label>
                                         </div>
                                         <div class="form-check mt-3">
                                             <input name="time_appointment" class="form-check-input" type="radio"
-                                                value="15:00:00" id="defaultRadio7">
+                                                disabled value="15:00:00" id="defaultRadio7">
                                             <label class="form-check-label" for="defaultRadio7">
-                                                03:00 PM <span class="remaining-slots"></span>
+                                                03:00 PM <span class="remaining-slots italic"></span>
                                             </label>
                                         </div>
                                         <div class="form-check mt-3">
                                             <input name="time_appointment" class="form-check-input" type="radio"
-                                                value="16:00:00" id="defaultRadio8">
+                                                disabled value="16:00:00" id="defaultRadio8">
                                             <label class="form-check-label" for="defaultRadio8">
                                                 04:00 PM <span class="remaining-slots"></span>
                                             </label>
@@ -215,13 +224,16 @@
                                 const selectedDateISO = new Date(selectedDate).toISOString()
                                     .slice(0, 10);
                                 const day = selectedDate.getDay();
-                                if (day == 3) {
 
+                                if (day == 3) {
+                                    // disable morning appointments
                                     morningRadioButtons.forEach(radio => {
                                         radio.disabled = true;
                                         radio.nextElementSibling.classList.add(
                                             'text-danger');
                                     });
+
+                                    // enable afternoon appointments
                                     afternoonRadioButtons.forEach(radio => {
                                         radio.disabled = false;
                                         radio.nextElementSibling.classList
@@ -233,69 +245,34 @@
                                         .filter(appointment => appointment
                                             .date_appointment === selectedDateISO);
 
-                                    // Calculate the available slots for 1pm and 2pm for the selected date
-                                    const availableSlots1pm = 2 - selectedDateAppointments
-                                        .filter(appointment => appointment
-                                            .time_appointment === '13:00:00').length;
-                                    const availableSlots2pm = 2 - selectedDateAppointments
-                                        .filter(appointment => appointment
-                                            .time_appointment === '14:00:00').length;
-                                    const availableSlots3pm = 1 - selectedDateAppointments
-                                        .filter(appointment => appointment
-                                            .time_appointment === '15:00:00').length;
-                                    const availableSlots4pm = 1 - selectedDateAppointments
-                                        .filter(appointment => appointment
-                                            .time_appointment === '16:00:00').length;
+                                    const timeSlots = ['13:00:00', '14:00:00', '15:00:00',
+                                        '16:00:00'
+                                    ];
 
-                                    // Update the remaining slots in the HTML
-                                    document.querySelector(
-                                            'input[value="13:00:00"] + label .remaining-slots'
-                                        ).textContent =
-                                        `(${availableSlots1pm}/2 slots remaining)`;
-                                    document.querySelector(
-                                            'input[value="14:00:00"] + label .remaining-slots'
-                                        ).textContent =
-                                        `(${availableSlots2pm}/2 slots remaining)`;
-                                    document.querySelector(
-                                            'input[value="15:00:00"] + label .remaining-slots'
-                                        ).textContent =
-                                        `(${availableSlots3pm}/1 slot remaining)`;
-                                    document.querySelector(
-                                            'input[value="16:00:00"] + label .remaining-slots'
-                                        ).textContent =
-                                        `(${availableSlots4pm}/1 slot remaining)`;
+                                    const updateSlotInformation = (timeSlot, maxSlots) => {
+                                        const availableSlots = maxSlots -
+                                            selectedDateAppointments
+                                            .filter(appointment => appointment
+                                                .time_appointment === timeSlot).length;
 
-                                    // Disable 1pm and 2pm appointments if all slots are taken
-                                    if (availableSlots1pm === 0) {
-                                        document.querySelector('input[value="13:00:00"]')
-                                            .disabled = true;
-                                        // add text-danger class to the label of the radio button
-                                        document.querySelector(
-                                            'input[value="13:00:00"] + label'
-                                        ).classList.add('text-danger');
-                                    }
-                                    if (availableSlots2pm === 0) {
-                                        document.querySelector('input[value="14:00:00"]')
-                                            .disabled = true;
-                                        document.querySelector(
-                                            'input[value="14:00:00"] + label'
-                                        ).classList.add('text-danger');
-                                    }
-                                    if (availableSlots3pm === 0) {
-                                        document.querySelector('input[value="15:00:00"]')
-                                            .disabled = true;
-                                        document.querySelector(
-                                            'input[value="15:00:00"] + label'
-                                        ).classList.add('text-danger');
-                                    }
-                                    if (availableSlots4pm === 0) {
-                                        document.querySelector('input[value="16:00:00"]')
-                                            .disabled = true;
-                                        document.querySelector(
-                                            'input[value="16:00:00"] + label'
-                                        ).classList.add('text-danger');
-                                    }
+                                        const inputElement = document.querySelector(
+                                            `input[value="${timeSlot}"]`);
+                                        const labelElement = inputElement
+                                            .nextElementSibling;
 
+                                        labelElement.querySelector('.remaining-slots')
+                                            .textContent =
+                                            `(${availableSlots}/${maxSlots} slot${maxSlots === 1 ? '' : 's'} available)`;
+                                        inputElement.disabled = availableSlots === 0;
+                                        labelElement.classList.toggle('text-danger',
+                                            availableSlots === 0);
+                                    };
+
+                                    for (const timeSlot of timeSlots) {
+                                        updateSlotInformation(timeSlot, timeSlot ===
+                                            '13:00:00' || timeSlot === '14:00:00' ? 2 :
+                                            1);
+                                    }
                                 } else {
                                     morningRadioButtons.forEach(radio => {
                                         radio.disabled = true;
@@ -317,47 +294,166 @@
                                     });
                                 }
                             } else if (category == 'consultation') {
-                                // if monday and friday enable both morning and afternoon appointments, 
-                                // else if wednesday enable only morning appointments, 
-                                // else if tuesday, thursday, and saturday disable morning appointments
                                 const selectedDate = new Date(selectedDateInput.value);
+                                const selectedDateISO = new Date(selectedDate).toISOString()
+                                    .slice(0, 10);
                                 const day = selectedDate.getDay();
-                                if (day == 1 || day == 5) {
+                                if (day == 1 || day == 5) { // Monday and Friday
+                                    const morningTimeSlots = [
+                                        '09:00:00', '10:00:00',
+                                        '11:00:00', '12:00:00'
+                                    ];
+                                    const afternoonTimeSlots = [
+                                        '13:00:00', '14:00:00',
+                                        '15:00:00', '16:00:00'
+                                    ];
+
+                                    const enableTimeSlots = (timeSlots, appointments,
+                                        selector) => {
+                                        timeSlots.forEach(timeSlot => {
+                                            const availableSlots = 1 -
+                                                appointments.filter(
+                                                    appointment => appointment
+                                                    .date_appointment ===
+                                                    selectedDateISO &&
+                                                    appointment
+                                                    .time_appointment ===
+                                                    timeSlot).length;
+                                            const inputElement = document
+                                                .querySelector(
+                                                    `input[value="${timeSlot}"]`
+                                                );
+                                            const labelElement = inputElement
+                                                .nextElementSibling;
+
+                                            inputElement.disabled =
+                                                availableSlots === 0;
+                                            labelElement.classList.toggle(
+                                                'text-danger',
+                                                availableSlots === 0);
+                                            labelElement.querySelector(
+                                                    '.remaining-slots')
+                                                .textContent =
+                                                `(${availableSlots}/1 slot available)`;
+                                        });
+                                    };
+
+                                    enableTimeSlots(morningTimeSlots, morningAppointments,
+                                        '09:00:00');
+                                    enableTimeSlots(afternoonTimeSlots,
+                                        afternoonAppointments, '13:00:00');
+
+                                } else if (day == 3) { // Wednesday
                                     morningRadioButtons.forEach(radio => {
                                         radio.disabled = false;
-                                        radio.nextElementSibling.classList
-                                            .remove(
-                                                'text-danger');
-                                    });
-                                    afternoonRadioButtons.forEach(radio => {
-                                        radio.disabled = false;
-                                        radio.nextElementSibling.classList
-                                            .remove(
-                                                'text-danger');
-                                    });
-                                } else if (day == 3) {
-                                    morningRadioButtons.forEach(radio => {
-                                        radio.disabled = false;
-                                        radio.nextElementSibling.classList
-                                            .remove(
-                                                'text-danger');
+                                        radio.nextElementSibling.classList.remove(
+                                            'text-danger');
                                     });
                                     afternoonRadioButtons.forEach(radio => {
                                         radio.disabled = true;
                                         radio.nextElementSibling.classList.add(
                                             'text-danger');
+                                        radio.nextElementSibling.querySelector(
+                                                '.remaining-slots').textContent =
+                                            '(Not Available)';
                                     });
+
+                                    const selectedDateAppointments = morningAppointments
+                                        .filter(appointment => appointment
+                                            .date_appointment === selectedDateISO);
+
+                                    const timeSlots = ['09:00:00', '10:00:00', '11:00:00',
+                                        '12:00:00'
+                                    ];
+
+                                    const updateSlotInformation = (timeSlot) => {
+                                        const availableSlots = 1 -
+                                            selectedDateAppointments
+                                            .filter(appointment => appointment
+                                                .time_appointment === timeSlot).length;
+
+                                        const inputElement = document.querySelector(
+                                            `input[value="${timeSlot}"]`);
+                                        const labelElement = inputElement
+                                            .nextElementSibling;
+
+                                        labelElement.querySelector('.remaining-slots')
+                                            .textContent =
+                                            `(${availableSlots}/1 slot available)`;
+                                        inputElement.disabled = availableSlots === 0;
+                                        labelElement.classList.toggle('text-danger',
+                                            availableSlots === 0);
+                                    };
+
+                                    for (const timeSlot of timeSlots) {
+                                        updateSlotInformation(timeSlot);
+                                    }
+                                } else if (day == 2 || day == 4 || day ==
+                                    6) { // Tuesday, Thursday, and Saturday
+                                    morningRadioButtons.forEach(radio => {
+                                        radio.disabled = true;
+                                        radio.nextElementSibling.classList.add(
+                                            'text-danger');
+                                        radio.nextElementSibling.querySelector(
+                                                '.remaining-slots').textContent =
+                                            '(Not Available)';
+                                    });
+                                    afternoonRadioButtons.forEach(radio => {
+                                        radio.disabled = false;
+                                        radio.nextElementSibling.classList
+                                            .remove(
+                                                'text-danger');
+                                    });
+
+                                    const selectedDateAppointments = afternoonAppointments
+                                        .filter(appointment => appointment
+                                            .date_appointment === selectedDateISO);
+
+                                    const timeSlots = ['13:00:00', '14:00:00', '15:00:00',
+                                        '16:00:00'
+                                    ];
+
+                                    const updateSlotInformation = (timeSlot) => {
+                                        const availableSlots = 1 -
+                                            selectedDateAppointments
+                                            .filter(appointment => appointment
+                                                .time_appointment === timeSlot).length;
+
+                                        const inputElement = document.querySelector(
+                                            `input[value="${timeSlot}"]`);
+                                        const labelElement = inputElement
+                                            .nextElementSibling;
+
+                                        labelElement.querySelector('.remaining-slots')
+                                            .textContent =
+                                            `(${availableSlots}/1 slot available)`;
+                                        inputElement.disabled = availableSlots === 0;
+                                        labelElement.classList.toggle('text-danger',
+                                            availableSlots === 0);
+                                    };
+
+                                    for (const timeSlot of timeSlots) {
+                                        updateSlotInformation(timeSlot);
+                                    }
+
                                 } else {
                                     morningRadioButtons.forEach(radio => {
                                         radio.disabled = true;
                                         radio.nextElementSibling.classList.add(
                                             'text-danger');
+                                        // label .remaining-slots textContent set to Not Available
+                                        radio.nextElementSibling.querySelector(
+                                                '.remaining-slots').textContent =
+                                            '(Not Available)';
                                     });
                                     afternoonRadioButtons.forEach(radio => {
-                                        radio.disabled = false;
+                                        radio.disabled = true;
                                         radio.nextElementSibling.classList
-                                            .remove(
+                                            .add(
                                                 'text-danger');
+                                        radio.nextElementSibling.querySelector(
+                                                '.remaining-slots').textContent =
+                                            '(Not Available)';
                                     });
                                 }
                             }
