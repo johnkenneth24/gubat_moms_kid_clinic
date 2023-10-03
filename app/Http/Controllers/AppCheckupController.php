@@ -86,8 +86,8 @@ class AppCheckupController extends Controller
     $checkup = ['Vaccination', 'Baby Check-up'];
     $consult = ['Consultation'];
 
-    $patient_book = BookAppointment::where('user_id', $book_app->user_id)->where('status', 'Checked up');
-
+    $patient_book = BookAppointment::where('user_id', $book_app->user_id)->where('status', 'Checked Up')->get();
+ 
     return view('modules.app-checkup.book-app.view-med-history', compact('book_app', 'gender', 'checkup', 'consult', 'patient_book'));
   }
 

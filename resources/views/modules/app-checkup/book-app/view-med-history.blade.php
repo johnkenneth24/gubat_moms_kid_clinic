@@ -220,7 +220,7 @@
                                             aria-expanded="false" aria-controls="accordion{{ $patient_app->id }}"
                                             role="tabpanel">
                                             <h6 class="mb-0 text-uppercase">DATE:
-                                                {{ $patient_app->date_consultation->format('F d, Y') }}, TYPE OF CONSULTATION: {{ $patient_app->type_consult }}</h6>
+                                                {{ $patient_app->date_appointment->format('F d, Y') }}, TYPE OF CONSULTATION: {{ $patient_app->category }}</h6>
                                         </button>
                                     </h2>
                                     <div id="accordion{{ $patient_app->id }}" class="accordion-collapse collapse {{ $loop->first ? 'show' : '' }}"
@@ -234,7 +234,7 @@
                                                             <label class="form-label">Weight</label>
                                                             <input readonly type="number" id=""
                                                                 class="form-control text-end @error('weight') is-invalid @enderror"
-                                                                value="{{ $patient_app->walkInConsult->weight }}"
+                                                                value="{{ $patient_app->bookAppConsult->weight }}"
                                                                 placeholder="" name="weight">
                                                             @error('weight')
                                                                 <div class="invalid-feedback mt-0"
@@ -249,7 +249,7 @@
                                                             <label class="form-label">Height</label>
                                                             <input readonly type="number" id=""
                                                                 class="form-control text-end @error('height') is-invalid @enderror"
-                                                                value="{{ $patient_app->walkInConsult->height }}"
+                                                                value="{{ $patient_app->bookAppConsult->height }}"
                                                                 placeholder="" name="height">
                                                             @error('height')
                                                                 <div class="invalid-feedback mt-0"
@@ -264,7 +264,7 @@
                                                           <label class="form-label">Blood Pressure</label>
                                                           <input readonly type="number" id=""
                                                               class="form-control text-end @error('height') is-invalid @enderror"
-                                                              value="{{ $patient_app->walkInConsult->blood_pressure }}"
+                                                              value="{{ $patient_app->bookAppConsult->blood_pressure }}"
                                                               placeholder="" name="height">
                                                           @error('height')
                                                               <div class="invalid-feedback mt-0"
@@ -278,13 +278,13 @@
                                             </div>
                                             <div class="row mt-4">
                                               <h6 class="mb-1">Medication In Take:</h6>
-                                              <p class="mb-1">{{ $patient_app->walkInConsult->medication_intake }}</p>
+                                              <p class="mb-1">{{ $patient_app->bookAppConsult->medication_intake }}</p>
                                               <h6 class="mb-1">Medical History</h6>
-                                              <p class="mb-1">{{ $patient_app->walkInConsult->medical_history }}</p>
+                                              <p class="mb-1">{{ $patient_app->bookAppConsult->medical_history }}</p>
                                               <h6 class="mb-1">Vaccine Received:</h6>
-                                              <p class="mb-1">{{ $patient_app->walkInConsult->vaccine_received }}</p>
+                                              <p class="mb-1">{{ $patient_app->bookAppConsult->vaccine_received }}</p>
                                               <h6 class="mb-1">Diagnosis</h6>
-                                              <p class="mb-1">{{ $patient_app->walkInConsult->diagnosis }}</p>
+                                              <p class="mb-1">{{ $patient_app->bookAppConsult->diagnosis }}</p>
                                             </div>
                                         </div>
                                     </div>
