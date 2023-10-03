@@ -83,7 +83,7 @@
                             </div>
                             <div class="d-flex">
                                 <p>DATE: <span>{{ $book_app->date_appointment->format('F d, Y') }}</span></p>
-                                <p class="ms-2">TIME: <span>{{ date('h:i A', strtotime($book_app->time)) }}</span></p>
+                                <p class="ms-2">TIME: <span>{{ date('h:i A', strtotime($book_app->time_appointment)) }}</span></p>
                             </div>
                             <div class="d-flex mt-2">
                               @role('staff')

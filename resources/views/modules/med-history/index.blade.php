@@ -30,14 +30,22 @@
             </tr>
           </thead>
           <tbody class="table-border-bottom-0">
+            @forelse ($book_apps as $book_app)
             <tr>
-              <td style="font-size: 0.90rem;">Consultation</td>
-              <td style="font-size: 0.90rem;">August 1, 2023</td>
-              <td style="font-size: 0.90rem;">01:00 PM</td>
+              <td style="font-size: 0.90rem;">{{ $book_app->category }}</td>
+              <td style="font-size: 0.90rem;">{{ $book_app->date_appointment->format('F d, Y') }}</td>
+              <td style="font-size: 0.90rem;">{{ date('h:i A', strtotime($book_app->time_appointment)) }}</td>
               <td>
-                <button class="btn btn-primary btn-sm" >View</button>
+                <a href="{{ route('med-history.view' , $book_app->id) }}" class="btn btn-primary btn-sm">View Consultation</a>
               </td>
             </tr>
+            @empty
+            <tr>
+              <td colspan="4" class="text-center">
+                No Record of Medical History!
+              </td>
+            </tr>
+            @endforelse
           </tbody>
         </table>
       </div>
