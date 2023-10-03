@@ -63,8 +63,7 @@
         }
 
             #home .banner {
-              visibility: hidden;
-              display: none !important;
+              margin-top: 30px;
             }
 
             #home h3{
@@ -108,6 +107,10 @@
 
             #about .about-img{
               display: none !important;
+            }
+
+            #about{
+              margin-bottom: 30px;
             }
         }
     </style>
