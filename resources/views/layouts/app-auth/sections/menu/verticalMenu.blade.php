@@ -1,5 +1,4 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
-
     <!-- ! Hide app brand if navbar-full -->
     <div class="app-brand demo mt-5">
         <a href="{{ route('dashboard') }}" class="app-brand-link">
@@ -7,7 +6,7 @@
             <span class=" text-primary ml-2 fw-bold">Gubat Mom's & Kids <br> Clinic</span>
         </a>
 
-        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-autod-block d-xl-none">
+        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-autod-block d-xl-none" >
             <i class="bx bx-chevron-left bx-sm align-middle"></i>
         </a>
     </div>
