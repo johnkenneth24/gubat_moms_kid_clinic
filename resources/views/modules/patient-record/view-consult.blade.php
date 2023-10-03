@@ -273,7 +273,7 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label class="form-label">Weight</label>
-                                                            <input readonly type="number" id=""
+                                                            <input readonly type="number" id="" step="0.01"
                                                                 class="form-control text-end @error('weight') is-invalid @enderror"
                                                                 value="{{ $patient_app?->walkInConsult?->weight ?? $patient_app->bookAppConsult->weight }}"
                                                                 placeholder="" name="weight">
@@ -288,7 +288,7 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label class="form-label">Height</label>
-                                                            <input readonly type="number" id=""
+                                                            <input readonly type="number" id="" step="0.01"
                                                                 class="form-control text-end @error('height') is-invalid @enderror"
                                                                 value="{{ $patient_app?->walkInConsult?->height ?? $patient_app->bookAppConsult->height }}"
                                                                 placeholder="" name="height">
@@ -303,7 +303,7 @@
                                                     <div class="col-md-4">
                                                       <div class="form-group">
                                                           <label class="form-label">Blood Pressure</label>
-                                                          <input readonly type="number" id=""
+                                                          <input readonly type="text" id=""
                                                               class="form-control text-end @error('height') is-invalid @enderror"
                                                               value="{{ $patient_app?->walkInConsult?->blood_pressure ?? $patient_app->bookAppConsult->blood_pressure }}"
                                                               placeholder="" name="height">
