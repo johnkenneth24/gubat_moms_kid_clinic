@@ -64,6 +64,7 @@
 
             #home .banner {
               margin-top: 30px;
+              margin-bottom: 30px !important;
             }
 
             #home h3{
@@ -82,6 +83,10 @@
 
             #schedule .col-md-4{
               margin-bottom: 10px;
+            }
+
+            #schedule h4{
+              margin-top: 180px !important;
             }
 
             nav{
@@ -164,7 +169,8 @@
                                 comforting experience for every family that walks through our doors. Trust Gubat Mom's and
                                 Kid's Clinic for comprehensive and compassionate healthcare for you and your little ones.
                             </p>
-                              <a href="{{ route('login') }}" id="login" class="btn btn-primary col-md-3">Log In</a>
+                            <a href="{{ route('login') }}" id="login" class="btn btn-primary col-md-3">Log In</a>
+                            <p style="color: #000000; font-size: 15px !important; margin-top: 8px;" id="login">Or create an account? <a href="{{ route('signup') }}">Click here.</a></p>
                         </div>
                     </div>
                     <div class="col-md-6 d-flex align-items-center justify-content-center banner">
@@ -182,7 +188,7 @@
                 <div class="row">
                     <h4 style="color: #0451b6">Appointment Schedule</h4>
                 </div>
-                <div class="row pt-5">
+                <div class="row">
                     <div class="col-md-4">
                         <div class="card h-100">
                             <div class="card-body">
