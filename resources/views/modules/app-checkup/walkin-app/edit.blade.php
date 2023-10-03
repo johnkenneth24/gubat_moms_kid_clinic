@@ -201,7 +201,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="form-label">Weight</label>
-                                        <input type="number" id=""
+                                        <input type="number" id="" step="0.01"
                                             class="form-control text-end @error('weight') is-invalid @enderror"
                                             value="{{ $walkin->walkInConsult->weight }}" placeholder="" name="weight">
                                         @error('weight')
@@ -214,7 +214,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="form-label">Height</label>
-                                        <input type="number" id=""
+                                        <input type="number" id="" step="0.01"
                                             class="form-control text-end @error('height') is-invalid @enderror"
                                             value="{{ $walkin->walkInConsult->height }}" placeholder="" name="height">
                                         @error('height')
@@ -227,7 +227,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="form-label">Blood Pressure</label>
-                                        <input type="number" id=""
+                                        <input type="text" id=""
                                             class="form-control text-end @error('blood_pressure') is-invalid @enderror"
                                             value="{{ $walkin->walkInConsult->blood_pressure }}" placeholder=""
                                             name="blood_pressure">

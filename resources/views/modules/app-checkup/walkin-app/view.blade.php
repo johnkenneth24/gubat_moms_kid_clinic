@@ -174,10 +174,10 @@
                       </div>
                   </div>
                   <div class="row mt-2">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label class="form-label">Weight</label>
-                            <input readonly  type="number" id="" class="form-control text-end @error('weight') is-invalid @enderror" value="{{ $walkin->walkInConsult->weight }}" placeholder="" name="weight">
+                            <input readonly  type="number" id="" step="0.01"  class="form-control text-end @error('weight') is-invalid @enderror" value="{{ $walkin->walkInConsult->weight }}" placeholder="" name="weight">
                             @error('weight')
                                     <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                         {{ $message }}
@@ -185,10 +185,10 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label class="form-label">Height</label>
-                            <input readonly  type="number" id="" class="form-control text-end @error('height') is-invalid @enderror" value="{{ $walkin->walkInConsult->height }}" placeholder="" name="height">
+                            <input readonly  type="number" id="" step="0.01" class="form-control text-end @error('height') is-invalid @enderror" value="{{ $walkin->walkInConsult->height }}" placeholder="" name="height">
                             @error('height')
                                     <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                         {{ $message }}
@@ -196,6 +196,17 @@
                             @enderror
                         </div>
                     </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                          <label class="form-label">Height</label>
+                          <input readonly  type="text" id="" step="0.01" class="form-control text-end @error('height') is-invalid @enderror" value="{{ $walkin->walkInConsult->blood_pressure }}" placeholder="" name="height">
+                          @error('height')
+                                  <div class="invalid-feedback mt-0" style="display: inline-block !important;">
+                                      {{ $message }}
+                                  </div>
+                          @enderror
+                      </div>
+                  </div>
                   </div>
                 </div>
             </div>

@@ -243,7 +243,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="form-label">Weight(kg)</label>
-                                    <input type="number" id=""
+                                    <input type="number" id="" step="0.01"
                                         class="form-control text-end @error('weight') is-invalid @enderror"
                                         value="{{ old('weight') }}" placeholder="" name="weight">
                                     @error('weight')
@@ -258,7 +258,7 @@
                                     <label class="form-label">Height(cm)</label>
                                     <input type="number" id=""
                                         class="form-control text-end @error('height') is-invalid @enderror"
-                                        value="{{ old('height') }}" placeholder="" name="height">
+                                        value="{{ old('height') }}" placeholder="" name="height" step="0.01">
                                     @error('height')
                                         <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                             {{ $message }}
@@ -269,7 +269,7 @@
                             <div class="col-md-4">
                               <div class="form-group">
                                   <label class="form-label">Blood Pressure</label>
-                                  <input type="number" id=""
+                                  <input type="text" id=""
                                       class="form-control text-end @error('blood_pressure') is-invalid @enderror"
                                       value="{{ old('blood_pressure') }}" placeholder="" name="blood_pressure">
                                   @error('blood_pressure')

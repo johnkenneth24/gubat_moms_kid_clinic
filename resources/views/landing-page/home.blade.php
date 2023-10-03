@@ -47,6 +47,72 @@
             background-size: cover;
             background-position: 50% 50%;
         }
+        #home #login{
+          visibility: hidden;
+          width: 100%;
+        }
+
+        @media only screen and (max-width: 767px) {
+            #home, #schedule, #about{
+              height: 100%;
+              margin-top: 50px;
+            }
+
+            #home #login{
+              visibility: visible;
+        }
+
+            #home .banner {
+              margin-top: 30px;
+            }
+
+            #home h3{
+              font-size: 1.5rem !important;
+              text-align: center;
+            }
+
+            #home p{
+              font-size: 0.8rem !important;
+              text-align: center !important;
+            }
+
+            #home .col-md-6{
+              align-items: flex-start !important;
+            }
+
+            #schedule .col-md-4{
+              margin-bottom: 10px;
+            }
+
+            nav{
+              visibility: hidden !important;
+              display: none !important;
+            }
+
+            main h4{
+              text-align: center !important;
+              text-transform: uppercase;
+              margin-top: 20px !important;
+            }
+
+            #about .text-about{
+              font-size: 16px;
+              text-align: center !important;
+              padding: 10px;
+            }
+
+            iframe{
+              width: auto;
+            }
+
+            #about .about-img{
+              display: none !important;
+            }
+
+            #about{
+              margin-bottom: 30px;
+            }
+        }
     </style>
 @endsection
 
@@ -92,10 +158,16 @@
                         <div class="banner-text">
                             <h3 style="font-size: 3rem; color:#0451b6; font-weight: 700;">Welcome to Gubat Mom's & Kid's
                                 Clinic!</h3>
-                            <p style="color: #000000; font-size: 18px; text-align: justify;">Welcome to Gubat Mom's and Kid's Clinic, a trusted healthcare facility dedicated to providing exceptional care for both mothers and children.  With a warm and welcoming environment, we strive to create a comforting experience for every family that walks through our doors. Trust Gubat Mom's and Kid's Clinic for comprehensive and compassionate healthcare for you and your little ones.</p>
+                            <p style="color: #000000; font-size: 18px; text-align: justify;">Welcome to Gubat Mom's and
+                                Kid's Clinic, a trusted healthcare facility dedicated to providing exceptional care for both
+                                mothers and children. With a warm and welcoming environment, we strive to create a
+                                comforting experience for every family that walks through our doors. Trust Gubat Mom's and
+                                Kid's Clinic for comprehensive and compassionate healthcare for you and your little ones.
+                            </p>
+                              <a href="{{ route('login') }}" id="login" class="btn btn-primary col-md-3">Log In</a>
                         </div>
                     </div>
-                    <div class="col-md-6 d-flex align-items-center justify-content-center ">
+                    <div class="col-md-6 d-flex align-items-center justify-content-center banner">
                         <div class="banner-image text-center">
                             <img class="mb-3" src="{{ asset('assets/img/ped1.png') }}" alt="" height="250">
                             <h3 class="text-uppercase mb-2" style="color:#373737 ;">Dr. Geraldine Gay E. Frilles</h3>
@@ -171,7 +243,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="about-text">
-                            <p style="text-align: justify;">Welcome to Gubat Mom's and Kid's Clinic! We
+                            <p style="text-align: justify;" class="text-about">Welcome to Gubat Mom's and Kid's Clinic! We
                                 are a family
                                 owned and
                                 operated clinic that provides comprehensive care for children and their families. We offer a
@@ -182,8 +254,9 @@
                                 keep them healthy and happy. We look forward to seeing you at Gubat Mom's and Kid's Clinic.
                             </p>
                             <p style="color: #0451b6"><i class="bi bi-envelope-at-fill"></i>
-                              gubatmomsandkidsclinic@gmail.om</p>
-                            <p style="color: #0451b6"><i class="bi bi-pin-map-fill"></i> Manook St., Manook, Gubat, Sorsogon</p>
+                                gubatmomsandkidsclinic@gmail.om</p>
+                            <p style="color: #0451b6"><i class="bi bi-pin-map-fill"></i> Manook St., Manook, Gubat,
+                                Sorsogon</p>
                         </div>
                         <div class="about-map mb-5" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
                             <iframe
