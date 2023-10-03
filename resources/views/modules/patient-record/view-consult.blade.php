@@ -261,7 +261,7 @@
                                             aria-expanded="false" aria-controls="accordion{{ $patient_app->id }}"
                                             role="tabpanel">
                                             <h6 class="mb-0 text-uppercase">DATE:
-                                                {{ $patient_app?->date_consultation?->format('F d, Y') ?? $patient_app->date_appointment->format('F d, Y') }}, TYPE OF CONSULTATION: {{ $patient_app->type_consult }}</h6>
+                                                {{ $patient_app?->date_consultation?->format('F d, Y') ?? $patient_app->date_appointment->format('F d, Y') }}, TYPE OF CONSULTATION: {{ $patient_app->category }}</h6>
                                         </button>
                                     </h2>
                                     <div id="accordion{{ $patient_app->id }}" class="accordion-collapse collapse {{ $loop->first ? 'show' : '' }}"
