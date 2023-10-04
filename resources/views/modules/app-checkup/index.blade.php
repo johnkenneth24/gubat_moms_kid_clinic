@@ -116,7 +116,7 @@
                                 <div class="modal-body">
                                   <div class="form-group">
                                     <label for="" class="form-label">WEIGHT (KG)</label>
-                                    <input type="number" name="weight" value="{{ old('weight') }}" class="form-control">
+                                    <input step="0.01" type="number" name="weight" value="{{ old('weight') }}" class="form-control">
                                     @error('weight')
                                           <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                               {{ $message }}
@@ -125,7 +125,7 @@
                                   </div>
                                   <div class="form-group">
                                     <label for="" class="form-label">HEIGHT (CM)</label>
-                                    <input type="number" name="height" value="{{ old('height') }}" class="form-control">
+                                    <input step="0.01" type="number" name="height" value="{{ old('height') }}" class="form-control">
                                     @error('height')
                                           <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                               {{ $message }}
@@ -134,7 +134,7 @@
                                   </div>
                                   <div class="form-group">
                                     <label for="" class="form-label">BLOOD PRESSURE</label>
-                                    <input type="number" name="blood_pressure" value="{{ old('blood_pressure') }}" class="form-control">
+                                    <input type="text" name="blood_pressure" value="{{ old('blood_pressure') }}" class="form-control">
                                     @error('blood_pressure')
                                           <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                               {{ $message }}
