@@ -20,17 +20,18 @@
 @endsection
 
 @section('content')
+<x-errors></x-errors>
+<x-success></x-success>
     <div id="particles-js"></div>
     <div class="container-xxl" style="position: absolute; top: 0px;">
         <div class="authentication-wrapper authentication-basic ">
             <!-- Register Card -->
-            <div class="card col-md-8">
+            <div class="card col-md-4">
                 <div class="card-body pt-2 pb-2">
                     <!-- Logo -->
                     <div class="app-brand justify-content-center">
                         <a href="{{ url('/') }}" class="app-brand-link gap-2">
-                            <h4 class="mb-1"><img src="{{ asset('assets/img/logo.png') }}" height="50" alt="">
-                                Gubat Mom's & Kids Clinic - Sign Up</h4>
+                            <h4 class="mb-1"><img src="{{ asset('assets/img/logo.png') }}" height="50" alt="">Sign Up to Book an Appointment</h4>
                         </a>
                     </div>
                     <!-- /Logo -->
@@ -38,8 +39,7 @@
 
                     <form id="formAuthentication" class="mb-3" action="{{ route('register') }}" method="POST">
                         @csrf
-                        <div class="mb-3 row">
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-12">
                                 <label class="form-label">First Name<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control @error('firstname') is-invalid @enderror"
                                     value="{{ old('firstname') }}" id="firstname" name="firstname" placeholder="Juan"
@@ -50,17 +50,7 @@
                                     </div>
                                 @enderror
                             </div>
-                            <div class="form-group col-md-3">
-                                <label class="form-label">Middle Name<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control @error('middlename') is-invalid @enderror"
-                                    value="{{ old('middlename') }}" id="middlename" name="middlename" placeholder="Dela">
-                                @error('middlename')
-                                    <div class="invalid-feedback mt-0" style="display: inline-block !important;">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-12">
                                 <label class="form-label">Last Name<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control @error('lastname') is-invalid @enderror"
                                     value="{{ old('lastname') }}" id="lastname" name="lastname" placeholder="Cruz"
@@ -71,116 +61,22 @@
                                     </div>
                                 @enderror
                             </div>
-                            <div class="form-group col-md-3">
-                                <label class="form-label">Suffix</label>
-                                <input type="text" class="form-control @error('suffix') is-invalid @enderror"
-                                    value="{{ old('suffix') }}" id="suffix" name="suffix" placeholder="Jr.">
-                                @error('suffix')
-                                    <div class="invalid-feedback mt-0" style="display: inline-block !important;">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                          <div class="form-group col-md-6">
-                            <label class="form-label">MOTHER'S NAME</label>
-                            <input type="text" class="form-control @error('mother_name') is-invalid @enderror"
-                                required value="{{ old('mother_name') }}" id="mother_name" name="mother_name"
-                                placeholder="Mother's Name">
-                            @error('mother_name')
-                                <div class="invalid-feedback mt-0" style="display: inline-block !important;">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="form-group col-md-6">
-                          <label class="form-label">FATHER'S NAME</label>
-                          <input type="text" class="form-control @error('father_name') is-invalid @enderror"
-                              required value="{{ old('father_name') }}" id="father_name" name="father_name"
-                              placeholder="Father's Name">
-                          @error('father_name')
-                              <div class="invalid-feedback mt-0" style="display: inline-block !important;">
-                                  {{ $message }}
-                              </div>
-                          @enderror
-                      </div>
-                        </div>
+
                         <div class="mb-3 row">
-                            <div class="form-group col-md-3">
-                                <label class="form-label">Gender<span class="text-danger">*</span></label>
-                                <select name="gender" class="form-control @error('gender') is-invalid @enderror" required
-                                    id="">
-                                    <option value="">Please Select</option>
-                                    <option value="Male" @selected(old('gender') == 'Male')>Male</option>
-                                    <option value="Female" @selected(old('gender') == 'Female')>Female</option>
-                                </select>
-                                @error('gender')
-                                    <div class="invalid-feedback mt-0" style="display: inline-block !important;">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label class="form-label">Birthdate<span class="text-danger">*</span></label>
-                                <input onchange="calculateAge()" type="date" class="birthdate form-control @error('b_date') is-invalid @enderror" required
-                                    value="{{ old('b_date') }}" id="birthdate" name="b_date"
-                                    placeholder="Enter your b_date" >
-                                @error('b_date')
-                                    <div class="invalid-feedback mt-0" style="display: inline-block !important;">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            <div class="form-group col-md-2">
-                              <label class="form-label">Age<span class="text-danger">*</span></label>
-                              <input type="number" class="age form-control @error('age') is-invalid @enderror"
-                                  required value="{{ old('age') }}" id="age" name="age"
-                                  placeholder="">
-                              @error('age')
-                                  <div class="invalid-feedback mt-0" style="display: inline-block !important;">
-                                      {{ $message }}
-                                  </div>
-                              @enderror
-                          </div>
-                            <div class="form-group col-md-4">
-                                <label class="form-label">Contact Number<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control @error('contact_no') is-invalid @enderror"
-                                    required value="{{ old('contact_no') }}" id="contact_no" name="contact_no"
-                                    placeholder="+639123456789">
-                                @error('contact_no')
-                                    <div class="invalid-feedback mt-0" style="display: inline-block !important;">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <div class="form-group col-md-5">
+                            <div class="form-group col-md-12">
                                 <label class="form-label">Email Address<span class="text-danger">*</span></label>
                                 <input type="email" class="form-control @error('email') is-invalid @enderror" required
                                     value="{{ old('email') }}" id="email" name="email"
-                                    placeholder="juandelacruz@email.com">
+                                     placeholder="juandelacruz@email.com">
                                 @error('email')
                                     <div class="invalid-feedback mt-0" style="display: inline-block !important;">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
-                            <div class="form-group col-md-7">
-                                <label class="form-label">Address<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control @error('address') is-invalid @enderror" required
-                                    value="{{ old('address') }}" id="address" name="address"
-                                    placeholder="Home Address">
-                                @error('address')
-                                    <div class="invalid-feedback mt-0" style="display: inline-block !important;">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
                         </div>
                         <div class="mb-3 row">
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-12">
                                 <label class="form-label">Password<span class="text-danger">*</span></label>
                                 <input type="password" class="form-control @error('password') is-invalid @enderror"
                                     required value="{{ old('password') }}" id="password" name="password"
@@ -191,8 +87,8 @@
                                     </div>
                                 @enderror
                             </div>
-                            <div class="form-group col-md-6">
-                                <label class="form-label">Confirm Password</label>
+                            <div class="form-group col-md-12">
+                                <label class="form-label">Confirm Password<span class="text-danger">*</span></label>
                                 <input type="password"
                                     class="form-control @error('password_confirmation') is-invalid @enderror" required
                                     value="{{ old('password_confirmation') }}" id="password_confirmation"

@@ -30,13 +30,14 @@
 <body>
 
     <!-- Layout Content -->
+    
     @yield('layoutContent')
     <!--/ Layout Content -->
 
 
     <!-- Include Scripts -->
     @include('layouts/app-auth/sections/scripts')
-    
+
 /
 </body>
 

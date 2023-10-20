@@ -24,8 +24,7 @@ class StoreRequestConsult extends FormRequest
     public function rules()
     {
         return [
-            'medication_intake' => 'required',
-            'medical_history' => 'required',
+            'medication_intake' => 'required', 
             'vaccine_received' => 'required',
             'diagnosis' => 'required'
         ];

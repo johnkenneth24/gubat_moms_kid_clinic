@@ -1,5 +1,6 @@
 @extends('layouts/app-auth/commonMaster')
 
+
 @php
     /* Display elements */
     $contentNavbar = true;
@@ -10,13 +11,13 @@
     $isFooter = $isFooter ?? true;
     $customizerHidden = $customizerHidden ?? '';
     $pricingModal = $pricingModal ?? false;
-    
+
     /* HTML Classes */
     $navbarDetached = 'navbar-detached';
-    
+
     /* Content classes */
     $container = $container ?? 'container-xxl';
-    
+
 @endphp
 
 @section('layoutContent')

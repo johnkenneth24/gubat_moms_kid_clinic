@@ -14,7 +14,8 @@ class BookAppointment extends Model
         'category',
         'date_appointment',
         'time_appointment',
-        'status'
+        'status',
+        'reason_cancel'
     ];
 
     protected $casts = [

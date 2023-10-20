@@ -45,13 +45,16 @@
               <td style="font-size: 0.90rem;">{{ date('h:i A', strtotime($book_app->time_appointment))}}</td>
               <td style="font-size: 0.90rem;"><span class="badge bg-label-warning">{{ $book_app->status }}</span></td>
               <td class="d-flex flex-nowrap justify-content-center align-items-center">
-                <a href="{{ route('app-request.view', $book_app->id) }}" class="btn btn-success btn-sm">View User Info</a>
+                <a href="{{ route('app-request.view', $book_app->id) }}" class="btn btn-success btn-sm">VIEW USER INFO</a>
+                @if($book_app->status != 'Approved')
                 <form action="{{ route('app-request.approved', [$book_app->id]) }}" method="POST" class="mb-0 me-1 ms-1">
                   @csrf
                   @method('PUT')
-                  <button type="submit" class="btn btn-info btn-sm">Approve</button>
+                  <button type="submit" class="btn btn-info btn-sm">APRROVE</button>
                 </form>
                 <a href="{{ route('app-request.cancel', $book_app->id) }}" class="btn btn-sm btn-danger">CANCEL</a>
+
+                @endif
               </td>
             </tr>
             @empty

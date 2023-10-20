@@ -24,17 +24,8 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'firstname' => ['required', 'string', 'max:255'],
-            'middlename' => ['nullable', 'string', 'max:255'],
-            'lastname' => ['nullable', 'string', 'max:255'],
-            'mother_name' => 'nullable',
-            'father_name' => 'nullable',
-            'age' => 'required',
-            'suffix' => ['nullable', 'string', 'max: 5'],
-            'gender' => ['required', 'string', 'max:255'],
-            'b_date' => ['required'],
-            'contact_no' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:11'],
+            'lastname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'address' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -45,17 +36,8 @@ class RegisterController extends Controller
 
         $user = User::create([
             'firstname' => $data['firstname'],
-            'middlename' => $data['middlename'],
             'lastname' => $data['lastname'],
-            'mother_name' => $data['mother_name'],
-            'father_name' => $data['father_name'],
-            'age' => $data['age'],
-            'suffix' => $data['suffix'],
-            'gender' => $data['gender'],
-            'birthdate' => $data['b_date'],
-            'contact_number' => $data['contact_no'],
             'email' => $data['email'],
-            'address' => $data['address'],
             'password' => Hash::make($data['password']),
         ]);
         $user->assignRole('patient');
@@ -69,6 +51,6 @@ class RegisterController extends Controller
         $this->validator($request->all())->validate();
         event(new Registered($user = $this->create($request->all())));
 
-        return redirect()->route('login')->with('success', 'You have successfully registered!');
+        return redirect()->route('verification.notice');
     }
 }

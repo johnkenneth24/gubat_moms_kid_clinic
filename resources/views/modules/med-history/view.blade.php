@@ -81,9 +81,7 @@
                                             </div>
                                             <div class="row mt-4">
                                               <h6 class="mb-1">Medication In Take:</h6>
-                                              <p class="mb-1">{{ $book_app->bookAppConsult->medication_intake }}</p>
-                                              <h6 class="mb-1">Medical History</h6>
-                                              <p class="mb-1">{{ $book_app->bookAppConsult->medical_history }}</p>
+                                              <p class="mb-1">{{ $book_app->bookAppConsult->medication_intake }}</p> 
                                               <h6 class="mb-1">Vaccine Received:</h6>
                                               <p class="mb-1">{{ $book_app->bookAppConsult->vaccine_received }}</p>
                                               <h6 class="mb-1">Diagnosis</h6>

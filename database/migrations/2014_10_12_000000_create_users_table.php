@@ -21,11 +21,11 @@ return new class extends Migration
             $table->string('mother_name')->nullable();
             $table->string('father_name')->nullable();
             $table->string('suffix')->nullable();
-            $table->string('gender');
-            $table->date('birthdate');
-            $table->string('age');
-            $table->string('contact_number');
-            $table->string('address');
+            $table->string('gender')->nullable();
+            $table->date('birthdate')->nullable();
+            $table->string('age')->nullable();
+            $table->string('contact_number')->nullable();
+            $table->string('address')->nullable();
             $table->string('email')->unique();
             $table->string('password');
             $table->timestamp('email_verified_at')->nullable();

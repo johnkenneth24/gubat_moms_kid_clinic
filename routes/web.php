@@ -14,6 +14,8 @@ use App\Http\Controllers\UserListController;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\WalkInAppController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +27,22 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
  */
+Route::get('/email/verify', function () {
+  return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+
+ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+  $request->fulfill();
+
+  return redirect('/dashboard');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+  $request->user()->sendEmailVerificationNotification();
+
+  return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 Route::middleware('guest')->group(function () {
   //landing page
@@ -36,9 +54,11 @@ Route::middleware('guest')->group(function () {
   //signup
   Route::get('/signup', [LoginController::class, 'signup'])->name('signup');
   Route::post('/register', [RegisterController::class, 'register'])->name('register');
+
+
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
 
   // logout
   Route::get('/logout', [LoginController::class, 'logout'])->name('auth.logout');
@@ -88,6 +108,10 @@ Route::middleware('auth')->group(function () {
 
   Route::controller(UserManagementController::class)->prefix('user-management')->group(function () {
     Route::get('/view/{user}', 'view')->name('user-management.view');
+    Route::put('/update/{user}', 'update')->name('user-management.update');
+    Route::post('/change-password/{user}', 'changePassword')->name('user-management.change-password');
+
+
   });
 
   Route::controller(AppRequestController::class)->prefix('appointment_request')->group(function () {
@@ -99,7 +123,7 @@ Route::middleware('auth')->group(function () {
 
   Route::controller(AppointmentStatController::class)->prefix('appointment-status')->group(function (){
     Route::get('/', 'index')->name('app-stat.index');
-    Route::get('cancel-appointment/{book_app}', 'cancelAppointment')->name('app-stat.cancel');
+    Route::put('cancel-appointment/{book_app}', 'cancelAppointment')->name('app-stat.cancel');
 
   });
 

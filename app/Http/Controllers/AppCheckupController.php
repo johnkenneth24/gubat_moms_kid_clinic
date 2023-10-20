@@ -15,6 +15,7 @@ class AppCheckupController extends Controller
   public function index()
   {
     $book_appointment = BookAppointment::where('status', 'Approved')
+      ->whereDate('date_appointment', now())
       ->orderBy('date_appointment', 'asc')
       ->orderBy('time_appointment', 'asc')
       ->get();
@@ -87,7 +88,7 @@ class AppCheckupController extends Controller
     $consult = ['Consultation'];
 
     $patient_book = BookAppointment::where('user_id', $book_app->user_id)->where('status', 'Checked Up')->get();
- 
+
     return view('modules.app-checkup.book-app.view-med-history', compact('book_app', 'gender', 'checkup', 'consult', 'patient_book'));
   }
 
@@ -108,14 +109,12 @@ class AppCheckupController extends Controller
   {
     $validated = $request->validate([
       'medication_intake' => 'nullable',
-      'medical_history' =>'nullable',
       'vaccine_received' =>'nullable',
       'diagnosis' =>'nullable',
     ]);
 
     $book_app->bookAppConsult->update([
-      'medication_intake' => $validated['medication_intake'],
-      'medical_history' => $validated['medical_history'],
+      'medication_intake' => $validated['medication_intake'], 
       'vaccine_received' => $validated['vaccine_received'],
       'diagnosis' => $validated['diagnosis'],
     ]);

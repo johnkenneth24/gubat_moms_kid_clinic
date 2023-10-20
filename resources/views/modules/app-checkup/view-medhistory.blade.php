@@ -292,8 +292,6 @@
                                             <div class="row mt-4">
                                               <h6 class="mb-1">Medication In Take:</h6>
                                               <p class="mb-1">{{ $patient_app->walkInConsult->medication_intake }}</p>
-                                              <h6 class="mb-1">Medical History</h6>
-                                              <p class="mb-1">{{ $patient_app->walkInConsult->medical_history }}</p>
                                               <h6 class="mb-1">Vaccine Received:</h6>
                                               <p class="mb-1">{{ $patient_app->walkInConsult->vaccine_received }}</p>
                                               <h6 class="mb-1">Diagnosis</h6>

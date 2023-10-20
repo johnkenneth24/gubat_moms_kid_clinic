@@ -15,8 +15,7 @@ class WalkInConsultation extends Model
         'height',
         'weight',
         'blood_pressure',
-        'medication_intake',
-        'medical_history',
+        'medication_intake', 
         'vaccine_received',
         'diagnosis'
     ];

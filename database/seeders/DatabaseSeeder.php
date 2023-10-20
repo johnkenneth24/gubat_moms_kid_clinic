@@ -41,6 +41,7 @@ class DatabaseSeeder extends Seeder
                 'address' => 'Brgy Manook. Gubat, Sorsogon',
                 'email' => 'pediatrician@email.com',
                 'password' => Hash::make('pediatrician12345'),
+                'email_verified_at' => now(),
             ]);
             $user->assignRole('pediatrician');
         }
@@ -56,6 +57,7 @@ class DatabaseSeeder extends Seeder
                 'address' => 'Brgy Manook. Gubat, Sorsogon',
                 'email' => 'staff@email.com',
                 'password' => Hash::make('staff12345'),
+                'email_verified_at' => now(),
             ]);
             $user->assignRole('staff');
         }

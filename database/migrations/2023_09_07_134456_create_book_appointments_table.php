@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('category');
             $table->date('date_appointment');
             $table->time('time_appointment');
+            $table->string('reason_cancel')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

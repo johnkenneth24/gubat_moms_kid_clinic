@@ -19,8 +19,7 @@ return new class extends Migration
             $table->double('weight');
             $table->double('height');
             $table->string('blood_pressure');
-            $table->string('medication_intake')->nullable();
-            $table->string('medical_history')->nullable();
+            $table->string('medication_intake')->nullable(); 
             $table->string('vaccine_received')->nullable();
             $table->string('diagnosis')->nullable();
             $table->softDeletes();
