@@ -15,8 +15,10 @@
     <script src="{{ asset('assets/js/dashboards-analytics.js') }}"></script>
 @endsection
 
+@livewireStyles()
+
 @section('content')
-    <form action="{{ route('walkin-appointment.store') }}" method="POST" enctype="multipart/form-data">
+    {{-- <form action="{{ route('walkin-appointment.store') }}" method="POST" enctype="multipart/form-data"> --}}
         @csrf
         <div class="row">
             <div class="col-lg-12">
@@ -75,46 +77,45 @@
                             </div>
                         </div>
                         <div class="row mt-2">
-                          <div class="col-md-4">
-                              <div class="form-group">
-                                  <label class="form-label">Mother Name</label>
-                                  <input readonly type="text"
-                                      class="form-control @error('lastname') is-invalid @enderror"
-                                      value="{{ $patient_rec->mother_name }}" placeholder="" name="lastname">
-                                  @error('lastname')
-                                      <div class="invalid-feedback mt-0" style="display: inline-block !important;">
-                                          {{ $message }}
-                                      </div>
-                                  @enderror
-                              </div>
-                          </div>
-                          <div class="col-md-4">
-                              <div class="form-group">
-                                  <label class="form-label">Father Name</label>
-                                  <input readonly type="text"
-                                      class="form-control @error('lastname') is-invalid @enderror"
-                                      value="{{ $patient_rec->father_name }}" placeholder="" name="lastname">
-                                  @error('lastname')
-                                      <div class="invalid-feedback mt-0" style="display: inline-block !important;">
-                                          {{ $message }}
-                                      </div>
-                                  @enderror
-                              </div>
-                          </div>
-                          <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="form-label">Contact Number</label>
-                                <input type="text" class="form-control @error('contact_number') is-invalid @enderror"
-                                    value="{{ $patient_rec->contact_number }}" placeholder=""
-                                    name="contact_number">
-                                @error('contact_number')
-                                    <div class="invalid-feedback mt-0" style="display: inline-block !important;">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label">Mother Name</label>
+                                    <input readonly type="text"
+                                        class="form-control @error('lastname') is-invalid @enderror"
+                                        value="{{ $patient_rec->mother_name }}" placeholder="" name="lastname">
+                                    @error('lastname')
+                                        <div class="invalid-feedback mt-0" style="display: inline-block !important;">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label">Father Name</label>
+                                    <input readonly type="text"
+                                        class="form-control @error('lastname') is-invalid @enderror"
+                                        value="{{ $patient_rec->father_name }}" placeholder="" name="lastname">
+                                    @error('lastname')
+                                        <div class="invalid-feedback mt-0" style="display: inline-block !important;">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label">Contact Number</label>
+                                    <input type="text" class="form-control @error('contact_number') is-invalid @enderror"
+                                        value="{{ $patient_rec->contact_number }}" placeholder="" name="contact_number">
+                                    @error('contact_number')
+                                        <div class="invalid-feedback mt-0" style="display: inline-block !important;">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
-                      </div>
                         <div class="row mt-2">
                             <div class="col-md-2">
                                 <div class="form-group">
@@ -261,10 +262,12 @@
                                             aria-expanded="false" aria-controls="accordion{{ $patient_app->id }}"
                                             role="tabpanel">
                                             <h6 class="mb-0 text-uppercase">DATE:
-                                                {{ $patient_app?->date_consultation?->format('F d, Y') ?? $patient_app->date_appointment->format('F d, Y') }}, TYPE OF CONSULTATION: {{ $patient_app->category }}</h6>
+                                                {{ $patient_app?->date_consultation?->format('F d, Y') ?? $patient_app->date_appointment->format('F d, Y') }},
+                                                TYPE OF CONSULTATION: {{ $patient_app->category }}</h6>
                                         </button>
                                     </h2>
-                                    <div id="accordion{{ $patient_app->id }}" class="accordion-collapse collapse {{ $loop->first ? 'show' : '' }}"
+                                    <div id="accordion{{ $patient_app->id }}"
+                                        class="accordion-collapse collapse {{ $loop->first ? 'show' : '' }}"
                                         aria-labelledby="headingTwo{{ $patient_app->id }}"
                                         data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
@@ -301,36 +304,72 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
-                                                      <div class="form-group">
-                                                          <label class="form-label">Blood Pressure</label>
-                                                          <input readonly type="text" id=""
-                                                              class="form-control text-end @error('height') is-invalid @enderror"
-                                                              value="{{ $patient_app?->walkInConsult?->blood_pressure ?? $patient_app->bookAppConsult->blood_pressure }}"
-                                                              placeholder="" name="height">
-                                                          @error('height')
-                                                              <div class="invalid-feedback mt-0"
-                                                                  style="display: inline-block !important;">
-                                                                  {{ $message }}
-                                                              </div>
-                                                          @enderror
-                                                      </div>
-                                                  </div>
+                                                        <div class="form-group">
+                                                            <label class="form-label">Blood Pressure</label>
+                                                            <input readonly type="text" id=""
+                                                                class="form-control text-end @error('height') is-invalid @enderror"
+                                                                value="{{ $patient_app?->walkInConsult?->blood_pressure ?? $patient_app->bookAppConsult->blood_pressure }}"
+                                                                placeholder="" name="height">
+                                                            @error('height')
+                                                                <div class="invalid-feedback mt-0"
+                                                                    style="display: inline-block !important;">
+                                                                    {{ $message }}
+                                                                </div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row mt-4">
-                                              <h6 class="mb-1">Medication In Take:</h6>
-                                              <p class="mb-1">{{ $patient_app?->walkInConsult?->medication_intake ?? $patient_app->bookAppConsult->medication_intake}}</p>
-                                              <h6 class="mb-1">Vaccine Received:</h6>
-                                              <p class="mb-1">{{ $patient_app?->walkInConsult?->vaccine_received ?? $patient_app->bookAppConsult->vaccince_received }}</p>
-                                              <h6 class="mb-1">Diagnosis</h6>
-                                              <p class="mb-1">{{ $patient_app?->walkInConsult?->diagnosis ?? $patient_app->bookAppConsult->diagnosis }}</p>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="" class="form-label">Medication Intake</label>
+                                                        <textarea disabled class="form-control @error('vaccine_received') is-invalid @enderror" name="vaccine_received"
+                                                            id="" rows="3" placeholder="Type here...">{{ $patient_app?->walkInConsult?->medication_intake ?? $patient_app->bookAppConsult->medication_intake }}</textarea>
+                                                        @error('vaccine_received')
+                                                            <div class="invalid-feedback mt-0"
+                                                                style="display: inline-block !important;">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="" class="form-label">Vaccine Received</label>
+                                                        <textarea disabled class="form-control @error('vaccine_received') is-invalid @enderror" name="vaccine_received"
+                                                            id="" rows="3" placeholder="Type here...">{{ $patient_app?->walkInConsult?->vaccine_received ?? $patient_app->bookAppConsult->vaccine_received }}</textarea>
+                                                        @error('vaccine_received')
+                                                            <div class="invalid-feedback mt-0"
+                                                                style="display: inline-block !important;">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="" class="form-label">Diagnosis</label>
+                                                        <textarea disabled class="form-control @error('vaccine_received') is-invalid @enderror" name="vaccine_received"
+                                                            id="" rows="3" placeholder="Type here...">{{ $patient_app?->walkInConsult?->diagnosis ?? $patient_app->bookAppConsult->diagnosis }}</textarea>
+                                                        @error('vaccine_received')
+                                                            <div class="invalid-feedback mt-0"
+                                                                style="display: inline-block !important;">
+                                                                {{ $message }}
+                                                            </div>
+                                                            @enderror
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                    {{-- </form> --}}
+                                            <div class="row mt-4">
+                                              <div class="col-md-12">
+                                                @livewire('medical-record.export', ['patient_app' => $patient_app], key($patient_app->id))
+                                              </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                @empty
-                                <p class="text-center text-uppercase fw-bold">NO RECORD OF MEDICAL HISTORY</p>
-                                @endforelse
+                                        @empty
+                                          <p class="text-center text-uppercase fw-bold">NO RECORD OF MEDICAL HISTORY</p>
+                        @endforelse
                     </div>
                 </div>
             </div>
@@ -338,8 +377,9 @@
 
 
         </div>
-    </form>
 @endsection
+
+@livewireScripts()
 
 @section('page-script')
     <script>

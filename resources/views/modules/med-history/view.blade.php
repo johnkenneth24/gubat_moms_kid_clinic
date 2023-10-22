@@ -81,7 +81,10 @@
                                             </div>
                                             <div class="row mt-4">
                                               <h6 class="mb-1">Medication In Take:</h6>
-                                              <p class="mb-1">{{ $book_app->bookAppConsult->medication_intake }}</p> 
+                                              <textarea name="" class="" id="" cols="30" rows="10">
+
+                                              </textarea>
+                                              <p class="mb-1">{{ $book_app->bookAppConsult->medication_intake }}</p>
                                               <h6 class="mb-1">Vaccine Received:</h6>
                                               <p class="mb-1">{{ $book_app->bookAppConsult->vaccine_received }}</p>
                                               <h6 class="mb-1">Diagnosis</h6>
