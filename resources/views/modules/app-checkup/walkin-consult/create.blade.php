@@ -313,18 +313,6 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="" class="form-label">Medical History</label>
-                                    <textarea class="form-control @error('medical_history') is-invalid @enderror" name="medical_history" id=""
-                                        rows="3" placeholder="Type here..."></textarea>
-                                    @error('firstname')
-                                        <div class="invalid-feedback mt-0" style="display: inline-block !important;">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
                                     <label for="" class="form-label">Vaccine Received</label>
                                     <textarea class="form-control @error('vaccine_received') is-invalid @enderror" name="vaccine_received"
                                         id="" rows="3" placeholder="Type here..."></textarea>

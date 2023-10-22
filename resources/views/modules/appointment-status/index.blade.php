@@ -53,14 +53,21 @@
                                           </button>
                                       </div>
                                         <div class="modal-body">
-                                          <h5 class="text-wrap text-center mb-0">
-                                            Are you sure do you want to Cancel this Appointment?
-                                          </h5>
-                                        </div>
-                                        <div class="modal-footer d-flex justify-content-center">
-                                          <a href="{{ route('app-stat.cancel' , $app->id) }}" class="btn btn-danger">SUBMIT</a>
-                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CLOSE</button>
-                                        </div>
+                                          <form action="{{ route('app-stat.cancel' , $app->id) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <h5 class="text-wrap mb-0 text-center text-uppercase mb-2">
+                                              Reason for Cancellation</h5>
+                                              <div class="form-group">
+                                                <input type="text" class="form-control" name="reason_cancel">
+                                              </div>
+                                            </h5>
+                                          </div>
+                                          <div class="modal-footer d-flex justify-content-center">
+                                            <button type="submit" class="btn btn-danger">SUBMIT</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CLOSE</button>
+                                          </div>
+                                          </form>
                                     </div>
                                   </div>
                                 </div>

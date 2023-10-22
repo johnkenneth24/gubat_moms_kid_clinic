@@ -290,14 +290,47 @@
                                                 </div>
                                             </div>
                                             <div class="row mt-4">
-                                              <h6 class="mb-1">Medication In Take:</h6>
-                                              <p class="mb-1">{{ $patient_app->walkInConsult->medication_intake }}</p>
-                                              <h6 class="mb-1">Medical History</h6>
-                                              <p class="mb-1">{{ $patient_app->walkInConsult->medical_history }}</p>
-                                              <h6 class="mb-1">Vaccine Received:</h6>
-                                              <p class="mb-1">{{ $patient_app->walkInConsult->vaccine_received }}</p>
-                                              <h6 class="mb-1">Diagnosis</h6>
-                                              <p class="mb-1">{{ $patient_app->walkInConsult->diagnosis }}</p>
+                                              <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="" class="form-label">Medication Intake</label>
+                                                    <textarea disabled class="form-control @error('vaccine_received') is-invalid @enderror" name="vaccine_received"
+                                                        id="" rows="3" placeholder="Type here...">{{ $patient_app->walkInConsult->medication_intake }}</textarea>
+                                                    @error('vaccine_received')
+                                                        <div class="invalid-feedback mt-0"
+                                                            style="display: inline-block !important;">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                              <div class="form-group">
+                                                  <label for="" class="form-label">Vaccine Received</label>
+                                                  <textarea disabled class="form-control @error('vaccine_received') is-invalid @enderror" name="vaccine_received"
+                                                      id="" rows="3" placeholder="Type here...">{{ $patient_app->walkInConsult->vaccine_received}}</textarea>
+                                                  @error('vaccine_received')
+                                                      <div class="invalid-feedback mt-0"
+                                                          style="display: inline-block !important;">
+                                                          {{ $message }}
+                                                      </div>
+                                                  @enderror
+                                              </div>
+                                          </div>
+
+                                          <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="" class="form-label">Diagnosis</label>
+                                                <textarea disabled class="form-control @error('vaccine_received') is-invalid @enderror" name="vaccine_received"
+                                                    id="" rows="3" placeholder="Type here...">{{ $patient_app->walkInConsult->diagnosis }}</textarea>
+                                                @error('vaccine_received')
+                                                    <div class="invalid-feedback mt-0"
+                                                        style="display: inline-block !important;">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        </div>
                                             </div>
                                         </div>
                                     </div>

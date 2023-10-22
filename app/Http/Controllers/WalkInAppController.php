@@ -186,7 +186,6 @@ class WalkInAppController extends Controller
 
     $walkin->walkInConsult->update([
       'medication_intake' => $validated['medication_intake'],
-      'medical_history' => $validated['medical_history'],
       'vaccine_received' => $validated['vaccine_received'],
       'diagnosis' => $validated['diagnosis'],
     ]);

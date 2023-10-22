@@ -4,12 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\BookAppointment;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ApprovedEmail;
+use App\Mail\CancelledEmail;
 
 class AppRequestController extends Controller
 {
     public function index()
     {
-        $book_appointments = BookAppointment::where('status', 'pending')->get();
+        $book_appointments = BookAppointment::whereIn('status', ['pending', 'Approved'])
+        ->orderByRaw("FIELD(status, 'pending') DESC")
+        ->orderBy('date_appointment', 'asc')
+        ->orderBy('time_appointment', 'asc')
+        ->get();
 
         return view('modules.app-request.index', compact('book_appointments'));
     }
@@ -22,12 +29,13 @@ class AppRequestController extends Controller
 
     public function approve(BookAppointment $book_app)
     {
-
         $book_app->update([
           'status' => 'Approved'
         ]);
 
-        return redirect()->route('app-request.index')->with('success', 'The Appointment Request is approved!');
+        Mail::to($book_app->user->email)->send(new ApprovedEmail( $book_app));
+
+        return redirect()->back()->with('success', 'The Appointment Request is approved!');
     }
 
     public function cancelBook(BookAppointment $book_app)
@@ -35,6 +43,8 @@ class AppRequestController extends Controller
       $book_app->update([
         'status'=>'Cancelled'
       ]);
+
+      Mail::to($book_app->user->email)->send(new CancelledEmail( $book_app));
 
       return redirect()->route('app-request.index')->with('success', 'The Appointment Request is cancelled!');
 

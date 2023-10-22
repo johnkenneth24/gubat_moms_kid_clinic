@@ -22,6 +22,7 @@
 @endsection
 
 @section('content')
+
     <form action="{{ route('appointment.store') }}" method="POST" id="appointment">
         @csrf
         <div class="row">
@@ -148,10 +149,24 @@
                                 </div>
                                 <div class="col-md-12 mb-5 mt-5 p-2">
                                     <div class="card">
+                                      @if (
+                                          !auth()->user()->age &&
+                                          !auth()->user()->birthdate &&
+                                          !auth()->user()->contact_number &&
+                                          !auth()->user()->address)
+
+<div class="alert alert-danger fw-bold" role="alert">
+  Please complete your personal information before booking an appointment. <a
+      href="{{ route('user-management.view', auth()->user()->id) }}">Click here.</a>
+</div>
+                                        @else
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                             onclick="confirmAppointment()">
                                             Confirm Submission
                                         </button>
+
+
+                                        @endif
                                     </div>
 
                                     <!-- Modal -->
