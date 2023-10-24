@@ -31,6 +31,14 @@ class AppointmentController extends Controller
             'time_appointment' => ['required'],
         ]);
 
+        $appointments = BookAppointment::where('user_id', auth()->user()->id)->where('status', 'pending')->get();
+
+        foreach ($appointments as $appointment) {
+            if ($appointment->date_appointment == $validated['date_appointment'] && $appointment->time_appointment == $validated['time_appointment']) {
+                return redirect()->back()->with('error', 'You already have a pending appointment on this date and time!');
+            }
+        }
+
         $newAppointment = BookAppointment::create([
             'user_id' => auth()->user()->id,
             'category' => $validated['category'],
