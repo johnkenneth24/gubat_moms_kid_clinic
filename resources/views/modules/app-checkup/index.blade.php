@@ -22,7 +22,12 @@
         #app_check .card-patient p {
             margin-bottom: 2px;
             font-weight: 500;
+            font-size: 13px;
             color: #1f1f1f;
+        }
+
+        #app_check .btn{
+          font-size: 10px !important;
         }
 
         #app_check .card-patient span {
