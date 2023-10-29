@@ -35,3 +35,4 @@ class WalkInAppointment extends Model
 
 
 }
+

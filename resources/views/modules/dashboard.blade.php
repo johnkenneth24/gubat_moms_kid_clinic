@@ -45,7 +45,7 @@
                     <div class="card-body">
                         <div class="d-flex align-items-center mb-2 pb-1">
                             <div class="avatar me-2">
-                                <span class="avatar-initial rounded bg-label-warning"><i class="bx bx-error"></i></span>
+                                <span class="avatar-initial rounded bg-label-warning"><i class="bx bx-clinic"></i></span>
                             </div>
                             <h4 class="ms-1 mb-0">{{ $total_cons }}</h4>
                         </div>

@@ -15,6 +15,7 @@ use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\WalkInAppController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Http\Controllers\ReportController;
 use Illuminate\Http\Request;
 
 /*
@@ -130,8 +131,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
   Route::controller(MedHistoryController::class)->prefix('medical-history')->group(function (){
     Route::get('/', 'index')->name('med-history.index');
     Route::get('/view/{book_app}', 'view')->name('med-history.view');
+  });
 
-
+  Route::controller(ReportController::class)->prefix('report')->group(function (){
+    Route::get('/', 'index')->name('report.index');
   });
 
   Route::get('/appointment-checkup', [AppCheckupController::class, 'index'])->name('app-checkup.index');
