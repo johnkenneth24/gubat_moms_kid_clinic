@@ -36,8 +36,11 @@
               <input type="month" name="selected_month" class="form-control" id="">
             </div>
             <div>
-              <select name="" class="form-control  mx-2" id="">
+              <select name="category" class="form-control  mx-2" id="">
                 <option value="">Select Category</option>
+                @foreach ($cons as $con)
+                <option value="{{ $con }}">{{ $con }}</option>
+                @endforeach
               </select>
             </div>
             <div>
@@ -47,6 +50,7 @@
         </div>
       </div>
       <div class="table-responsive text-nowrap">
+        <h6 class="ms-4">TOTAL: {{ $combinedAppointments->count() }}</h6>
         <table class="table table-hover">
           <thead>
             <tr>
