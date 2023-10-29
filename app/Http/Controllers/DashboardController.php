@@ -14,6 +14,8 @@ class DashboardController extends Controller
   {
     // Get the current date
     $dateNow = date('Y-m-d');
+    $month = date('m');
+
 
     $appointment_today = BookAppointment::where('status', 'Approved')
       ->whereDate('date_appointment', '=', $dateNow) // Use '=' instead of '=='
@@ -25,39 +27,47 @@ class DashboardController extends Controller
       ->count();
 
     // Count WalkInPatient records
-    $walkInPatientsCount = WalkInPatient::count();
+    $walkInPatientsCount = WalkInPatient::whereMonth('created_at' , $month)->count();
 
     // Count User records with the role "patient"
     $patientUsersCount = User::whereHas('roles', function ($query) {
         $query->where('name', 'patient');
-    })->count();
+    })
+    ->whereMonth('created_at', $month)
+    ->count();
 
     // Combine the counts
     $totalPatientCount = $walkInPatientsCount + $patientUsersCount;
 
     $walkin_cons = WalkInAppointment::where('status', 'Checked Up')
     ->where('type_consult', 'Consultation')
+    ->whereMonth('date_consultation', $month)
     ->count();
     $book_cons = BookAppointment::where('status', 'Checked Up')
     ->where('category', 'consultation')
+    ->whereMonth('date_appointment', $month)
     ->count();
 
     $total_cons = $walkin_cons + $book_cons;
 
     $walkin_baby = WalkInAppointment::where('status', 'Checked Up')
     ->where('type_consult', 'baby check-up')
+    ->whereMonth('date_consultation', $month)
     ->count();
     $book_baby = BookAppointment::where('status', 'Checked Up')
     ->where('category', 'Baby Check-up')
+    ->whereMonth('date_appointment', $month)
     ->count();
 
     $total_baby = $walkin_baby + $book_baby;
 
     $walkin_vacs = WalkInAppointment::where('status', 'Checked Up')
     ->where('type_consult', 'vaccination')
+    ->whereMonth('date_consultation', $month)
     ->count();
     $book_vacs = BookAppointment::where('status', 'Checked Up')
     ->where('category', 'Vaccination')
+    ->whereMonth('date_appointment', $month)
     ->count();
 
     $total_vacs = $walkin_vacs + $book_vacs;
