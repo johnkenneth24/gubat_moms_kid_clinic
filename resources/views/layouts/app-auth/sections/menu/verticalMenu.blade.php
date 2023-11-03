@@ -8,12 +8,12 @@
             background-color: rgb(255 255 255 / 20%) !important;
         }
 
-        .bg-menu-theme .menu-inner .menu-text-sidebar, .menu-icon{
+        .bg-menu-theme .menu-inner .menu-text-sidebar,
+        .menu-icon {
             color: #ffff;
         }
     </style>
 @endsection
-
 
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme" style="background-color: #696cff !important">
     <!-- ! Hide app brand if navbar-full -->
@@ -22,7 +22,7 @@
             <h4 class=" text-white ml-2 fw-bold text-uppercase ">Gubat Mom's & Kids Clinic</h4>
         </a>
 
-        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-autod-block d-xl-none" >
+        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-autod-block d-xl-none">
             <i class="bx bx-chevron-left bx-sm align-middle"></i>
         </a>
     </div>
@@ -48,7 +48,7 @@
             <li class="menu-item {{ !request()->routeIs('app-stat.*') ?: 'active' }}">
                 <a href="{{ route('app-stat.index') }}" class=" menu-link">
                     <i class="menu-icon tf-icons bx bx-bookmarks{{-- $menu->icon --}}"></i>
-                    <i class='bx bx-objects-horizontal-left'></i>
+                    {{-- <i class='bx bx-objects-horizontal-left'></i> --}}
                     <div class="menu-text-sidebar">Appointment Status</div>
                 </a>
             </li>
@@ -87,13 +87,12 @@
                 </a>
             </li>
             <li class="menu-item {{ !request()->routeIs('report.*') ?: 'active' }}">
-              <a href="{{ route('report.index') }}" class=" menu-link">
-                  <i class="menu-icon tf-icons bx bx-id-card "></i>
-                  <div class="menu-text-sidebar">Summary of Record</div>
-              </a>
-          </li>
+                <a href="{{ route('report.index') }}" class=" menu-link">
+                    <i class="menu-icon tf-icons bx bx-id-card "></i>
+                    <div class="menu-text-sidebar">Summary of Record</div>
+                </a>
+            </li>
         @endrole
-
 
         @role('staff')
             <li class="menu-item {{ !request()->routeIs('user-list.*') ?: 'active' }}">

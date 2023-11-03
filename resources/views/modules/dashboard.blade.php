@@ -14,8 +14,6 @@
     <script src="{{ asset('assets/js/dashboards-analytics.js') }}"></script>
 @endsection
 
-
-
 @section('content')
     @if (!auth()->user()->age && !auth()->user()->birthdate && !auth()->user()->contact_number && !auth()->user()->address)
         <div class="alert alert-danger fw-bold" role="alert">
@@ -83,30 +81,30 @@
                 </div>
             </div>
         </div>
-        @endunlessrole
-        @role('patient')
-            <div class="row">
-                <div class="col-md-12 h-80 mb-4">
-                    <div class="card">
-                        <div class="d-flex align-items-end row">
-                            <div class="col-sm-7">
-                                <div class="card-body">
-                                    <h5 class="card-title text-primary">Welcome {{ auth()->user()->firstname }}! 🎉</h5>
-                                    <p class="mb-4">Check you health status now for better living!</p>
-                                </div>
+    @endunlessrole
+    @role('patient')
+        <div class="row">
+            <div class="col-md-12 h-80 mb-4">
+                <div class="card">
+                    <div class="d-flex align-items-end row">
+                        <div class="col-sm-7">
+                            <div class="card-body">
+                                <h5 class="card-title text-primary">Welcome {{ auth()->user()->firstname }}! 🎉</h5>
+                                <p class="mb-4">Check you health status now for better living!</p>
                             </div>
-                            <div class="col-sm-5 text-center text-sm-left">
-                                <div class="card-body pb-0 px-0 px-md-4">
-                                    <img src="{{ asset('assets/img/illustrations/man-with-laptop-light.png') }}" height="140"
-                                        alt="View Badge User" data-app-dark-img="illustrations/man-with-laptop-dark.png"
-                                        data-app-light-img="illustrations/man-with-laptop-light.png">
-                                </div>
+                        </div>
+                        <div class="col-sm-5 text-center text-sm-left">
+                            <div class="card-body pb-0 px-0 px-md-4">
+                                <img src="{{ asset('assets/img/illustrations/man-with-laptop-light.png') }}" height="140"
+                                    alt="View Badge User" data-app-dark-img="illustrations/man-with-laptop-dark.png"
+                                    data-app-light-img="illustrations/man-with-laptop-light.png">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        @endrole
+        </div>
+    @endrole
     <div class="row">
         @role('patient')
             <div class="col-md-4 mb-4">
@@ -134,18 +132,17 @@
                 </div>
             </div>
             <div class="col-md-4 mb-4">
-              <div class="card h-100">
-                  <div class="card-body">
-                      <h5 class="card-title">Appointment Request</h5>
-                      <div class="">
-                          <p>You have <strong>{{ $app_pending }}</strong> appointment today.</p>
-                      </div>
-                      <a href="{{ route('app-request.index') }}" class="btn btn-primary">View</a>
-                  </div>
-              </div>
-          </div>
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Appointment Request</h5>
+                        <div class="">
+                            <p>You have <strong>{{ $app_pending }}</strong> appointment today.</p>
+                        </div>
+                        <a href="{{ route('app-request.index') }}" class="btn btn-primary">View</a>
+                    </div>
+                </div>
+            </div>
         @endunlessrole
-
 
     </div>
 @endsection
