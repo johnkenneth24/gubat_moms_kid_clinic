@@ -137,5 +137,4 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', 'index')->name('report.index');
   });
 
-  Route::get('/appointment-checkup', [AppCheckupController::class, 'index'])->name('app-checkup.index');
 });

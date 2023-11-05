@@ -25,6 +25,7 @@ class ReportController extends Controller
     $combinedAppointments = WalkInAppointment::
     select('walk_in_appointments.walk_in_patient_id as user', 'walk_in_appointments.date_consultation as date', 'walk_in_appointments.time_consultation as time')
         ->where('walk_in_appointments.type_consult', $category)
+        ->where('walk_in_appointments.status', 'Checked up')
         ->whereMonth('walk_in_appointments.date_consultation', $selectedMonth)
         ->whereYear('walk_in_appointments.date_consultation', $selectedYear)
         ->join('walk_in_patients', 'walk_in_appointments.walk_in_patient_id', '=', 'walk_in_patients.id')
@@ -33,6 +34,7 @@ class ReportController extends Controller
         BookAppointment::
         select('book_appointments.user_id as user', 'book_appointments.date_appointment as date', 'book_appointments.time_appointment as time', 'users.firstname', 'users.lastname')
         ->where('book_appointments.category',  strtolower($category))
+        ->where('book_appointments.status', 'Checked up')
         ->whereMonth('book_appointments.date_appointment', $selectedMonth)
         ->whereYear('book_appointments.date_appointment', $selectedYear)
         ->join('users', 'book_appointments.user_id', '=', 'users.id')
