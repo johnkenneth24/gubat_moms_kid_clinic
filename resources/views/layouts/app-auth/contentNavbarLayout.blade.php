@@ -1,6 +1,5 @@
 @extends('layouts/app-auth/commonMaster')
 
-
 @php
     /* Display elements */
     $contentNavbar = true;
@@ -20,26 +19,132 @@
 
 @endphp
 
+@section('page-style')
+    <style>
+        .bg-menu-theme .menu-inner>.menu-item.active:before {
+            background: #ffff !important;
+        }
+
+        .bg-menu-theme .menu-inner>.menu-item.active>.menu-link {
+            background-color: rgb(255 255 255 / 20%) !important;
+        }
+
+        .bg-menu-theme .menu-inner .menu-text-sidebar,
+        .menu-icon {
+            color: #ffff;
+        }
+
+        @media (max-width: 1199.98px) #sidebar.layout-menu {
+            position: none !important;
+            transform: none !important;
+        }
+
+        /* on big screens always show the sidebar */
+        @media (min-width: 1200px) {
+            #sidebar.layout-menu {
+                position: fixed !important;
+                transform: none !important;
+            }
+        }
+    </style>
+@endsection
+
 @section('layoutContent')
-    <div class="layout-wrapper layout-content-navbar {{ $isMenu ? '' : 'layout-without-menu' }}">
+    <div class="layout-container layout-content-navbar">
         <div class="layout-container">
-
-            @if ($isMenu)
-                @include('layouts/app-auth/sections/menu/verticalMenu')
-            @endif
-
-            <!-- Layout page -->
             <div class="layout-page">
-                <!-- BEGIN: Navbar-->
-                @if ($isNavbar)
-                    @include('layouts/app-auth/sections/navbar/navbar')
+                @php
+                    $containerNav = $containerNav ?? 'container-fluid';
+                    $navbarDetached = $navbarDetached ?? '';
+
+                @endphp
+
+                @if (isset($navbarDetached) && $navbarDetached == 'navbar-detached')
+                    <nav class="layout-navbar {{ $containerNav }} navbar navbar-expand-xl {{ $navbarDetached }} align-items-center bg-navbar-theme"
+                        id="layout-navbar">
                 @endif
-                <!-- END: Navbar-->
+                @if (isset($navbarDetached) && $navbarDetached == '')
+                    <nav class="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme" id="layout-navbar">
+                        <div class="{{ $containerNav }}">
+                @endif
 
-                <!-- Content wrapper -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+
+                    <ul class="navbar-nav flex-row align-items-center ms-auto">
+
+                        <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                            <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
+                                data-bs-toggle="dropdown">
+                                <div class="avatar ">
+                                    @if (auth()->user()->gender == 'Male')
+                                        <img src="{{ asset('assets/img/undraw_male_avatar_g98d.svg') }}" alt
+                                            class="w-px-40 h-auto rounded-circle">
+                                    @else
+                                        <img src="{{ asset('assets/img/undraw_female_avatar_efig.svg') }}" alt
+                                            class="w-px-40 h-auto rounded-circle">
+                                    @endif
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                    <a class="dropdown-item" href="javascript:void(0);">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0 me-3">
+                                                <div class="avatar">
+                                                    @if (auth()->user()->gender == 'Male')
+                                                        <img src="{{ asset('assets/img/undraw_male_avatar_g98d.svg') }}" alt
+                                                            class="w-px-40 h-auto rounded-circle">
+                                                    @else
+                                                        <img src="{{ asset('assets/img/undraw_female_avatar_efig.svg') }}"
+                                                            alt class="w-px-40 h-auto rounded-circle">
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <span class="fw-semibold d-block">{{ auth()->user()->firstname }}</span>
+                                                @php
+                                                    $role = auth()
+                                                        ->user()
+                                                        ->roles()
+                                                        ->first();
+                                                @endphp
+                                                <small class="text-muted">{{ ucfirst($role->name) }}</small>
+
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <div class="dropdown-divider"></div>
+                                </li>
+                                <li>
+                                    <a href="{{ route('user-management.view', auth()->user()->id) }}" class="dropdown-item"
+                                        href="javascript:void(0);">
+                                        <i class="bx bx-user me-2"></i>
+                                        <span class="align-middle">My Profile</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <div class="dropdown-divider"></div>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('auth.logout') }}">
+                                        <i class='bx bx-power-off me-2'></i>
+                                        <span class="align-middle">Log Out</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                </nav>
+
                 <div class="content-wrapper">
-
-                    <!-- Content -->
                     @if ($isFlex)
                         <div class="{{ $container }} d-flex align-items-stretch flex-grow-1 p-0">
                         @else
@@ -47,29 +152,9 @@
                     @endif
 
                     @yield('content')
-
-                    <!-- pricingModal -->
-                    {{-- @if ($pricingModal)
-            @include('_partials/_modals/modal-pricing')
-            @endif --}}
-                    <!--/ pricingModal -->
-
                 </div>
-                <!-- / Content -->
-
-                <div class="content-backdrop fade"></div>
             </div>
-            <!--/ Content wrapper -->
         </div>
-        <!-- / Layout page -->
     </div>
-
-    @if ($isMenu)
-        <!-- Overlay -->
-        <div class="layout-overlay layout-menu-toggle"></div>
-    @endif
-    <!-- Drag Target Area To SlideIn Menu On Small Screens -->
-    <div class="drag-target"></div>
     </div>
-    <!-- / Layout wrapper -->
 @endsection

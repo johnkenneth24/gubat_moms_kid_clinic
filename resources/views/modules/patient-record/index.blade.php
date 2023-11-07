@@ -13,10 +13,10 @@
             height: 155px;
         }
 
-        #app_check .card-header{
-          height: 80px;
-          display: flex;
-          align-items: center;
+        #app_check .card-header {
+            height: 80px;
+            display: flex;
+            align-items: center;
         }
 
         #app_check .card-patient p {
@@ -30,11 +30,10 @@
             text-transform: uppercase;
         }
 
-        #app_check .card-app .card-body{
+        #app_check .card-app .card-body {
             height: 420px;
             overflow-y: scroll;
         }
-
     </style>
 @endsection
 
@@ -67,14 +66,14 @@
                         <h5 class="card-header p-0 text-uppercase">PATIENT ONLINE</h5>
                     </div>
                     <div class="card-tool">
-                      <form action="{{ route('patient-record.index') }}" method="get" class="d-flex">
-                        @csrf
-                        <div class="form-group">
-                            <input class="form-control form-control-sm d-sm-none d-md-block me-2" type="search"
-                                placeholder="Search..." name="search" style="width: 150px;">
-                        </div>
-                      <button type="submit" class="btn btn-sm btn-primary">SEARCH</button>
-                    </form>
+                        <form action="{{ route('patient-record.index') }}" method="get" class="d-flex">
+                            @csrf
+                            <div class="form-group">
+                                <input class="form-control form-control-sm d-sm-none d-md-block me-2" type="search"
+                                    placeholder="Search..." name="search" style="width: 150px;">
+                            </div>
+                            <button type="submit" class="btn btn-sm btn-primary">SEARCH</button>
+                        </form>
                     </div>
                 </div>
                 <div class="card-body">
@@ -82,7 +81,9 @@
                         <div class="card-patient mb-2">
                             <div class="">
                                 <p>NAME: <span>{{ $patient_on->full_name }}</span></p>
-                                <p class="">BIRTHDATE: <span>{{ $patient_on->birthdate->format('F d, Y') }}</span> GENDER:<span> {{ $patient_on->gender }}</span></p>
+                                <p class="">BIRTHDATE:
+                                    <span>{{ $patient_on?->birthdate?->format('F d, Y') ?? '' }}</span> GENDER:<span>
+                                        {{ $patient_on->gender }}</span></p>
                                 <div class="d-flex">
                                     <p>ADDRESS: <span>{{ $patient_on->address }}</span></p>
                                 </div>
@@ -92,13 +93,13 @@
                             </div>
                             <div class="d-flex mt-2">
                                 @role('pediatrician')
-                                <a href="{{ route('patient-record.view_book_consult', $patient_on->id) }}" class="btn btn-sm btn-primary">MEDICAL HISTORY</a>
+                                    <a href="{{ route('patient-record.view_book_consult', $patient_on->id) }}"
+                                        class="btn btn-sm btn-primary">MEDICAL HISTORY</a>
                                 @endrole
                             </div>
                         </div>
                     @empty
-                        <div class=" d-flex align-items-center justify-content-center"
-                            style="height: 111.172px;">
+                        <div class=" d-flex align-items-center justify-content-center" style="height: 111.172px;">
                             <p class="">NO RECORD TO SHOW!</p>
                         </div>
                     @endforelse
@@ -106,49 +107,50 @@
             </div>
         </div>
         <div class="col-lg-6">
-          <div class="card p-2 card-app">
-              <div class="card-header d-flex align-items-center justify-content-between">
-                  <div class="card-title p-0 mb-0 d-flex align-item-center">
-                      <h5 class="card-header p-0 text-uppercase">PATIENT WALKIN</h5>
-                  </div>
-                  <div class="card-tool">
-                    <form action="{{ route('patient-record.index') }}" method="get" class="d-flex">
-                      @csrf
-                      <div class="form-group">
-                          <input class="form-control form-control-sm d-sm-none d-md-block me-2" type="search"
-                              placeholder="Search..." name="search" style="width: 150px;">
-                      </div>
-                    <button type="submit" class="btn btn-sm btn-primary">SEARCH</button>
-                  </form>
-                  </div>
-              </div>
-              <div class="card-body">
-                  @forelse ($patient_walkin as $patient_walk)
-                  <div class="card-patient mb-2">
-                    <div class="">
-                        <p>NAME: <span>{{ $patient_walk->full_name }}</span></p>
-                        <p class="">BIRTHDATE: <span>{{ $patient_walk->birthdate->format('F d, Y')}}</span> GENDER:<span> {{ $patient_walk->gender }}</span></p>
-                        <div class="d-flex">
-                            <p>ADDRESS: <span>{{ $patient_walk->address}}</span></p>
-                        </div>
+            <div class="card p-2 card-app">
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <div class="card-title p-0 mb-0 d-flex align-item-center">
+                        <h5 class="card-header p-0 text-uppercase">PATIENT WALKIN</h5>
                     </div>
-                    <div class="d-flex">
-                        <p>CONTACT: <span>{{ $patient_walk->contact}}</span></p>
-                    </div>
-                    <div class="d-flex mt-2">
-                        @role('pediatrician')
-                        <a href="{{ route('patient-record.view_consult', $patient_walk->id) }}" class="btn btn-sm btn-primary">MEDICAL HISTORY</a>
-                        @endrole
+                    <div class="card-tool">
+                        <form action="{{ route('patient-record.index') }}" method="get" class="d-flex">
+                            @csrf
+                            <div class="form-group">
+                                <input class="form-control form-control-sm d-sm-none d-md-block me-2" type="search"
+                                    placeholder="Search..." name="search" style="width: 150px;">
+                            </div>
+                            <button type="submit" class="btn btn-sm btn-primary">SEARCH</button>
+                        </form>
                     </div>
                 </div>
-                  @empty
-                      <div class=" d-flex align-items-center justify-content-center"
-                          style="height: 111.172px;">
-                          <p class="">NO APPOINTMENT TO SHOW!</p>
-                      </div>
-                  @endforelse
-              </div>
-          </div>
-      </div>
+                <div class="card-body">
+                    @forelse ($patient_walkin as $patient_walk)
+                        <div class="card-patient mb-2">
+                            <div class="">
+                                <p>NAME: <span>{{ $patient_walk->full_name }}</span></p>
+                                <p class="">BIRTHDATE: <span>{{ $patient_walk->birthdate->format('F d, Y') }}</span>
+                                    GENDER:<span> {{ $patient_walk->gender }}</span></p>
+                                <div class="d-flex">
+                                    <p>ADDRESS: <span>{{ $patient_walk->address }}</span></p>
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <p>CONTACT: <span>{{ $patient_walk->contact }}</span></p>
+                            </div>
+                            <div class="d-flex mt-2">
+                                @role('pediatrician')
+                                    <a href="{{ route('patient-record.view_consult', $patient_walk->id) }}"
+                                        class="btn btn-sm btn-primary">MEDICAL HISTORY</a>
+                                @endrole
+                            </div>
+                        </div>
+                    @empty
+                        <div class=" d-flex align-items-center justify-content-center" style="height: 111.172px;">
+                            <p class="">NO APPOINTMENT TO SHOW!</p>
+                        </div>
+                    @endforelse
+                </div>
+            </div>
+        </div>
     </div>
 @endsection

@@ -29,8 +29,8 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(125);
         Paginator::useBootstrap();
 
-        if (env('APP_ENV') != 'local') {
-            URL::forceScheme('https');
+        if (env('APP_ENV') == 'local') {
+            URL::forceScheme('http');
         }
     }
 }

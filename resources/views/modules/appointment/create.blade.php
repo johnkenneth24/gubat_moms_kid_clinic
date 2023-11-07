@@ -1,28 +1,14 @@
-@extends('layouts/app-auth/contentNavbarLayout')
+@extends('layouts/app-auth/commonMaster')
 
-@section('title', 'Book Appointment')
+@section('title')
+    Book Appointment
+@endsection
 
-@section('vendor-style')
+@section('page-style')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css">
-    <style>
-        .unselectable-date {
-            background-color: rgb(211, 211, 211);
-            color: #eea0a0;
-        }
-
-        .remaining-slots {
-            font-style: italic;
-            font-weight: normal;
-        }
-
-        .form-check-label {
-            font-weight: bold;
-        }
-    </style>
 @endsection
 
 @section('content')
-
     <form action="{{ route('appointment.store') }}" method="POST" id="appointment">
         @csrf
         <div class="row">
@@ -149,29 +135,22 @@
                                 </div>
                                 <div class="col-md-12 mb-5 mt-5 p-2">
                                     <div class="card">
-                                      @if (
-                                          !auth()->user()->age &&
-                                          !auth()->user()->birthdate &&
-                                          !auth()->user()->contact_number &&
-                                          !auth()->user()->address)
-
-<div class="alert alert-danger fw-bold" role="alert">
-  Please complete your personal information before booking an appointment. <a
-      href="{{ route('user-management.view', auth()->user()->id) }}">Click here.</a>
-</div>
+                                        @if (!auth()->user()->age && !auth()->user()->birthdate && !auth()->user()->contact_number && !auth()->user()->address)
+                                            <div class="alert alert-danger fw-bold" role="alert">
+                                                Please complete your personal information before booking an appointment. <a
+                                                    href="{{ route('user-management.view', auth()->user()->id) }}">Click
+                                                    here.</a>
+                                            </div>
                                         @else
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            onclick="confirmAppointment()">
-                                            Confirm Submission
-                                        </button>
-
-
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                onclick="confirmAppointment()">
+                                                Confirm Submission
+                                            </button>
                                         @endif
                                     </div>
 
-                                    <!-- Modal -->
                                     <div class="modal fade" id="confirm" tabindex="-1" data-bs-backdrop="static"
-                                        aria-labelledby="confirmLabel" aria-hidden="true">
+                                        aria-labelledby="confirmLabel" aria-hidden="true" style="width: 100%;">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -182,7 +161,6 @@
                                                         </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <!-- Display the category and date_appointment values here -->
                                                     <h4 class="fw-bold">Category: <span class="fw-normal text-capitalize"
                                                             id="modalCategory"></span></h4>
                                                     <h4 class="fw-bold">Appointment Date: <span class="fw-normal "
@@ -199,9 +177,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    {{-- end of modal --}}
                                     <div class="modal fade" id="errorModal" tabindex="-1" data-bs-backdrop="static"
-                                        aria-labelledby="errorModalLabel" aria-hidden="true">
+                                        aria-labelledby="errorModalLabel" aria-hidden="true" style="width: 100%;">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -232,9 +209,6 @@
 @endsection
 
 @section('vendor-script')
-
-@endsection
-@push('page-script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" crossorigin="anonymous"
         referrerpolicy="no-referrer"></script>
 
@@ -547,6 +521,9 @@
                     });
                 },
                 selectOverlap: false,
+                handleWindowResize: true,
+                aspectRatio: 1,
+                longPressDelay: 100,
                 selectAllow: function(info) {
                     var today = new Date();
                     var yesterday = new Date(today);
@@ -629,4 +606,4 @@
             }
         }
     </script>
-@endpush
+@endsection

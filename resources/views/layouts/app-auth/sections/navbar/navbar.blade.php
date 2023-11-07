@@ -1,10 +1,25 @@
 @php
+    /* Display elements */
+    $contentNavbar = true;
+    $containerNav = $containerNav ?? 'container-xxl';
+    $isNavbar = $isNavbar ?? true;
+    $isMenu = $isMenu ?? true;
+    $isFlex = $isFlex ?? false;
+    $isFooter = $isFooter ?? true;
+    $customizerHidden = $customizerHidden ?? '';
+    $pricingModal = $pricingModal ?? false;
+
+    /* HTML Classes */
+    $navbarDetached = 'navbar-detached';
+
+    /* Content classes */
+    $container = $container ?? 'container-xxl';
+
     $containerNav = $containerNav ?? 'container-fluid';
     $navbarDetached = $navbarDetached ?? '';
 
 @endphp
 
-<!-- Navbar -->
 @if (isset($navbarDetached) && $navbarDetached == 'navbar-detached')
     <nav class="layout-navbar {{ $containerNav }} navbar navbar-expand-xl {{ $navbarDetached }} align-items-center bg-navbar-theme"
         id="layout-navbar">
@@ -14,33 +29,12 @@
         <div class="{{ $containerNav }}">
 @endif
 
-<!--  Brand demo (display only for navbar-full and hide on below xl) -->
-@if (isset($navbarFull))
-    <div class="navbar-brand app-brand demo d-none d-xl-flex py-0 me-4">
-        <a href="{{ url('/') }}" class="app-brand-link gap-2">
-            <span class="app-brand-logo demo">
-                @include('_partials.macros', ['width' => 25, 'withbg' => '#696cff'])
-            </span>
-            <span class="app-brand-text demo menu-text fw-bolder">{{ config('variables.templateName') }}</span>
-        </a>
-    </div>
-@endif
-
-<!-- ! Not required for layout-without-menu -->
-@if (!isset($navbarHideToggle))
-    <div
-        class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0{{ isset($menuHorizontal) ? ' d-xl-none ' : '' }} {{ isset($contentNavbar) ? ' d-xl-none ' : '' }}">
-        <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
-            <i class="bx bx-menu bx-sm"></i>
-        </a>
-    </div>
-@endif
+<div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
 
 <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
 
     <ul class="navbar-nav flex-row align-items-center ms-auto">
 
-        <!-- User -->
         <li class="nav-item navbar-dropdown dropdown-user dropdown">
             <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                 <div class="avatar ">
@@ -86,7 +80,8 @@
                     <div class="dropdown-divider"></div>
                 </li>
                 <li>
-                    <a href="{{ route('user-management.view', auth()->user()->id ) }}" class="dropdown-item" href="javascript:void(0);">
+                    <a href="{{ route('user-management.view', auth()->user()->id) }}" class="dropdown-item"
+                        href="javascript:void(0);">
                         <i class="bx bx-user me-2"></i>
                         <span class="align-middle">My Profile</span>
                     </a>
@@ -103,7 +98,6 @@
                 </li>
             </ul>
         </li>
-        <!--/ User -->
     </ul>
 </div>
 
@@ -111,4 +105,3 @@
     </div>
 @endif
 </nav>
-<!-- / Navbar -->

@@ -1,4 +1,4 @@
-@extends('layouts/app-auth/contentNavbarLayout')
+@extends('layouts/app-auth/commonMaster')
 
 @section('title', 'Appointment Status')
 

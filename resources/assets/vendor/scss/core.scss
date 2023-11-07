@@ -2,3 +2,10 @@
 @import 'bootstrap-extended';
 @import 'components';
 @import 'colors';
+
+@media (max-width: 1199.98px) {
+    #sidebar.layout-menu {
+        position: static !important;
+        transform: none !important;
+    }
+}
