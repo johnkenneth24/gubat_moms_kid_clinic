@@ -191,7 +191,7 @@
                 </div>
                 <div class="card-body">
 
-                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                    <div class="accordion accordion-flush" id="accordionFlushExample" style="width: 100%;">
                         @forelse ($patient_appointment as $patient_app)
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
@@ -205,7 +205,7 @@
                                     </button>
                                 </h2>
                                 <div id="flush-collapseOne{{ $patient_app->id }}" class="accordion-collapse collapse"
-                                    data-bs-parent="#accordionFlushExample">
+                                    data-bs-parent="#accordionFlushExample" style="width: 100%;">
                                     <div class="accordion-body">
                                         <div class="row">
                                             <div class="row mt-2">
@@ -314,29 +314,29 @@
             </div>
         </div>
     </div>
-            @endsection
+@endsection
 
-            @livewireScripts()
+@livewireScripts()
 
-            @section('page-script')
-                <script>
-                    $(document).ready(function() {
-                        $("#birthdate").on("change", function() {
-                            const birthdate = new Date($(this).val());
-                            const currentDate = new Date();
-                            const age = currentDate.getFullYear() - birthdate.getFullYear();
+@section('page-script')
+    <script>
+        $(document).ready(function() {
+            $("#birthdate").on("change", function() {
+                const birthdate = new Date($(this).val());
+                const currentDate = new Date();
+                const age = currentDate.getFullYear() - birthdate.getFullYear();
 
-                            // Check if the birthday hasn't occurred this year yet
-                            if (
-                                currentDate.getMonth() < birthdate.getMonth() ||
-                                (currentDate.getMonth() === birthdate.getMonth() &&
-                                    currentDate.getDate() < birthdate.getDate())
-                            ) {
-                                age--;
-                            }
+                // Check if the birthday hasn't occurred this year yet
+                if (
+                    currentDate.getMonth() < birthdate.getMonth() ||
+                    (currentDate.getMonth() === birthdate.getMonth() &&
+                        currentDate.getDate() < birthdate.getDate())
+                ) {
+                    age--;
+                }
 
-                            $("#age").val(age);
-                        });
-                    });
-                </script>
-            @endsection
+                $("#age").val(age);
+            });
+        });
+    </script>
+@endsection
