@@ -38,6 +38,19 @@
             height: 420px;
             overflow-y: scroll;
         }
+
+        .modal.show{
+
+        width: 100%;
+
+        }
+
+
+        .modal{
+
+        width: 100%;
+
+        }
     </style>
 @endsection
 

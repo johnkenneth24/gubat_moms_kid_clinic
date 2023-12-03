@@ -14,6 +14,21 @@
 
 <link rel="stylesheet" href="{{ asset('css/perfect-scrollbar.css') }}" />
 
+<style>
+    .modal.show {
+
+        width: 100%;
+
+    }
+
+
+    .modal {
+
+        width: 100%;
+
+    }
+</style>
+
 <!-- Vendor Styles -->
 @yield('vendor-style')
 <!-- Page Styles -->
