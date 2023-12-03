@@ -20,6 +20,18 @@
         background-color: #ffffff;
         opacity: 1;
     }
+
+    .modal.show {
+
+        width: 100%;
+
+    }
+
+    .modal {
+
+        width: 100%;
+
+    }
 </style>
 
 <!-- Vendor Styles -->
